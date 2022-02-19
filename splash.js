@@ -11,5 +11,6 @@ function waitTime() //This is the waiting function that will have sit on the cur
 function nextPage() //This will be called once the timer is done and sends us to the player-add screen.
 {
     console.log("Hello next page has been called but I have no page to load.");
-    document.getElementById('logo').remove();
+    //document.getElementById('logo').remove(); //I was thinking that instead of removing the logo we should just jump directly to the next page.
+    document.location.href="playerEntry.html"; 
 }
