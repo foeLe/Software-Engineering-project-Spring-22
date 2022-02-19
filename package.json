@@ -1,0 +1,23 @@
+{
+  "name": "setest",
+  "version": "1.0.0",
+  "description": "Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser",
+  "main": "playerEntry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
+  },
+  "engines": {
+    "node": "16.14.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22/issues"
+  },
+  "homepage": "https://github.com/foeLe/Software-Engineering-project-Spring-22#readme"
+}
