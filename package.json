@@ -5,7 +5,7 @@
   "main": "playerEntry.js",
   "scripts": {
     "start": "node playerEntry.js",
-    "test": "node test.js" 
+    "test": "echo \"Error: no test specified\" && exit 1" 
   },
   "repository": {
     "type": "git",
