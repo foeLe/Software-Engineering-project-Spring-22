@@ -4,7 +4,8 @@
   "description": "Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser",
   "main": "playerEntry.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node playerEntry.js",
+    "test": "node test.js" 
   },
   "repository": {
     "type": "git",
