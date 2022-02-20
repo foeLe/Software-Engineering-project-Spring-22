@@ -14,16 +14,18 @@ Open terminal and type in the following commands:
         - 'syhong@uark.edu' (email)   'laser-tag-11' (password)
     2) 'heroku git:remote -a team-11-app'
         - remotely connects our app with Heroku
-    3) 'git push heroku main'
+    3) 'npm install'
+        - start the app using package.json
+    4) 'git push heroku main'
         - pushing codes to our app
-    4) 'heroku open' 
+    5) 'heroku open' 
         - to see our app in web mode
         - other options:
             1. we can also enter 'https://team-11-app.herokuapp.com/' in a browser 
             2. we can also use the command 'heroku local' then paste in 'http://localhost:5000/' in a browser 
 ```
 # How to test changes made to codes in deployed mode
-First, login into Heroku and use commands 1) & 2) from 'How to view deployed app' section above.
+First, follow 1) to 2) from 'How to view deployed app' section above.
 Commit changes:
 ```sh
     1) Option 1: we can commit changes to our repo using regular command lines/GitHub Desktop.
@@ -31,8 +33,8 @@ Commit changes:
         1. 'git add .'
         2. 'git commit -m "(description)"
 ```
-Then, push our changed codes: 'git push heroku main'
-Finally, use any of the options under 4) above to see the deployed app.
+Then, push our changed codes: $'git push heroku main'
+Finally, use any of the options under 5) above to see the deployed app.
 
 
 
