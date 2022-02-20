@@ -31,5 +31,5 @@ function onSubmit() {
 function submitPlayer(player) {
 
     // To do: submit player info to database.
-
+    console.log("submitPlayer function here")
 }

@@ -1,24 +1,31 @@
 {
-  "name": "setest",
-  "version": "1.0.0",
-  "description": "Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser",
-  "main": "playerEntry.js",
+  "name": "node-js-getting-started",
+  "version": "0.3.0",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "14.x"
+  },
+  "main": "start.js",
   "scripts": {
-    "start": "node playerEntry.js",
-    "test": "echo \"Error: no test specified\" && exit 1" 
+    "start": "node start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "got": "^11.3.0",
+    "tape": "^4.7.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
+    "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
   },
-  "engines": {
-    "node": "16.14.0"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22/issues"
-  },
-  "homepage": "https://github.com/foeLe/Software-Engineering-project-Spring-22#readme"
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
