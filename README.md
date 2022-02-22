@@ -25,7 +25,7 @@ Open terminal and type in the following commands:
             1. we can also enter 'https://team-11-app.herokuapp.com/' in a browser 
             2. we can also use the command 'heroku local' then paste in 'http://localhost:5000/' in a browser 
 ```
-To view our database's contents:
+# To view our database's contents in Heroku terminal:
 '''sh
     1) 'heroku pg:psql -a team-11-app'
         - enter the database 
