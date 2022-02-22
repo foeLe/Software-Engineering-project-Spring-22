@@ -2,13 +2,13 @@
 Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser
 
 # Methodology
-Apply agile methods via incremental delivery + system reuse techniques
-Reference for the reuable system is found under: https://devcenter.heroku.com/articles/getting-started-with-nodejs (provided by Professor Strother)
+Apply agile methods via incremental delivery + system reuse techniques.
+Reference for the reusable system: https://devcenter.heroku.com/articles/getting-started-with-nodejs (suggested by Professor Strother)
 
-# How to view deployed app
+# How to view the deployed app
 Open terminal and type in the following commands:
 ```sh
-    0) (cd into the project directory - **make sure it cloned from a git repo/linked to GitHub)
+    0) (cd into the project directory - **make sure it is cloned from a git repo/linked to GitHub)
         - for GitHub Desktop, the project is saved  under: /../Documents/GitHub/(project name)
     1) 'heroku login'
         - 'syhong@uark.edu' (email)   'laser-tag-11' (password)
@@ -24,7 +24,7 @@ Open terminal and type in the following commands:
             1. we can also enter 'https://team-11-app.herokuapp.com/' in a browser 
             2. we can also use the command 'heroku local' then paste in 'http://localhost:5000/' in a browser 
 ```
-# How to test changes made to codes in deployed mode
+# How to test changes made to the app in deployed mode
 First, follow 1) to 2) from 'How to view deployed app' section above.
 Commit changes:
 ```sh
@@ -33,7 +33,7 @@ Commit changes:
         1. 'git add .'
         2. 'git commit -m "(description)"
 ```
-Then, push our changed codes: $'git push heroku main'
+Then, push the changes: $'git push heroku main'
 Finally, use any of the options under 5) above to see the deployed app.
 
 
