@@ -17,6 +17,7 @@ Open terminal and type in the following commands:
     3) 'npm install'
         - start the app using package.json
     4) 'git push heroku main'
+        - **make sure we are using the LATEST version of our app (clone the lastest version)
         - pushing codes to our app
     5) 'heroku open' 
         - to see our app in web mode
@@ -24,6 +25,16 @@ Open terminal and type in the following commands:
             1. we can also enter 'https://team-11-app.herokuapp.com/' in a browser 
             2. we can also use the command 'heroku local' then paste in 'http://localhost:5000/' in a browser 
 ```
+To view our database's contents:
+'''sh
+    1) 'heroku pg:psql -a team-11-app'
+        - enter the database 
+    2) 'SELECT * FROM player;'
+        - we are viewing everything in the database named "player."
+    3) 'exit'
+        - return to heroku command prompt
+'''
+
 # How to test changes made to the app in deployed mode
 First, follow 1) to 2) from 'How to view deployed app' section above.
 Commit changes:
@@ -35,6 +46,3 @@ Commit changes:
 ```
 Then, push the changes: $'git push heroku main'
 Finally, use any of the options under 5) above to see the deployed app.
-
-
-
