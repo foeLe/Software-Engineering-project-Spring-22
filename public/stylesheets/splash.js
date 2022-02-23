@@ -10,5 +10,6 @@ function waitTime() //This is the waiting function that will have sit on the cur
 function nextPage() //This will be called once the timer is done and sends us to the player-add screen.
 {
     document.getElementById('logo').remove();
-    document.location.href="views/pages/playerEntry.ejs"; 
+//     document.location.href="views/pages/playerEntry.ejs";
+    document.location.href="public/views/pages/playerEntry.ejs";
 }
