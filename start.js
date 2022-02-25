@@ -31,8 +31,6 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
 
- postgres://qhzwubrqcfceep:aa75c23adcc87c802917b159045a7d864ee4325d9c37e81d77c13223710832fa@ec2-54-235-98-1.compute-1.amazonaws.com:5432/d9u41bkrumjqsk
-
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
@@ -42,7 +40,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT id FROM player');
+      const result = await client.query('SELECT * FROM player');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
       client.release();
