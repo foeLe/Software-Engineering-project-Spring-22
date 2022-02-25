@@ -4,6 +4,13 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
+const { Pool } = require('pg'); 
+const pool = new Pool({ // connects to our database (re-run 'npm install' since made a change to 'package.json')
+  connectionString: process.env.DATABASE_URL, // check url: 'heroku config'; should be set 
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 /**
  * To direct from a page to another page, we need a line that builds a route first 
@@ -20,7 +27,7 @@ const PORT = process.env.PORT || 5000
  *          
  * 
  *    2) Under 'splash.ejs,' add in the line that redirects to 'player.ejs.'
- *       Since we are redirectly automatically after 3 seconds, we use: 
+ *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
  express()
@@ -29,4 +36,16 @@ const PORT = process.env.PORT || 5000
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM player');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
