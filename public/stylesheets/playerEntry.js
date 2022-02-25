@@ -1,5 +1,5 @@
 // Maximum number of players on each team.
-const MAX_PLAYERS = 10;
+const MAX_PLAYERS = 15;
 
 class Player {
     constructor(idNumber, codeName) {
@@ -10,7 +10,7 @@ class Player {
 
 function onSubmit() {
     // Gets the idNumber and codeName for each red player and submits it to the database.
-    for (let i = 1; i < MAX_PLAYERS; i++) {
+    for (let i = 1; i <= MAX_PLAYERS; i++) {
         let idNumber = document.getElementById("redIdNumber" + i).value;
         let codeName = document.getElementById("redCodeName" + i).value;
         let player = new Player(idNumber, codeName);
@@ -19,7 +19,7 @@ function onSubmit() {
     }
 
     // Gets the idNumber and codeName for each green player and submits it to the database.
-    for (let i = 1; i < MAX_PLAYERS; i++) {
+    for (let i = 1; i <= MAX_PLAYERS; i++) {
         let idNumber = document.getElementById("greenIdNumber" + i).value;
         let codeName = document.getElementById("greenCodeName" + i).value;
         let player = new Player(idNumber, codeName);
