@@ -31,6 +31,11 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
 
+pool.query("INSERT INTO player(id, codename)values(2, 'test')", (err,res)=>{
+  console.log(err,res)
+  pool.end()
+})
+
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
