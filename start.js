@@ -31,11 +31,12 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  */
 function insertUser (id, codename){
   try {
-    await pool.connect();
-    await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
+    const client = await pool.connect();
+    const update = await client.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
+    client.release();
     return true; 
-  } catch(error){
-    console.error(error.stack);
+  } catch(err){
+    console.error(err);
     return false;
   }
 };
