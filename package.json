@@ -1,6 +1,7 @@
 {
   "name": "user-data",
   "version": "0.3.0",
+  "type": "module",
   "description": "",
   "engines": {
     "node": "14.x"
