@@ -1,4 +1,4 @@
-import {pool} from './start.js';
+//import {pool} from './start.js';
 // Maximum number of players on each team.
 const MAX_PLAYERS = 2;
 
