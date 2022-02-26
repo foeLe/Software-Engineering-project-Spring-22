@@ -39,6 +39,7 @@ const insertUser = async (id, codename) => {
   } catch (err) {
     console.error(err);
   }
+}
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
