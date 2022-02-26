@@ -1,5 +1,5 @@
 // Maximum number of players on each team.
-const MAX_PLAYERS = 15;
+const MAX_PLAYERS = 2;
 
 class Player {
     constructor(idNumber, codeName) {
@@ -32,4 +32,7 @@ function submitPlayer(player) {
 
     // To do: submit player info to database.
     console.log("submitPlayer function here")
+    pool.query("INSERT INTO player(id, codename)values(player.idNumber, player.codeName)", (err,res)=>{
+        console.log(err,res)
+      })
 }
