@@ -1,6 +1,6 @@
 import {insertUser} from '../../start.js';      //imports needed function for entering data into database
 // Maximum number of players on each team.
-const MAX_PLAYERS = 2;
+const MAX_PLAYERS = 15;
 
 class Player {
     constructor(idNumber, codeName) {
@@ -14,18 +14,28 @@ function onSubmit() {
     for (let i = 1; i <= MAX_PLAYERS; i++) {
         let idNumber = document.getElementById("redIdNumber" + i).value;
         let codeName = document.getElementById("redCodeName" + i).value;
-        let player = new Player(idNumber, codeName);
 
-        submitPlayer(player);
+		// Check to make sure the player info is not blank before submitting player
+		if (idNumber != 0 && idNumber != "" && codeName != "") {
+			let player = new Player(idNumber, codeName);
+			
+			// Submit player to database
+			submitPlayer(player);
+		}
     }
 
     // Gets the idNumber and codeName for each green player and submits it to the database.
     for (let i = 1; i <= MAX_PLAYERS; i++) {
         let idNumber = document.getElementById("greenIdNumber" + i).value;
         let codeName = document.getElementById("greenCodeName" + i).value;
-        let player = new Player(idNumber, codeName);
 
-        submitPlayer(player);
+		// Check to make sure the player info is not blank before submitting player
+		if (idNumber != 0 && idNumber != "" && codeName != "") {
+			let player = new Player(idNumber, codeName);
+			
+			// Submit player to database
+			submitPlayer(player);
+		}
     }
 }
 
