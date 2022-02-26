@@ -30,28 +30,15 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
-// const insertUser = async (id, codename) => {
-  // try {
-  //   await client.connect();
-  //   await client.query(`INSERT INTO "player" ("id", "codename") 
-  //                       VALUES ($1, $2)`, [1, Opus]);   //command to add id and codename into the database
-  //   //return true; 
-  // } catch(error){
-  //   console.error(error.stack);
-  //   //return false;
-  // }finally {
-  //   await client.end();
-//   }
-// export const insertUser = async (id, codename) => {
-// try{
-//   const client = await pool.connect();
-//   await client.query('INSERT INTO player(id, codename) VALUES($1, $2)', [1, "Opus"]);
-// } catch (err) {
-//   console.error(err);
-// }
-// // };
-
-
+const insertUser = async (id, codename) => {
+  try{
+    pool.connect();
+    pool.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
+                        [id, codename]);
+    pool.end;
+  } catch (err) {
+    console.error(err);
+  }
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
@@ -60,11 +47,8 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
     try{
-      pool.connect();
-      pool.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
-                          [1, 'Opus']);
+      insertUser(2, 'Castle');
       res.render('pages/playerEntry')
-      pool.end;
     } catch (err) {
       console.error(err);
     }
