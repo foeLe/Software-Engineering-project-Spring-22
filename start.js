@@ -1,5 +1,5 @@
 // Program starts here as directed by 'package.json'
-
+export {pool};
 // Initialize path & port requirements
 const express = require('express')
 const path = require('path')
