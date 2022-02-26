@@ -29,16 +29,16 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
-// function insertUser (id, codename){
-//   // try {
-//   //   await pool.connect();
-//   //   await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
-//   //   return true; 
-//   // } catch(error){
-//   //   console.error(error.stack);
-//   //   return false;
-//   // }
-// };
+function insertUser (id, codename){
+  // try {
+  //   await pool.connect();
+  //   await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
+  //   return true; 
+  // } catch(error){
+  //   console.error(error.stack);
+  //   return false;
+  // }
+};
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
@@ -59,5 +59,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     }
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+ 
+ module.exports = {insertUser};
 
  
