@@ -60,11 +60,11 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
     try{
-      const client = await pool.connect();
-      await client.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
+      pool.connect();
+      pool.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
                           [1, 'Opus']);
       res.render('pages/playerEntry')
-      client.release();
+      pool.end;
     } catch (err) {
       console.error(err);
     }
