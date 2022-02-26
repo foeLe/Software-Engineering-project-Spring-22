@@ -1,5 +1,4 @@
 // Program starts here as directed by 'package.json'
-export {pool};
 // Initialize path & port requirements
 const express = require('express')
 const path = require('path')
@@ -51,3 +50,4 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     }
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+ export {pool}; //exporting this variable to playerEntry file
