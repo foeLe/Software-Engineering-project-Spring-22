@@ -58,7 +58,17 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
- .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .get('/playerEntry', (req, res) => {
+    try{
+      const client = await pool.connect();
+      await client.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
+                          [1, 'Opus']);
+      res.render('pages/playerEntry')
+      client.release();
+    } catch (err) {
+      console.error(err);
+    }
+  })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
