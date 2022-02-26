@@ -30,16 +30,16 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
 // const insertUser = async (id, codename) => {
-//   try {
-//     await client.connect();
-//     await client.query(`INSERT INTO "player" ("id", "codename") 
-//                         VALUES ($1, $2)`, [id, codename]);   //command to add id and codename into the database
-//     return true; 
-//   } catch(error){
-//     console.error(error.stack);
-//     return false;
-//   }finally {
-//     await client.end();
+  try {
+    await client.connect();
+    await client.query(`INSERT INTO "player" ("id", "codename") 
+                        VALUES ($1, $2)`, [1, Opus]);   //command to add id and codename into the database
+    //return true; 
+  } catch(error){
+    console.error(error.stack);
+    //return false;
+  }finally {
+    await client.end();
 //   }
 // };
 
