@@ -1,4 +1,4 @@
-const {startjs} = require('../../start.js');      //imports needed function for entering data into database
+import { startjs } from '../../start.js';      //imports needed function for entering data into database
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
