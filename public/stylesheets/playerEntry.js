@@ -32,9 +32,9 @@ function submitPlayer(player) {
 
     // To do: submit player info to database.
     console.log("submitPlayer function here")
-    INSERT INTO "player"
-        ("id", "codename")
-    VALUES 
-        (player.idNumber, player.codeName)
-      })
+    console.log(player.idNumber + " " + player.codeName)
+    // pool.query("INSERT INTO player('id', 'codename')values('player.idNumber', player.codename')",(err,res)=>{
+    //     console.log(err,res);
+    //     pool.end()
+    // })
 }
