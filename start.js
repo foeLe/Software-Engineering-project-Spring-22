@@ -1,6 +1,7 @@
 // Program starts here as directed by 'package.json'
 // Initialize path & port requirements
-const express = require('express')
+const express = require('express');
+const res = require('express/lib/response');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg'); 
@@ -32,7 +33,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 // export const insertUser = async (id, codename) => {
 //   try {
 //     await pool.connect();
-//     await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
+//     await pool.query(`INSERT INTO "player" VALUE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
 //     return true; 
 //   } catch(error){
 //     console.error(error.stack);
@@ -46,6 +47,12 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+    try{
+      const client = await pool.connect();
+      await client.query('INSERT INTO player(id, codename) VALUES($1, $2)', [1, "Opus"]);
+    } catch (err) {
+      console.error(err);
+    }
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
