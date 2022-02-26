@@ -29,7 +29,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
-export function insertUser (id, codename){
+function insertUser (id, codename){
   // try {
   //   await pool.connect();
   //   await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
