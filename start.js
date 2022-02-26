@@ -42,6 +42,10 @@ const insertUser = async (id, codename) => {
     await client.end();
   }
 };
+function print() {
+  console.log('hello');
+};
+
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
