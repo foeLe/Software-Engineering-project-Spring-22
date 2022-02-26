@@ -1,4 +1,4 @@
-//import {pool} from './start.js';
+import {insertUser} from '../../start.js';      //imports needed function for entering data into database
 // Maximum number of players on each team.
 const MAX_PLAYERS = 2;
 
@@ -34,8 +34,10 @@ function submitPlayer(player) {
     // To do: submit player info to database.
     console.log("submitPlayer function here")
     console.log(player.idNumber + " " + player.codeName)
-    pool.query("INSERT INTO player('id', 'codename')values('player.idNumber', player.codename')",(err,res)=>{
-        console.log(err,res);
-        pool.end()
+    
+    insertUser(player.idNumber, player.codeName).then((result) => {
+        if(result){
+            console.log('player added')
+        }
     })
 }

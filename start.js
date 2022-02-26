@@ -32,7 +32,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 const insertUser = async (id, codename) => {
   try {
     await pool.connect();
-    await pool.query('INSERT FROM "player" WHERE "id" = $1, "codename" = $2', [id],[codename]);   //command to add id and codename into the database
+    await pool.query(`INSERT FROM "player" WHERE "id" = ${id}, "codename" = ${codename}`);   //command to add id and codename into the database
     return true; 
   } catch(error){
     console.error(error.stack);
@@ -59,4 +59,6 @@ const insertUser = async (id, codename) => {
     }
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+ export {insertUser};   //exports function so playerEntry.js can use it
  
