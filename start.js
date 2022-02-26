@@ -65,6 +65,6 @@ const insertUser = async (id, codename) => {
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
  
- exports = {insertUser};
+// exports = {insertUser};
 
  

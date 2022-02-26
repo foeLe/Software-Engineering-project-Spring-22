@@ -1,9 +1,9 @@
-import { startjs } from '../../start.js';      //imports needed function for entering data into database
-startjs = require('start.js');
+//import * as startjs from '../../start.js';      //imports needed function for entering data into database
+
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
-export function printme() {
+function printme() {        //test function to see if playerEntry.ejs can access this
     console.log('hello');
   };
 
@@ -50,7 +50,7 @@ function submitPlayer(player) {
     console.log("submitPlayer function here")
     console.log(player.idNumber + " " + player.codeName)
     
-    startjs.print();
+    //startjs.print();
     // startjs.(player.idNumber, player.codeName).then((result) => {
     //     if(result){
     //         console.log('player added')
