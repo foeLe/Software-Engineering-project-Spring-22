@@ -2,7 +2,7 @@ import { startjs } from '../../start.js';      //imports needed function for ent
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
-function print() {
+function printme() {
     console.log('hello');
   };
 
