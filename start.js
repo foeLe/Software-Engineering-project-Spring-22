@@ -67,6 +67,6 @@ function print() {
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
  
- module.exports = {insertUser};
+ exports = {insertUser};
 
  
