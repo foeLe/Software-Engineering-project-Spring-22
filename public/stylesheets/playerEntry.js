@@ -2,6 +2,10 @@ import { startjs } from '../../start.js';      //imports needed function for ent
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
+function print() {
+    console.log('hello');
+  };
+
 class Player {
     constructor(idNumber, codeName) {
         this.idNumber = idNumber;
