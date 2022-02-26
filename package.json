@@ -21,7 +21,7 @@
     "tape": "^4.7.0"
   },
   "repository": {
-    "type": "modules",
+    "type": "git",
     "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
   },
   "keywords": [
