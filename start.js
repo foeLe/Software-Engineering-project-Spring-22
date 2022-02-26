@@ -54,8 +54,6 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
-      await client.query(`INSERT INTO "player" ("id", "codename") 
-                        VALUES ($1, $2)`, [1, Opus]);   //command to add id and codename into the database
       const result = await client.query('SELECT * FROM player');
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
