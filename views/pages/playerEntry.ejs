@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="./stylesheets/playerEntry.css" />
   </head>
     <body>
+        <script type="text/javascript"> src="./stylesheets/bundle.js"></script>
 	<div id="mainContainer">
-        <script type="text/javascript" src="./stylesheets/bundle.js"></script>
             <div id="redTeamContainer" class="teamContainer">
                 <p> Red Team </p>
                 <form method="POST" id="redTeamForm">
@@ -49,7 +49,8 @@
                     <br>
                 </form>
             </div>
-            <input type="button" onclick="onSubmit()" value="Submits" id="submitButton">
-		</div>
+        <input type="button" onclick="onSubmit();" value="Submit" id="submitButton">
+	</div>
+    <button onclick="onSubmit()">Click Me</button>
 	</body>
 </html>
