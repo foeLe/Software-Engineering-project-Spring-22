@@ -31,30 +31,32 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
 //function that adds a new player into the database
-module.exports = {
-const :insertUser = async (id, codename) => {
+
+let insertUser = async (id, codename) => {
   try{
     pool.connect();
     pool.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
                         [id, codename]);
     pool.end;
+    return true;
   } catch (err) {
     console.error(err);
+    return false;
   }
 }
-}
+
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
-    // try{ //checked to see if insertUser function was working
-    //   insertUser(2, 'Castle');
+     try{ //checked to see if insertUser function was working
+       insertUser(3, 'Bull');
         res.render('pages/playerEntry')
-    // } catch (err) {
-    //   console.error(err);
-    // }
+     } catch (err) {
+       console.error(err);
+     }
   })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
