@@ -55,6 +55,6 @@ function submitPlayer(player) {
     // })
 }
 
-export function hi(){
+function hi(){
     console.log("howdy");
 }
