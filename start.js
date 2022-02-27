@@ -45,10 +45,6 @@ let insertUser = async (id, codename) => {
   }
 }
 
-const f = function(){    //test function to see if export works
-  console.log("This is function f inside start.js");
-}
-
 // try{ //checks to see if insertUser function was working
 //   insertUser(5, 'Penguin');
 // } catch (err) {
@@ -56,12 +52,14 @@ const f = function(){    //test function to see if export works
 // }
 
  express()
+ .use(express.static(path.join(__dirname, 'public')))
+ .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
- .get('/', (req, res) => res.render('views/pages/splash')) 
+ .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
      //try{ //checked to see if insertUser function was working
      //  insertUser(3, 'Bull');
-        res.render('views/pages/playerEntry')
+        res.render('pages/playerEntry')
      //} catch (err) {
      //  console.error(err);
      //}
@@ -79,11 +77,8 @@ const f = function(){    //test function to see if export works
     }
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
- 
-module.exports = f;
 
- //const x = require("./test");         //testing simple import
-
+//start of old playerEntry.js file
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
