@@ -58,5 +58,3 @@ function submitPlayer(player) {
 export function hi(){
     console.log("howdy");
 }
-
-export {hi};
