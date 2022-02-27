@@ -56,7 +56,6 @@ const f = function(){    //test function to see if export works
 // }
 
  express()
- .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
