@@ -48,7 +48,7 @@ let insertUser = async (id, codename) => {
 const f = function(){    //test function to see if export works
   console.log("This is function f inside start.js");
 }
-
+hi();
 
 // try{ //checks to see if insertUser function was working
 //   insertUser(5, 'Penguin');

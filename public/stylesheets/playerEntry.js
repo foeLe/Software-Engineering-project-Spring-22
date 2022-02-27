@@ -54,3 +54,7 @@ function submitPlayer(player) {
     //     }
     // })
 }
+
+function hi(){
+    console.log("howdy");
+}
