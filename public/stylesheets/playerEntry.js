@@ -10,7 +10,7 @@ class Player {
     }
 }
 
-function onSubmit() {
+export function onSubmit() {
     // Gets the idNumber and codeName for each red player and submits it to the database.
     for (let i = 1; i <= MAX_PLAYERS; i++) {
         let idNumber = document.getElementById("redIdNumber" + i).value;
@@ -55,6 +55,6 @@ function submitPlayer(player) {
     // })
 }
 
-function hi(){
+export function hi(){
     console.log("howdy");
 }
