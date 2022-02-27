@@ -30,7 +30,8 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
-const insertUser = async (id, codename) => {
+module.exports = {
+const :insertUser = async (id, codename) => {
   try{
     pool.connect();
     pool.query('INSERT into player(id, codename) VALUES($1, $2) RETURNING id',
@@ -40,7 +41,7 @@ const insertUser = async (id, codename) => {
     console.error(err);
   }
 }
-
+}
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
