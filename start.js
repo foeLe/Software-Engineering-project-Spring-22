@@ -51,7 +51,7 @@ const :insertUser = async (id, codename) => {
  .get('/playerEntry', (req, res) => {
     // try{ //checked to see if insertUser function was working
     //   insertUser(2, 'Castle');
-    //   res.render('pages/playerEntry')
+        res.render('pages/playerEntry')
     // } catch (err) {
     //   console.error(err);
     // }
