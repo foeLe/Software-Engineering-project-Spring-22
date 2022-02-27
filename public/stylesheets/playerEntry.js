@@ -1,4 +1,4 @@
-import { insertUser } from './startjs';      //imports needed function for entering data into database
+const startjs = module.require('../../start');      //imports needed function for entering data into database
 
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
@@ -50,7 +50,7 @@ function submitPlayer(player) {
     console.log("submitPlayer function here")
     console.log(player.idNumber + " " + player.codeName)
     
-    insertUser(player.idNumber, player.codeName);
+    startjs.insertUser(player.idNumber, player.codeName);
     //startjs.print();
     // startjs.(player.idNumber, player.codeName).then((result) => {
     //     if(result){

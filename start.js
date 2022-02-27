@@ -49,12 +49,12 @@ const :insertUser = async (id, codename) => {
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
-    try{
-      insertUser(2, 'Castle');
-      res.render('pages/playerEntry')
-    } catch (err) {
-      console.error(err);
-    }
+    // try{ //checked to see if insertUser function was working
+    //   insertUser(2, 'Castle');
+    //   res.render('pages/playerEntry')
+    // } catch (err) {
+    //   console.error(err);
+    // }
   })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
