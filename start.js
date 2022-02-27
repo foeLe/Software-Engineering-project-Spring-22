@@ -30,6 +30,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
+//function that adds a new player into the database
 module.exports = {
 const :insertUser = async (id, codename) => {
   try{
