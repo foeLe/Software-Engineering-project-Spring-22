@@ -56,13 +56,12 @@ const f = function(){    //test function to see if export works
 // }
 
  express()
- .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
- .get('/', (req, res) => res.render('pages/splash')) 
+ .get('/', (req, res) => res.render('views/pages/splash')) 
  .get('/playerEntry', (req, res) => {
      //try{ //checked to see if insertUser function was working
      //  insertUser(3, 'Bull');
-        res.render('pages/playerEntry')
+        res.render('views/pages/playerEntry')
      //} catch (err) {
      //  console.error(err);
      //}
