@@ -1,5 +1,5 @@
 //const startjs = require('./start');      //imports needed function for entering data into database
-
+const f = require("../../start");
 
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
@@ -50,7 +50,7 @@ function submitPlayer(player) {
     // To do: submit player info to database.
     console.log("submitPlayer function here")
     console.log(player.idNumber + " " + player.codeName)
-
+    f();
     //startjs.insertUser(player.idNumber, player.codeName);
     //startjs.print();
     // startjs.(player.idNumber, player.codeName).then((result) => {

@@ -45,13 +45,13 @@ let insertUser = async (id, codename) => {
   }
 }
 
-function double(n){    //test function to see if export works
-  return n*2;
+const f = function(){    //test function to see if export works
+  console.log("This is function f inside start.js");
 }
 
 
 // try{ //checks to see if insertUser function was working
-//   insertUser(4, 'Monster');
+//   insertUser(5, 'Penguin');
 // } catch (err) {
 //   console.error(err);
 // }
@@ -83,6 +83,6 @@ function double(n){    //test function to see if export works
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
  
-// exports = {insertUser};
+module.exports = f;
 
  
