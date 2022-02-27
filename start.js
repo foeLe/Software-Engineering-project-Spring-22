@@ -45,18 +45,24 @@ let insertUser = async (id, codename) => {
   }
 }
 
+try{ //checked to see if insertUser function was working
+  insertUser(4, 'Monster');
+} catch (err) {
+  console.error(err);
+}
+
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => {
-     try{ //checked to see if insertUser function was working
-       insertUser(3, 'Bull');
+     //try{ //checked to see if insertUser function was working
+     //  insertUser(3, 'Bull');
         res.render('pages/playerEntry')
-     } catch (err) {
-       console.error(err);
-     }
+     //} catch (err) {
+     //  console.error(err);
+     //}
   })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
