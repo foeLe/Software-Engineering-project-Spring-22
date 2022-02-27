@@ -45,7 +45,12 @@ let insertUser = async (id, codename) => {
   }
 }
 
-try{ //checked to see if insertUser function was working
+export function double(n){    //test function to see if export works
+  return n*2;
+}
+
+
+try{ //checks to see if insertUser function was working
   insertUser(4, 'Monster');
 } catch (err) {
   console.error(err);
