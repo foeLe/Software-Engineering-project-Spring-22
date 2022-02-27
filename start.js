@@ -45,16 +45,16 @@ let insertUser = async (id, codename) => {
   }
 }
 
-export function double(n){    //test function to see if export works
+function double(n){    //test function to see if export works
   return n*2;
 }
 
 
-try{ //checks to see if insertUser function was working
-  insertUser(4, 'Monster');
-} catch (err) {
-  console.error(err);
-}
+// try{ //checks to see if insertUser function was working
+//   insertUser(4, 'Monster');
+// } catch (err) {
+//   console.error(err);
+// }
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
