@@ -57,7 +57,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     
     var idValue2 = req.body.redIdNumber2;
     var codeNamePlayer2 = req.body.redCodeName2;
-    if(idValue2 != 0 && idValue2 !="" || codeNamePlayer2 !=""){
+    if(idValue2 != 0 && idValue2 !="" && codeNamePlayer2 !=""){
     var sql = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
     pool.query(sql, function (err) {
       if (!err){
@@ -148,7 +148,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     // })
     // }
     //---------------------------------
-      //res.render('pages/playerEntry')
+    //res.render('pages/playerEntry/submit')
     //---------------------------------
     } catch (err) {
       console.error(err);
