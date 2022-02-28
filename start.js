@@ -42,10 +42,10 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .post('/playerEntry/submit', async (req, res) => {
   try{
       var idValue = req.body.redIdNumber1;
-      var firstName = '__';
-      var lastName = '__';
+      // var firstName = '__';
+      // var lastName = '__';
       var codeNamePlayer = req.body.redCodeName1;
-      var sql = "insert into player (id, first, last, codeName) values("+idValue+",'"+firstName+"','"+lastName+"','"+codeNamePlayer+"')"
+      var sql = "insert into player (id, codeName) values("+idValue+",'"+codeNamePlayer+"')"
       pool.query(sql, function (err) {
         if (!err){
           res.send('success');
