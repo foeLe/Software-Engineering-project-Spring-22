@@ -96,18 +96,18 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     // }
 
     // start - green team
-    // var idValue16 = req.body.greenIdNumber1;
-    // var codeNamePlayer16 = req.body.greenCodeName1;
-    // if(idValue16 != 0 && idValue16 !="" && codeNamePlayer16 !=""){
-    // var sql = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
-    // pool.query(sql, function (err) {
-    //   if (!err){
-    //     res.send('success');
-    //   } else {
-    //     res.send(err.message);
-    //   }
-    // })
-    // }
+    var idValue16 = req.body.greenIdNumber1;
+    var codeNamePlayer16 = req.body.greenCodeName1;
+    if(idValue16 != 0 && idValue16 !="" && codeNamePlayer16 !=""){
+    var sql = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
+    pool.query(sql, function (err) {
+      if (!err){
+        res.send('success');
+      } else {
+        res.send(err.message);
+      }
+    })
+    }
 
     // var idValue17 = req.body.greenIdNumber2;
     // var codeNamePlayer17 = req.body.greenCodeName2;
