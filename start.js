@@ -44,7 +44,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     
     var idValue1 = req.body.redIdNumber1;
     var codeNamePlayer1 = req.body.redCodeName1;
-    if(idValue1 != 0 && idValue1 !="" || codeNamePlayer1 !=""){
+    if(idValue1 != 0 || idValue1 !="" || codeNamePlayer1 !=""){
     var sql = "insert into player (id, codeName) values("+idValue1+",'"+codeNamePlayer1+"')"
     pool.query(sql, function (err) {
       if (!err){
@@ -56,50 +56,50 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     }
     
     
-    var idValue2 = req.body.redIdNumber2;
-    var codeNamePlayer2 = req.body.redCodeName2;
-    if(idValue2 != 0 && idValue2 !="" || codeNamePlayer2 !=""){
-    var sql2 = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
-    pool.query(sql2, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    // var idValue2 = req.body.redIdNumber2;
+    // var codeNamePlayer2 = req.body.redCodeName2;
+    // if(idValue2 != 0 && idValue2 !="" || codeNamePlayer2 !=""){
+    // var sql2 = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
+    // pool.query(sql2, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    // })
+    // }
 
     
-    var idValue3 = req.body.redIdNumber3;
-    var codeNamePlayer3 = req.body.redCodeName3;
-    if(idValue3 != 0 && idValue3 !="" || codeNamePlayer3 !=""){
-    var sql3 = "insert into player (id, codeName) values("+idValue3+",'"+codeNamePlayer3+"')"
-    pool.query(sql3, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-      })
-    }
+    // var idValue3 = req.body.redIdNumber3;
+    // var codeNamePlayer3 = req.body.redCodeName3;
+    // if(idValue3 != 0 && idValue3 !="" || codeNamePlayer3 !=""){
+    // var sql3 = "insert into player (id, codeName) values("+idValue3+",'"+codeNamePlayer3+"')"
+    // pool.query(sql3, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    //   })
+    // }
 
-    var idValue4 = req.body.redIdNumber4;
-    var codeNamePlayer4 = req.body.redCodeName4;
-    if(idValue4 != 0 && idValue4 !="" || codeNamePlayer4 !=""){
-    var sql4 = "insert into player (id, codeName) values("+idValue4+",'"+codeNamePlayer4+"')"
-    pool.query(sql4, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-      })
-    }
+    // var idValue4 = req.body.redIdNumber4;
+    // var codeNamePlayer4 = req.body.redCodeName4;
+    // if(idValue4 != 0 && idValue4 !="" || codeNamePlayer4 !=""){
+    // var sql4 = "insert into player (id, codeName) values("+idValue4+",'"+codeNamePlayer4+"')"
+    // pool.query(sql4, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    //   })
+    // }
 
     // start - green team
     var idValue16 = req.body.greenIdNumber1;
     var codeNamePlayer16 = req.body.greenCodeName1;
-    if(idValue16 != 0 && idValue16 !="" || codeNamePlayer16 !=""){
+    if(idValue16 != 0 || idValue16 !="" || codeNamePlayer16 !=""){
     var sql16 = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
     pool.query(sql16, function (err) {
       if (!err){
@@ -110,44 +110,44 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     })
     }
 
-    var idValue17 = req.body.greenIdNumber2;
-    var codeNamePlayer17 = req.body.greenCodeName2;
-    if(idValue17 != 0 && idValue17 !="" || codeNamePlayer17 !=""){
-    var sql17 = "insert into player (id, codeName) values("+idValue17+",'"+codeNamePlayer17+"')"
-    pool.query(sql17, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    // var idValue17 = req.body.greenIdNumber2;
+    // var codeNamePlayer17 = req.body.greenCodeName2;
+    // if(idValue17 != 0 && idValue17 !="" || codeNamePlayer17 !=""){
+    // var sql17 = "insert into player (id, codeName) values("+idValue17+",'"+codeNamePlayer17+"')"
+    // pool.query(sql17, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    // })
+    // }
 
-    var idValue18 = req.body.greenIdNumber3;
-    var codeNamePlayer18 = req.body.greenCodeName3;
-    if(idValue18 != 0 && idValue18 !="" || codeNamePlayer18 !=""){
-    var sql18 = "insert into player (id, codeName) values("+idValue18+",'"+codeNamePlayer18+"')"
-    pool.query(sql18, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    // var idValue18 = req.body.greenIdNumber3;
+    // var codeNamePlayer18 = req.body.greenCodeName3;
+    // if(idValue18 != 0 && idValue18 !="" || codeNamePlayer18 !=""){
+    // var sql18 = "insert into player (id, codeName) values("+idValue18+",'"+codeNamePlayer18+"')"
+    // pool.query(sql18, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    // })
+    // }
 
-    var idValue19 = req.body.greenIdNumber4;
-    var codeNamePlayer19 = req.body.greenCodeName4;
-    if(idValue19 != 0 && idValue19 !="" || codeNamePlayer19 !=""){
-    var sql19 = "insert into player (id, codeName) values("+idValue19+",'"+codeNamePlayer19+"')"
-    pool.query(sql19, function (err) {
-      if (!err){
-        res.send('success');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    // var idValue19 = req.body.greenIdNumber4;
+    // var codeNamePlayer19 = req.body.greenCodeName4;
+    // if(idValue19 != 0 && idValue19 !="" || codeNamePlayer19 !=""){
+    // var sql19 = "insert into player (id, codeName) values("+idValue19+",'"+codeNamePlayer19+"')"
+    // pool.query(sql19, function (err) {
+    //   if (!err){
+    //     res.send('success');
+    //   } else {
+    //     res.send(err.message);
+    //   }
+    // })
+    // }
     //---------------------------------
       res.render('pages/playerEntry')
     //---------------------------------
