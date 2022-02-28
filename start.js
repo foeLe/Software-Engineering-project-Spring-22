@@ -1,6 +1,7 @@
 // Program starts here as directed by 'package.json'
 // Initialize path & port requirements
 const express = require('express');
+const bodyParser = require('body-parser');
 const res = require('express/lib/response');
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -41,10 +42,31 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
+ .use(bodyParser.urlencoded({extended:false}))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .post('/playerEntry/submit', async (req, res) => {
+  try{
+      var idValue = req.body.redIdNumber1;
+      var firstName = '__';
+      var lastName = '__';
+      var codeNamePlayer = req.body.redCodeName1;
+      var sql = "insert into player (id, first, last, codeName) values("+idValue+",'"+firstName+"','"+lastName+"','"+codeNamePlayer+"')"
+      pool.query(sql, function (err) {
+        if (!err){
+          res.send('success');
+        } else {
+            res.send(err.message);
+        }
+      })
+      res.render('pages/playerEntry')
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();

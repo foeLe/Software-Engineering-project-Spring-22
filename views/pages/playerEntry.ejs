@@ -8,9 +8,9 @@
   </head>
   <body>
 	<div id="mainContainer">
+        <form action="/playerEntry/submit" method="post">
             <div id="redTeamContainer" class="teamContainer">
                 <p> Red Team </p>
-                <form method="POST" id="redTeamForm">
                     Player 1)  &nbsp &nbsp ID:<input type="number" min="0" id="redIdNumber1" class="redTextInput"> Name:<input type="text" id="redCodeName1" class="redTextInput"> <br>
                     Player 2)  &nbsp &nbsp ID:<input type="number" min="0" id="redIdNumber2" class="redTextInput"> Name:<input type="text" id="redCodeName2" class="redTextInput"> <br>
                     Player 3)  &nbsp &nbsp ID:<input type="number" min="0" id="redIdNumber3" class="redTextInput"> Name:<input type="text" id="redCodeName3" class="redTextInput"> <br>
@@ -27,11 +27,9 @@
                     Player 14) &nbsp       ID:<input type="number" min="0" id="redIdNumber14" class="redTextInput"> Name:<input type="text" id="redCodeName14" class="redTextInput"> <br>
                     Player 15) &nbsp       ID:<input type="number" min="0" id="redIdNumber15" class="redTextInput"> Name:<input type="text" id="redCodeName15" class="redTextInput"> <br>
                     <br>
-                </form>
             </div>
 			<div id="greenTeamContainer" class="teamContainer">
                 <p> Green Team </p>
-                <form id="greenTeamForm">
                     Player 1)  &nbsp &nbsp ID:<input type="number" min="0" id="greenIdNumber1" class="greenTextInput"> Name:<input type="text" id="greenCodeName1" class="greenTextInput"> <br>
                     Player 2)  &nbsp &nbsp ID:<input type="number" min="0" id="greenIdNumber2" class="greenTextInput"> Name:<input type="text" id="greenCodeName2" class="greenTextInput"> <br>
                     Player 3)  &nbsp &nbsp ID:<input type="number" min="0" id="greenIdNumber3" class="greenTextInput"> Name:<input type="text" id="greenCodeName3" class="greenTextInput"> <br>
@@ -48,9 +46,9 @@
                     Player 14) &nbsp       ID:<input type="number" min="0" id="greenIdNumber14" class="greenTextInput"> Name:<input type="text" id="greenCodeName14" class="greenTextInput"> <br>
                     Player 15) &nbsp       ID:<input type="number" min="0" id="greenIdNumber15" class="greenTextInput"> Name:<input type="text" id="greenCodeName15" class="greenTextInput"> <br>
                     <br>
-                </form>
             </div>
             <input type="button" onclick="onSubmit()" value="Submit" id="submitButton">
 		</div>
+        </form>
 	</body>
 </html>
