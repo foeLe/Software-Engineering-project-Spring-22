@@ -65,8 +65,10 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
           console.error(err);
           res.send("Error " + err);
         }
+
+        res.render('pages/playerEntry')
       })
-      res.render('pages/playerEntry')
+     
 
     // var idValue1 = req.body.redIdNumber1;
     // var codeNamePlayer1 = req.body.redCodeName1;
