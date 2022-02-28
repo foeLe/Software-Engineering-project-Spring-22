@@ -45,7 +45,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
       // var firstName = '__';
       // var lastName = '__';
       var codeNamePlayer = req.body.redCodeName1;
-      var sql = "insert into player (id, codeName) values("+idValue+",'"+codeNamePlayer+"')"
+      var sql = "insert into player (id, codeName) values("+idValue+","+codeNamePlayer+")"
       pool.query(sql, function (err) {
         if (!err){
           res.send('success');
