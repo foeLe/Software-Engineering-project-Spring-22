@@ -45,6 +45,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     var firstName = '__';
     var lastName = '__';
     var codeNamePlayer = req.body.redCodeName1;
+    if (idValue != 0 && idValue != "" && codeNamePlayer != "") {
     var sql = "insert into player (id, first, last, codeName) values("+idValue+",'"+firstName+"','"+lastName+"','"+codeNamePlayer+"')"
     pool.query(sql, function (err) {
       if (!err){
@@ -53,8 +54,10 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         res.send(err.message);
       }
     })
+    }
     var idValue2 = req.body.greenIdNumber1;
     var codeNamePlayer2 = req.body.greenCodeName1;
+    if (idValue2 != 0 && idValue2 != "" && codeNamePlayer2 != "") {
     sql = "insert into player (id, first, last, codeName) values("+idValue2+",'"+firstName+"','"+lastName+"','"+codeNamePlayer2+"')"
     pool.query(sql, function (err) {
       if (!err){
@@ -63,6 +66,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         res.send(err.message);
       }
     })
+    }
       res.render('pages/playerEntry')
     } catch (err) {
       console.error(err);
