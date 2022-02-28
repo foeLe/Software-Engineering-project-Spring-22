@@ -43,7 +43,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
       try{
         var idValue = req.body.redIdNumber1;
         var codeNamePlayer = req.body.redCodeName1;
-        var sql = "insert into player (id, first, last, codeName) values("+idValue+",'"+firstName+"','"+lastName+"','"+codeNamePlayer+"')"
+        var sql = "insert into player (id, codeName) values("+idValue+",'"+codeNamePlayer+"')"
         pool.query(sql, function (err) {
           if (!err){
             res.send('success');
@@ -53,7 +53,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         })
         var idValue2 = req.body.greenIdNumber1;
         var codeNamePlayer2 = req.body.greenCodeName1;
-        sql = "insert into player (id, first, last, codeName) values("+idValue2+",'"+firstName+"','"+lastName+"','"+codeNamePlayer2+"')"
+        sql = "insert into player (id,  codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
         pool.query(sql, function (err) {
           if (!err){
             res.send('success');
