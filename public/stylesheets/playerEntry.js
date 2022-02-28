@@ -45,9 +45,9 @@ function submitPlayer(player) {
     console.log("submitPlayer function here")
     console.log(player.idNumber + " " + player.codeName)
     
-    insertUser(player.idNumber, player.codeName).then((result) => {
-        if(result){
-            console.log('player added')
-        }
-    })
+    // insertUser(player.idNumber, player.codeName).then((result) => {
+    //     if(result){
+    //         console.log('player added')
+    //     }
+    // })
 }
