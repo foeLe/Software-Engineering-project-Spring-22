@@ -148,7 +148,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     // })
     // }
     //---------------------------------
-    //res.render('pages/playerEntry/submit')
+      res.render('pages/playerEntry/submit')
     //---------------------------------
     } catch (err) {
       console.error(err);
