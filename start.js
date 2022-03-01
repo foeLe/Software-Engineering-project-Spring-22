@@ -48,7 +48,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         pool.query(sql, function (err) {
           if (!err){
             res.send('success.');
-            var data = req.body;
+            var data = Array.from(req.body);
             data.forEach(function(item) {
               console.log(item.id);
               console.log(item.Name);
