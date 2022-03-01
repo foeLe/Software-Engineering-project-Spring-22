@@ -41,6 +41,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
  .post('/playerEntry/submit', async (req, res) => {
     try{ 
+      console.log(req.body);
       var idValue1 = req.body.redIdNumber1;
       var codeNamePlayer1 = req.body.redCodeName1;
       if(idValue1 != 0 && idValue1 !="" && codeNamePlayer1 !=""){
