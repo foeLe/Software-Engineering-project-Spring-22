@@ -39,15 +39,6 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
- .get('/testEG', function(req, res) {
-    res.render('pages/playerEntry');
-    var data = req.body;
-    var stringdata = ""
-    data.forEach(function(item) {
-      console.log(item.id);
-      console.log(item.Name);
-    })
- })
  .post('/playerEntry/submit', async (req, res) => {    
     try{ 
       var idValue1 = req.body.redIdNumber1;
@@ -57,6 +48,11 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         pool.query(sql, function (err) {
           if (!err){
             res.send('success.');
+            var data = req.body;
+            data.forEach(function(item) {
+              console.log(item.id);
+              console.log(item.Name);
+            })
           } else {
             res.send(err.message);
           }
