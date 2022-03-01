@@ -41,33 +41,33 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
  .post('/playerEntry/submit', async (req, res) => {
     try{ 
-      //console.log(req.body);
       var idValue1 = req.body.redIdNumber1;
       var codeNamePlayer1 = req.body.redCodeName1;
       if(idValue1 != 0 && idValue1 !="" && codeNamePlayer1 !=""){
-        var sql = "insert into player (id, codeName) values("+idValue1+",'"+codeNamePlayer1+"')"
-        pool.query(sql, function (err) {
-          if (!err){
-            res.send('success.');
-          } else {
-            res.send(err.message);
-          }
-        })
+        //var sql = "insert into player (id, codeName) values("+idValue1+",'"+codeNamePlayer1+"')"
+        //pool.query(sql, function (err) {
+        //  if (!err){
+        //    res.send('success.');
+        //  } else {
+        //    res.send(err.message);
+        //  }
+        //})
+        console.log('Got body:', req.body);
       }
     
     
-    var idValue2 = req.body.redIdNumber2;
-    var codeNamePlayer2 = req.body.redCodeName2;
-    if(idValue2 != 0 && idValue2 !="" && codeNamePlayer2 !=""){
-    var sql = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
-    pool.query(sql, function (err) {
-      if (!err){
-        res.send('success.');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    //var idValue2 = req.body.redIdNumber2;
+    //var codeNamePlayer2 = req.body.redCodeName2;
+    //if(idValue2 != 0 && idValue2 !="" && codeNamePlayer2 !=""){
+    //var sql = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
+    //pool.query(sql, function (err) {
+    //  if (!err){
+    //    res.send('success.');
+    //  } else {
+    //    res.send(err.message);
+    //  }
+    //})
+    //}
 
     
     // var idValue3 = req.body.redIdNumber3;
@@ -97,18 +97,18 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     // }
 
     // start - green team
-    var idValue16 = req.body.greenIdNumber1;
-    var codeNamePlayer16 = req.body.greenCodeName1;
-    if(idValue16 != 0 && idValue16 !="" && codeNamePlayer16 !=""){
-    var sql = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
-    pool.query(sql, function (err) {
-      if (!err){
-        res.send('success.');
-      } else {
-        res.send(err.message);
-      }
-    })
-    }
+    //var idValue16 = req.body.greenIdNumber1;
+    //var codeNamePlayer16 = req.body.greenCodeName1;
+    //if(idValue16 != 0 && idValue16 !="" && codeNamePlayer16 !=""){
+    //var sql = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
+    //pool.query(sql, function (err) {
+    //  if (!err){
+    //    res.send('success.');
+    //  } else {
+    //    res.send(err.message);
+    //  }
+    //})
+    //}
 
     // var idValue17 = req.body.greenIdNumber2;
     // var codeNamePlayer17 = req.body.greenCodeName2;
