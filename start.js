@@ -44,9 +44,9 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     var data = req.body;
     var stringdata = ""
     data.forEach(function(item) {
-      stringdata += "    ----    " + item.id;
+      console.log(item.id);
+      console.log(item.Name);
     })
-    res.send(stringdata);
  })
  .post('/playerEntry/submit', async (req, res) => {    
     try{ 
