@@ -42,10 +42,11 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/testEG', function(req, res) {
     res.render('pages/playerEntry');
     var data = req.body;
+    var stringdata = ""
     data.forEach(function(item) {
-      console.log(item.id);
-      console.log(item.Name);
+      stringdata += "    ----    " + item.id;
     })
+    res.send(stringdata);
  })
  .post('/playerEntry/submit', async (req, res) => {    
     try{ 
