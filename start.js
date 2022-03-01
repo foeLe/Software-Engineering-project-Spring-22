@@ -62,7 +62,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     var sql = "insert into player (id, codeName) values("+idValue2+",'"+codeNamePlayer2+"')"
     pool.query(sql, function (err) {
       if (!err){
-        res.send('success');
+        res.send('success.');
       } else {
         res.send(err.message);
       }
@@ -103,7 +103,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     var sql = "insert into player (id, codeName) values("+idValue16+",'"+codeNamePlayer16+"')"
     pool.query(sql, function (err) {
       if (!err){
-        res.send('success');
+        res.send('success.');
       } else {
         res.send(err.message);
       }
