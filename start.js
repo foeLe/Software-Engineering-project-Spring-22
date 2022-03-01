@@ -39,26 +39,28 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
- .post('/playerEntry/submit', async (req, res) => {
-
+ .get('/testEG', function(req, res) {
+    res.render('pages/playerEntry');
     var data = req.body;
     data.forEach(function(item) {
       console.log(item.id);
       console.log(item.Name);
     })
-    // try{ 
-    //   var idValue1 = req.body.redIdNumber1;
-    //   var codeNamePlayer1 = req.body.redCodeName1;
-    //   if(idValue1 != 0 && idValue1 !="" && codeNamePlayer1 !=""){
-    //     var sql = "insert into player (id, codeName) values("+idValue1+",'"+codeNamePlayer1+"')"
-    //     pool.query(sql, function (err) {
-    //       if (!err){
-    //         res.send('success.');
-    //       } else {
-    //         res.send(err.message);
-    //       }
-    //     })
-    //   }
+ })
+ .post('/playerEntry/submit', async (req, res) => {    
+    try{ 
+      var idValue1 = req.body.redIdNumber1;
+      var codeNamePlayer1 = req.body.redCodeName1;
+      if(idValue1 != 0 && idValue1 !="" && codeNamePlayer1 !=""){
+        var sql = "insert into player (id, codeName) values("+idValue1+",'"+codeNamePlayer1+"')"
+        pool.query(sql, function (err) {
+          if (!err){
+            res.send('success.');
+          } else {
+            res.send(err.message);
+          }
+        })
+      }
     
     
     //var idValue2 = req.body.redIdNumber2;
@@ -156,10 +158,10 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     //---------------------------------
       //res.render('pages/playerEntry/submit')
     //---------------------------------
-    // } catch (err) {
-    //   console.error(err);
-    //   res.send("Error " + err);
-    // }
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
   })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
