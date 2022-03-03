@@ -52,7 +52,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
             if (!err){
               res.send("success.");
             } else {
-              res.send(err.message);
+              res.send("Error.");
             }
           })
         }
