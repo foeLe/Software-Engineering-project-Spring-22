@@ -30,6 +30,21 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
+
+// Maximum number of players per team
+const MAX_PLAYERS = 15;
+
+// Current team members 
+var redTeam = Array();
+var greenTeam = Array();
+
+class Player {
+  constructor(idNumber, codeName) {
+    this.idNumber = idNumber;
+    this.codeName = codeName;
+  }
+}
+
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .use(bodyParser.urlencoded({extended:false}))
@@ -40,18 +55,27 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .get('/playerAction', (req, res) => res.render('pages/playerAction'))
  .post('/playerEntry/submit', async (req, res) => {
     try{ 
-      var idValue = req.body.id;
-      var codeValue = req.body.code;
+      let idValues = req.body.id;
+      let codeValues = req.body.code;
 
-      for (let i = 0; i < 30; i++) {
-        if (idValue[i] != 0 && idValue[i] != "" && codeValue[i] != "") {
-          var sql = "insert into player (id, codeName) values("+idValue[i]+", '"+codeValue[i]+"')"
+      for (let i = 0; i < MAX_PLAYERS * 2; i++) {
+        let id = idValues[i];
+        let codeName = codeValues[i];
+        if (id != 0 && id != "" && codeName != "") {
+          var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
           pool.query(sql, function (err) {
-            // if (err) throw err
-            //   console.error(err.message);
-            if (!err){
+            if (!err) {
               res.send("success.");
-            } else {
+              // Add player to current red team
+              if (i < MAX_PLAYERS) {
+                redTeam.push(new Player(id, codeName));
+              }
+              // Add player to current green team
+              else {
+                greenTeam.push(new Player(id, codeName));
+              }
+            }
+            else {
               res.send("Error.");
             }
           })
