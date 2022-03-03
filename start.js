@@ -43,7 +43,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
       var idValue = req.body.id;
       var codeValue = req.body.code;
 
-      for (let i = 1; i <= 15; i++) {
+      for (let i = 1; i <= 30; i++) {
         if (idValue[i] != 0 && idValue[i] != "" && codeValue[i] != "") {
           var sql = "insert into player (id, codeName) values("+idValue[i]+", '"+codeValue[i]+"')"
           pool.query(sql, function (err) {
