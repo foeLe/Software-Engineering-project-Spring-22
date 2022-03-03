@@ -37,6 +37,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .get('/playerAction', (req, res) => res.render('pages/playerAction'))
  .post('/playerEntry/submit', async (req, res) => {
     try{ 
       var idValue = req.body.id;
@@ -57,9 +58,9 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         }
       }   
     //---------------------------------
-      res.render('pages/playerEntry')
+      //res.render('pages/playerEntry')
     //---------------------------------
-      //res.render('pages/playerAction')
+      res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
