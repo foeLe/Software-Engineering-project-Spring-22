@@ -46,18 +46,18 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         if (idValue[i] != 0 && idValue[i] != "" && codeValue[i] != "") {
           var sql = "insert into player (id, first, last, codeName) values("+idValue[i]+", '"+codeValue[i]+"')"
           pool.query(sql, function (err) {
-            if (err) throw err
-              console.error(err.message);
-            // if (!err){
-            //   res.send(req.body);
-            // } else {
-            //   res.send(err.message);
-            // }
+            // if (err) throw err
+            //   console.error(err.message);
+            if (!err){
+              res.send("success");
+            } else {
+              res.send(err.message);
+            }
           })
         }
       }   
     //---------------------------------
-      res.render('pages/playerEntry')
+      //res.render('pages/playerEntry')
     //---------------------------------
     } catch (err) {
       console.error(err);
