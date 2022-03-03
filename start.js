@@ -61,7 +61,9 @@ class Player {
       for (let i = 0; i < MAX_PLAYERS * 2; i++) {
         let id = idValues[i];
         let codeName = codeValues[i];
+
         if (id != 0 && id != "" && codeName != "") {
+           // Submit player to database
           var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
           pool.query(sql, function (err) {
             if (!err) {
@@ -81,9 +83,6 @@ class Player {
           })
         }
       }   
-    //---------------------------------
-      //res.render('pages/playerEntry')
-    //---------------------------------
       res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
