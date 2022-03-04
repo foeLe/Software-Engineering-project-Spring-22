@@ -1,13 +1,94 @@
-
-body
-{
-    background-color: black;
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #e9e9e9;
+    text-align: center;
+    font-size: 12pt;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+#mainContainer {
+    width: 100%;
+    height: 100%;
 }
 
-img 
-{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+#teams {
+    width: 100%;
+    height: 35%;
+    text-align: center;
+}
+.teamTable {
+    width: 100%;
+}
+th {
+    height: calc(2 * 12pt);
+    border-bottom: 1px solid white;
+    border-collapse: collapse;
+}
+.player {
+    text-align: left;
+    width: 80%;
+}
+.redDarkRow {
+    background-color: #290d0d;
+}
+.greenDarkRow {
+    background-color: #102b0e;
+}
+.score {
+    text-align: right;
+    width: 20%;
+}
+.scoreTotalContainer {
+    text-align: right;
+}
+.scoreTotal {
+    padding: 2px;
+    font-size: 16pt;
+    font-weight: bolder;
+}
+.teamContainer {
+    width: calc(50% - 30px * 2 - 20px * 2);
+    height: 100%;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    overflow-y: auto;
+}
+#redTeam {
+    background-color: #331010;
+}
+#greenTeam {
+    background-color: #133310;
+}
+#actions {
+    height: calc(65% - 30px);
+    margin-bottom: 30px;
+    text-align: left;
+}
+.teamActions {
+    width: calc(50% - 30px * 2 - 20px * 2);
+    height: calc(100% - 30px);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+    overflow-y: auto;
+    font-size: 14pt;
+}
+li {
+    margin-bottom: 12pt;
+}
+#redActions {
+    background-color: #331010;
+}
+#greenActions {
+    background-color: #133310;
 }
