@@ -11,16 +11,15 @@ class Player {
 }
 
 
-function bindF5()
-{
-	document.addEventListener('keyup', function(e)) {
+function bindF5() {
+	document.addEventListener('keyup', function(e) {
 		if(e.keyCode == 116)
 		{
 			e.preventDefault();
 			onSubmit();
 			location.assign("https://team-11-app.herokuapp.com/playerAction");
 		}
-	}
+	})
 }
 
 
