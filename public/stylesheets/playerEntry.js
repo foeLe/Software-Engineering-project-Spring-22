@@ -12,7 +12,7 @@ class Player {
 
 
 function bindF5() {
-	document.addEventListener('keyup', function(e) {
+	document.addEventListener('keydown', function(e) {
 		if(e.keyCode == 116)
 		{
 			e.preventDefault();
