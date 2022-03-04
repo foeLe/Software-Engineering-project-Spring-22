@@ -1,17 +1,3 @@
-// Program starts here as directed by 'package.json'
-// Initialize path & port requirements
-const express = require('express');
-const bodyParser = require('body-parser');
-const res = require('express/lib/response');
-const path = require('path')
-const PORT = process.env.PORT || 5000
-const { Pool } = require('pg'); 
-const pool = new Pool({ // connects to our database (re-run 'npm install' since made a change to 'package.json')
-  connectionString: process.env.DATABASE_URL, // check url: 'heroku config'; should be set 
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
 /**
  * To direct from a page to another page, we need a line that builds a route first 
  * before using regular html/ejs redirecting codes under '.ejs' files.
@@ -30,6 +16,21 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
  *       Since we are redirecting automatically after 3 seconds, we use: 
  *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
  */
+
+// Program starts here as directed by 'package.json'
+// Initialize path & port requirements
+const express = require('express');
+const bodyParser = require('body-parser');
+const res = require('express/lib/response');
+const path = require('path')
+const PORT = process.env.PORT || 5000
+const { Pool } = require('pg'); 
+const pool = new Pool({ // connects to our database (re-run 'npm install' since made a change to 'package.json')
+  connectionString: process.env.DATABASE_URL, // check url: 'heroku config'; should be set 
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
