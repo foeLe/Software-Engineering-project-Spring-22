@@ -62,9 +62,11 @@ th {
 }
 #redTeam {
     background-color: #331010;
+    border: 3px solid #767676;
 }
 #greenTeam {
     background-color: #133310;
+    border: 3px solid #767676;
 }
 #actions {
     height: calc(55% - 30px);
@@ -88,9 +90,11 @@ li {
 }
 #redActions {
     background-color: #331010;
+    border: 3px solid #767676;
 }
 #greenActions {
     background-color: #133310;
+    border: 3px solid #767676;
 }
 
 #timer {
