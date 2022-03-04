@@ -30,17 +30,3 @@ function timerTick() {
 		document.getElementById("timer").innerHTML = timerMin + ":" + timerSec;
 	}
 }
-
-
-function submitPlayer(player) {
-
-    // To do: submit player info to database.
-    console.log("submitPlayer function here")
-    console.log(player.idNumber + " " + player.codeName)
-    
-    // insertUser(player.idNumber, player.codeName).then((result) => {
-    //     if(result){
-    //         console.log('player added')
-    //     }
-    // })
-}

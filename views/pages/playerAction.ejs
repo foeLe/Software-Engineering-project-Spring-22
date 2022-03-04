@@ -3,7 +3,6 @@
     <head>
         <title>Laser Tag Client</title>
         <link rel="stylesheet" type="text/css" href="/stylesheets/playerAction.css" />
-		<script type="text/javascript" src="/stylesheets/playerAction.js"></script>
     </head>
     <body>
         <div id="mainContainer">
@@ -172,7 +171,10 @@
                 </div>
             </div>
             <div id="timerContainer">
-                <p id="timer" onload = "timerSetup()">5:00</p>
+                <p id="timer">5:00</p>
+				<script type="text/javascript" src="/stylesheets/playerAction.js">
+					timerSetup();
+				</script>
             </div>
         </div>
     </body>
