@@ -2,6 +2,7 @@
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
+
 class Player {
     constructor(idNumber, codeName) {
         this.idNumber = idNumber;
@@ -9,14 +10,16 @@ class Player {
     }
 }
 
+
 function bindF5()
 {
-	document.addEventListener('keyup', function(e) {
-	if(e.keyCode == 116)
-	{
-		e.preventDefault();
-		onSubmit();
-		location.assign("https://team-11-app.herokuapp.com/playerAction");
+	document.addEventListener('keyup', function(e)) {
+		if(e.keyCode == 116)
+		{
+			e.preventDefault();
+			onSubmit();
+			location.assign("https://team-11-app.herokuapp.com/playerAction");
+		}
 	}
 }
 
