@@ -7,6 +7,7 @@ const MAX_PLAYERS = 15;
 document.addEventListener('keydown', function(e) {
 	if(e.keyCode == 116) {
 		e.preventDefault();
+		//TO-DO: ALLOW PRESSING F5 TO ADD ENTERED INFO TO DATABASE (MOVE FROM start.js INTO onSubmit() IF NEEDED?)
 		onSubmit();
 		location.assign("https://team-11-app.herokuapp.com/playerAction");
 	}
