@@ -5,12 +5,12 @@ const MAX_PLAYERS = 15;
 
 //On startup, binds F5 to move to playerAction
 document.addEventListener('keydown', function(e) {
-		if(e.keyCode == 116) {
-			e.preventDefault();
-			onSubmit();
-			location.assign("https://team-11-app.herokuapp.com/playerAction");
-		}
-	})
+	if(e.keyCode == 116) {
+		e.preventDefault();
+		onSubmit();
+		location.assign("https://team-11-app.herokuapp.com/playerAction");
+	}
+})
 
 
 class Player {
