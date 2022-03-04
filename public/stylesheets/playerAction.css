@@ -7,8 +7,8 @@ html {
     font-size: 12pt;
 }
 body {
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
 }
 #mainContainer {
     width: 100%;
@@ -67,7 +67,7 @@ th {
     background-color: #133310;
 }
 #actions {
-    height: calc(65% - 30px);
+    height: calc(55% - 30px);
     margin-bottom: 30px;
     text-align: left;
 }
@@ -91,4 +91,9 @@ li {
 }
 #greenActions {
     background-color: #133310;
+}
+
+#timer {
+    font-size: 54pt;
+    margin-top: 30px;
 }
