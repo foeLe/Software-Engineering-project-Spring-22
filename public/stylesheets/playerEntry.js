@@ -7,7 +7,7 @@ document.addEventListener('keyup', function(e) {
 	{
 		e.preventDefault();
 		onSubmit();
-		location.replace("https://team-11-app.herokuapp.com/playerAction");
+		location.assign("https://team-11-app.herokuapp.com/playerAction");
 	}
 }
 
