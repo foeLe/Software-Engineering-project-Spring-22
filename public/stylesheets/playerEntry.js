@@ -2,7 +2,16 @@
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
-document.addEventListener('keyup', function(e) {
+class Player {
+    constructor(idNumber, codeName) {
+        this.idNumber = idNumber;
+        this.codeName = codeName;
+    }
+}
+
+function bindF5()
+{
+	document.addEventListener('keyup', function(e) {
 	if(e.keyCode == 116)
 	{
 		e.preventDefault();
@@ -11,12 +20,6 @@ document.addEventListener('keyup', function(e) {
 	}
 }
 
-class Player {
-    constructor(idNumber, codeName) {
-        this.idNumber = idNumber;
-        this.codeName = codeName;
-    }
-}
 
 function onSubmit() {
     // Gets the idNumber and codeName for each red player and submits it to the database.
