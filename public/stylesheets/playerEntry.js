@@ -3,9 +3,9 @@
 const MAX_PLAYERS = 15;
 
 
+//On startup, binds F5 to move to playerAction
 document.addEventListener('keydown', function(e) {
-		if(e.keyCode == 116)
-		{
+		if(e.keyCode == 116) {
 			e.preventDefault();
 			onSubmit();
 			location.assign("https://team-11-app.herokuapp.com/playerAction");
@@ -19,18 +19,6 @@ class Player {
         this.codeName = codeName;
     }
 }
-
-
-// function bindF5() {
-	// document.addEventListener('keydown', function(e) {
-		// if(e.keyCode == 116)
-		// {
-			// e.preventDefault();
-			// onSubmit();
-			// location.assign("https://team-11-app.herokuapp.com/playerAction");
-		// }
-	// })
-// }
 
 
 function onSubmit() {
