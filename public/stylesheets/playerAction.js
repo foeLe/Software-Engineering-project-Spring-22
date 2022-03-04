@@ -19,7 +19,7 @@ var timerInterval = setInterval(timerTick, 1000);
 function timerTick() {
 	if(timeLeft < 0) {
 		clearInterval(timerInterval);
-		document.getElementById("timer").innerHTML = "Times up!");
+		document.getElementById("timer").innerHTML = "Times up!";
 	}
 	
 	else {
