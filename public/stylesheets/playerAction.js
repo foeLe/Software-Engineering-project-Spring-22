@@ -2,24 +2,25 @@
 const TIMER_MS = 65000;
 
 
-//On startup, begin a timer of length TIMER_MS
-var currentTime = new Date().getTime();
-var endingTime = new Date(currentTime + TIMER_MS).getTime();
+function timerSetup() {
+	var currentTime = new Date().getTime();
+	var endingTime = new Date(currentTime + TIMER_MS).getTime();
 
-var timeLeft = endingTime - currentTime;
+	var timeLeft = endingTime - currentTime;
 
-var timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
+	var timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+	var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-document.getElementById("timer").innerHTML = timerMin + ":" + timerSec;
+	document.getElementById("timer").innerHTML = timerMin + ":" + timerSec;
 
-var timerInterval = setInterval(timerTick, 1000);
+	var timerInterval = setInterval(timerTick, 1000);
+}
 	
 
 function timerTick() {
 	if(timeLeft < 0) {
 		clearInterval(timerInterval);
-		document.getElementById("timer").innerHTML = "Times up!";
+		document.getElementById("timer").innerHTML = "Time's up!";
 	}
 	
 	else {
