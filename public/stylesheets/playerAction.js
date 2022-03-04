@@ -1,4 +1,4 @@
-//Time in milliseconds to start the timer with (5 minutes = 300,000 ms)
+//Time in milliseconds to start with (60,000 ms/minute)
 const TIMER_MS = 65000;
 
 function timerStart() {
@@ -18,6 +18,7 @@ function timerStart() {
 	var timerInterval = setInterval(function() {
 		timeLeft -= 1000;
 		
+		//TO-DO: IMPLEMENT CODE TO END GAME WHEN TIMER REACHES 0, ADDITIONAL WARNING CODE AT KEY TIMES IF NEEDED
 		switch(timeLeft) {
 		    case -1000:
 		        clearInterval(timerInterval);
@@ -34,6 +35,9 @@ function timerStart() {
 		        break;
             case 30000:
                 document.getElementById("timer").innerHTML = "Thirty seconds remaining!";
+		        break;
+			case 10000:
+                document.getElementById("timer").innerHTML = "Ten seconds remaining!";
 		        break;
             default:
                 var timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
