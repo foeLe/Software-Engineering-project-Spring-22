@@ -79,7 +79,7 @@ class Player {
               }
             }
             else {
-              res.send("Error.");
+              res.send("Error!");
             }
           })
         }
