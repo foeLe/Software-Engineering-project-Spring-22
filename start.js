@@ -63,25 +63,50 @@ class Player {
         let id = idValues[i];
         let codeName = codeValues[i];
 
-        if (id != 0 && id != "" && codeName != "") {
-           // Submit player to database
-          var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
-          pool.query(sql, function (err) {
-            if (!err) {
-              res.send("success.");
-              // Add player to current red team
-              if (i < MAX_PLAYERS) {
-                redTeam.push(new Player(id, codeName));
-              }
-              // Add player to current green team
-              else {
-                greenTeam.push(new Player(id, codeName));
-              }
-            }
+        if (id != 0 && id != "")  {
+          // Search for existing id
+            let searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ id +" " ; 
+            pool.query(searchId, function(err, result){
+            if (err)  {
+              res.send("Error " + err.message);
+            } 
             else {
-              res.send("Error.");
+              if (!result.length)  {
+                // Get row count with matching id
+                var row = result["rows"]
+                var result = row[0].total
+                
+                // Submit new user to database
+                if (result == "0" && codeName != "") {
+                  var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+                  pool.query(sql, function (err) {
+                    if (!err) {
+                      res.send("success");
+                      // Add player to current red team
+                      if (i < MAX_PLAYERS) {
+                        redTeam.push(new Player(id, codeName));
+                      }
+                      // Add player to current green team
+                      else {
+                        greenTeam.push(new Player(id, codeName));
+                      }
+                    }
+                    else {
+                      res.send("Error!");
+                    }
+                  })
+                }
+                else {
+                  // TO DO: autofill existing code names
+                  res.send("Result - id already exists: " + result + " " + codeName); // EX: "1" - 1 matched id found
+                }
+              } 
+              else {
+                res.send("Error " + err.message);
+              }
             }
-          })
+         })
+           
         }
       }   
       res.render('pages/playerAction')
