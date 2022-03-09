@@ -52,6 +52,20 @@ class Player {
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
  .get('/', (req, res) => res.render('pages/splash')) 
+ .get('/playerAction', (req, res) => {
+  try{
+    // redTeam.forEach(function(entry) {   // does not print ('console.log' does not work)
+    //   res.send(entry);
+    // });
+
+    // res.render('pages/playerAction', redTeam, greenTeam);  // application error or just don't do anything
+    
+    // res.render('pages/playerAction', {redTeam:redTeam}; // errors
+    res.render('pages/playerAction');
+  } catch (err){
+    res.send("Error " + err.message);
+  }
+})
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
  .post('/playerEntry/submit', async (req, res) => {
     try{ 
@@ -115,20 +129,6 @@ class Player {
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
-    }
-  })
-  .get('/playerAction', (req, res) => {
-    try{
-      // redTeam.forEach(function(entry) {   // does not print ('console.log' does not work)
-      //   res.send(entry);
-      // });
-
-      // res.render('pages/playerAction', redTeam, greenTeam);  // application error or just don't do anything
-      
-      // res.render('pages/playerAction', {redTeam:redTeam}; // errors
-      res.render('pages/playerAction');
-    } catch (err){
-      res.send("Error " + err.message);
     }
   })
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
