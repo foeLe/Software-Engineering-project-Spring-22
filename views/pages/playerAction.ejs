@@ -9,12 +9,18 @@
         <div id="mainContainer">
             <div id="teams">
                 <div id="redTeam" class="teamContainer">
+                     <!-- <ul>
+                        <% redTeam.forEach(function(r) { %>
+                            <li><%= r %> </li>
+                        <% }); %>
+                    </ul> -->    <!-- nothing shows up or gives application errors -->
                     <table class="teamTable">
                         <tr>
                             <th>Red Team</th>
                             <th class="score">Score</th>
                         </tr>
                         <tr>
+                            <!-- replace 'placeholder name' with '<% redTeam[0]%>' gives errors -->
                             <td id="redPlayer1" class="player redDarkRow">placeholder name</td>
                             <td id="redPlayer1Score" class="score redDarkRow">placeholder score</td>
                         </tr>
