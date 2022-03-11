@@ -54,83 +54,40 @@ class Player {
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
  .post('/playerEntry/submit', async (req, res) => {
-    try{ 
-      let idValues = req.body.id;
-      let codeValues = req.body.code;
+  try{ 
+    let idValues = req.body.id;
+    let codeValues = req.body.code;
+    for (let i = 0; i < MAX_PLAYERS * 2; i++) {
+      let id = idValues[i];
+      let codeName = codeValues[i];
 
-      for (let i = 0; i < MAX_PLAYERS * 2; i++) {
-        let id = idValues[i];
-        let codeName = codeValues[i];
-
-        if (id != 0 && id != "")  {
-          // Search for existing id
-            let searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ id +" " ; 
-            pool.query(searchId, function(err, result){
-            if (err)  {
-              res.send("Error " + err.message);
-            } 
-            else {
-              if (!result.length)  {
-                // Get row count with matching id
-                var row = result["rows"]
-                var result = row[0].total
-                
-                // Submit new user to database
-                if (result == "0" && codeName != "") {
-                  var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
-                  pool.query(sql, function (err) {
-                    if (!err) {
-                      res.send("success");
-                      // Add player to current red team
-                      if (i < MAX_PLAYERS) {
-                        redTeam.push(new Player(id, codeName));
-                      }
-                      // Add player to current green team
-                      else {
-                        greenTeam.push(new Player(id, codeName));
-                      }
-                    }
-                    else {
-                      res.send("Error!");
-                    }
-                  })
-                }
-                else {
-                  // TO DO: autofill existing code names
-                  // Get the code name of the existing id
-                  var row = result["rows"]
-                  var result = row[0].name
-                  res.send("autofill: " + result);
-                }
-              } 
-              else {
-                res.send("Error " + err.message);
-              }
+      if (id != 0 && id != "" && codeName != "") {
+         // Submit player to database
+        var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+        pool.query(sql, function (err) {
+          if (!err) {
+            // Add player to current red team
+            if (i < MAX_PLAYERS) {
+              redTeam.push(new Player(id, codeName));
             }
-         })
-           
+            // Add player to current green team
+            else {
+              greenTeam.push(new Player(id, codeName));
+            }
+          }
+          else {
+            res.send("Error!");
+          }
+        })
         }
-      }   
+      }     
       res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
     }
   })
-  .get('/playerAction', (req, res) => {
-    try{
-      // redTeam.forEach(function(entry) {   // does not print ('console.log' does not work)
-      //   res.send(entry);
-      // });
-  
-      // res.render('pages/playerAction', redTeam, greenTeam);  // application error or just don't do anything
-      
-      // res.render('pages/playerAction', {redTeam:redTeam}; // errors
-      res.render('pages/playerAction');
-    } catch (err){
-      res.send("Error " + err.message);
-    }
-  })
+ .get('/playerAction', (req, res) => res.render('pages/playerAction'))
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
