@@ -116,10 +116,11 @@ class Player {
   //     res.send("Error " + err);
   //   }
 
-    let redPlayers = req.body.redTeam;
-    let greenPlayers = req.body.greenTeam;
-    console.log("req.body: ----------")
-    console.log(req.body.redTeam);
+    let data = JSON.parse(JSON.stringify(req.body));
+    let redPlayers = data.redTeam;
+    let greenPlayers = data.greenTeam;
+    console.log("--------------------------------------")
+    console.log(data);
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
       let redID = redPlayers[i].id;
