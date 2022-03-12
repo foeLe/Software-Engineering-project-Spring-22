@@ -19,8 +19,8 @@ function countdown() {
 			case -1000:
 		        	clearInterval(timerInterval);
 				document.getElementById("startTimer").innerHTML = "BEGIN!";
-			break;
-        	   default:
+				break;
+			default:
 				var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
 				document.getElementById("startTimer").innerHTML = timerSec + "!";
 				break;
