@@ -77,7 +77,7 @@ class Player {
 
   // Receive player data submitted by client.
  .post('/playerEntry/submit', async (req, res) => {
-  // try{ 
+  // try{
   //   let idValues = req.body.id;
   //   let codeValues = req.body.code;
   //   for (let i = 0; i < MAX_PLAYERS * 2; i++) {
@@ -116,7 +116,7 @@ class Player {
   //     res.send("Error " + err);
   //   }
 
-    let data = JSON.stringify(req.body);
+    let data = req.body;
     let redPlayers = data.redTeam;
     let greenPlayers = data.greenTeam;
     console.log("--------------------------------------")
