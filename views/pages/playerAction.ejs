@@ -6,8 +6,8 @@
 		<script type="text/javascript" src="/stylesheets/playerAction.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            console.log("data: ");
             $(document).ready(function() {
+                console.log("data: ");
                 $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
                 console.log(data);
                 })

@@ -112,7 +112,7 @@ class Player {
       res.send("Error " + err);
     }
   })
-  .get('/players', (req, res) => function() {
+  .get('/players', async (req, res) => {
     res.send("test");
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
