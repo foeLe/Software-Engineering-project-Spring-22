@@ -10,11 +10,13 @@
                 $.get('https://team-11-app.herokuapp.com/redplayers', {}, function(data){
                     for (let i = 0; i <= data.length && i < 15; i++) {
                         document.getElementById("redPlayer" + (i + 1)).innerHTML = data[i].codeName;
+                        document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = "0";
                     }
                 })
                 $.get('https://team-11-app.herokuapp.com/greenplayers', {}, function(data){
                     for (let i = 0; i <= data.length && i < 15; i++) {
                         document.getElementById("greenPlayer" + (i + 1)).innerHTML = data[i].codeName;
+                        document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = "0";
                     }
                 })
             })
@@ -31,63 +33,63 @@
                         </tr>
                         <tr>
                             <td id="redPlayer1" class="player redDarkRow"></td>
-                            <td id="redPlayer1Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer1Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer2" class="player"></td>
-                            <td id="redPlayer2Score" class="score">placeholder score</td>
+                            <td id="redPlayer2Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer3" class="player redDarkRow"></td>
-                            <td id="redPlayer3Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer3Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer4" class="player"></td>
-                            <td id="redPlayer4Score" class="score">placeholder score</td>
+                            <td id="redPlayer4Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer5" class="player redDarkRow"></td>
-                            <td id="redPlayer5Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer5Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer6" class="player"></td>
-                            <td id="redPlayer6Score" class="score">placeholder score</td>
+                            <td id="redPlayer6Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer7" class="player redDarkRow"></td>
-                            <td id="redPlayer7Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer7Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer8" class="player"></td>
-                            <td id="redPlayer8Score" class="score">placeholder score</td>
+                            <td id="redPlayer8Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer9" class="player redDarkRow"></td>
-                            <td id="redPlayer9Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer9Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer10" class="player"></td>
-                            <td id="redPlayer10Score" class="score">placeholder score</td>
+                            <td id="redPlayer10Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer11" class="player redDarkRow"></td>
-                            <td id="redPlayer11Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer11Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer12" class="player"></td>
-                            <td id="redPlayer12Score" class="score">placeholder score</td>
+                            <td id="redPlayer12Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer13" class="player redDarkRow"></td>
-                            <td id="redPlayer13Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer13Score" class="score redDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer14" class="player"></td>
-                            <td id="redPlayer14Score" class="score">placeholder score</td>
+                            <td id="redPlayer14Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="redPlayer15" class="player redDarkRow"></td>
-                            <td id="redPlayer15Score" class="score redDarkRow">placeholder score</td>
+                            <td id="redPlayer15Score" class="score redDarkRow"></td>
                         </tr>
                     </table>
                     <hr>
@@ -103,63 +105,63 @@
                         </tr>
                         <tr>
                             <td id="greenPlayer1" class="player greenDarkRow"></td>
-                            <td id="greenPlayer1Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer1Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer2" class="player"></td>
-                            <td id="greenPlayer2Score" class="score">placeholder score</td>
+                            <td id="greenPlayer2Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer3" class="player greenDarkRow"></td>
-                            <td id="greenPlayer3Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer3Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer4" class="player"></td>
-                            <td id="greenPlayer4Score" class="score">placeholder score</td>
+                            <td id="greenPlayer4Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer5" class="player greenDarkRow"></td>
-                            <td id="greenPlayer5Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer5Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer6" class="player"></td>
-                            <td id="greenPlayer6Score" class="score">placeholder score</td>
+                            <td id="greenPlayer6Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer7" class="player greenDarkRow"></td>
-                            <td id="greenPlayer7Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer7Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer8" class="player"></td>
-                            <td id="greenPlayer8Score" class="score">placeholder score</td>
+                            <td id="greenPlayer8Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer9" class="player greenDarkRow"></td>
-                            <td id="greenPlayer9Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer9Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer10" class="player"></td>
-                            <td id="greenPlayer10Score" class="score">placeholder score</td>
+                            <td id="greenPlayer10Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer11" class="player greenDarkRow"></td>
-                            <td id="greenPlayer11Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer11Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer12" class="player"></td>
-                            <td id="greenPlayer12Score" class="score">placeholder score</td>
+                            <td id="greenPlayer12Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer13" class="player greenDarkRow"></td>
-                            <td id="greenPlayer13Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer13Score" class="score greenDarkRow"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer14" class="player"></td>
-                            <td id="greenPlayer14Score" class="score">placeholder score</td>
+                            <td id="greenPlayer14Score" class="score"></td>
                         </tr>
                         <tr>
                             <td id="greenPlayer15" class="player greenDarkRow"></td>
-                            <td id="greenPlayer15Score" class="score greenDarkRow">placeholder score</td>
+                            <td id="greenPlayer15Score" class="score greenDarkRow"></td>
                         </tr>
                     </table>
                     <hr>
