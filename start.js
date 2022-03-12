@@ -87,7 +87,10 @@ class Player {
         })
         }
       }
-      res.render('pages/playerAction')
+      setTimeout(function() {
+        res.send("redTeam length: " + redTeam.length);
+        //res.render('pages/playerAction')
+      }, 2000)
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
