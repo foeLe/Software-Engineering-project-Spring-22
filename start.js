@@ -117,7 +117,7 @@ class Player {
   //   }
 
     let data = req.body;
-    let redPlayers = data.redTeam;
+    let redPlayers = (data).redTeam;
     let greenPlayers = data.greenTeam;
     console.log("--------------------------------------")
     console.log(data);
