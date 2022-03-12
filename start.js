@@ -112,7 +112,10 @@ class Player {
       res.send("Error " + err);
     }
   })
-  .get('/players', async (req, res) => {
+  .get('/redplayers', async (req, res) => {
     res.send(redTeam);
+  })
+  .get('/greenplayers', async (req, res) => {
+    res.send(greenTeam);
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))

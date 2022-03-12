@@ -7,9 +7,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
+                $.get('https://team-11-app.herokuapp.com/redplayers', {}, function(data){
                     for (let i = 0; i <= data.length && i < 15; i++) {
                         document.getElementById("redPlayer" + (i + 1)).innerHTML = data[i].codeName;
+                    }
+                })
+                $.get('https://team-11-app.herokuapp.com/greenplayers', {}, function(data){
+                    for (let i = 0; i <= data.length && i < 15; i++) {
+                        document.getElementById("greenPlayer" + (i + 1)).innerHTML = data[i].codeName;
                     }
                 })
             })
