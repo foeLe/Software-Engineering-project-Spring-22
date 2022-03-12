@@ -5,6 +5,14 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/playerAction.css" />
 		<script type="text/javascript" src="/stylesheets/playerAction.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            console.log("data: ");
+            $(document).ready(function() {
+                $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
+                console.log(data);
+                })
+            })
+        </script>
         </head>
     <body>
         <div id="mainContainer">
@@ -177,12 +185,5 @@
 				<script> timerStart(); </script>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
-                console.log(data);
-                })
-            })
-        </script>
     </body>
 </html>
