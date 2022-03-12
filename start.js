@@ -57,8 +57,25 @@ class Player {
  .use(bodyParser.urlencoded({extended:false}))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
+
+ // Views
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .get('/playerAction', (req, res) => res.render('pages/playerAction'))
+ .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM player');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+
+  // Receive player data submitted by client.
  .post('/playerEntry/submit', async (req, res) => {
   try{ 
     let idValues = req.body.id;
@@ -99,23 +116,10 @@ class Player {
       res.send("Error " + err);
     }
   })
- .get('/playerAction', (req, res) => res.render('pages/playerAction'))
- .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM player');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
+
+  // Sends client the current players on each team
+  .get('/players', async (req, res) => {
+    res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
-  .get('/redplayers', async (req, res) => {
-    res.send(redTeam);
-  })
-  .get('/greenplayers', async (req, res) => {
-    res.send(greenTeam);
-  })
+
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
