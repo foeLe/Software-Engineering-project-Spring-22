@@ -1,0 +1,17 @@
+<--Purpose: transition page between playerEntry.ejs and playerAction.ejs, counts down to start of game.-->
+<--Created by: Evan Foley-->
+<!doctype html>
+<html>
+    <head>
+    <title>Laser Tag Client</title>
+    <link rel="stylesheet" href="/stylesheets/startTimer.css">
+    <script type="text/javascript" src="/stylesheets/startTimer.js"></script>
+    <meta http-equiv = "refresh" content = "6; url = https://team-11-app.herokuapp.com/playerAction" />
+    </head>
+    <body>
+        <div id="mainContainer">
+       <p id="startTimer"></p>
+       <script> countdown(); </script>
+        </div>
+    </body>
+</html>
