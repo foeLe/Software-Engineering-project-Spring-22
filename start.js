@@ -61,6 +61,7 @@ class Player {
  // Views
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
+ .get('/startTimer.ejs', (req, res) => res.render('pages/startTimer'))
  .get('/playerAction', (req, res) => res.render('pages/playerAction'))
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
