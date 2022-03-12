@@ -77,43 +77,88 @@ class Player {
 
   // Receive player data submitted by client.
  .post('/playerEntry/submit', async (req, res) => {
-  try{ 
-    let idValues = req.body.id;
-    let codeValues = req.body.code;
-    for (let i = 0; i < MAX_PLAYERS * 2; i++) {
-      let id = idValues[i];
-      let codeName = codeValues[i];
+  // try{ 
+  //   let idValues = req.body.id;
+  //   let codeValues = req.body.code;
+  //   for (let i = 0; i < MAX_PLAYERS * 2; i++) {
+  //     let id = idValues[i];
+  //     let codeName = codeValues[i];
 
-      if (id != 0 && id != "" && codeName != "") {
-         // Submit player to database
+  //     if (id != 0 && id != "" && codeName != "") {
+  //        // Submit player to database
+  //       var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+  //       pool.query(sql, function (err) {
+  //         if (!err) {
+  //           // Add player to current red team
+  //           if (i < MAX_PLAYERS) {
+  //             redTeam.push(new Player(id, codeName));
+  //           }
+  //           // Add player to current green team
+  //           else {
+  //             greenTeam.push(new Player(id, codeName));
+  //           }
+  //         }
+  //         else {
+  //           res.send("Error!");
+  //         }
+  //       })
+  //       }
+  //     }
+
+  //     // Waits 2000ms (2 seconds) before proceeding to give the asynchronous pool.query function time to add all players to the array.
+  //     setTimeout(function() {
+  //       res.render('pages/playerAction')
+  //       // res.send("redTeam length: " + readTeam.length);
+  //     }, 2000)
+
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.send("Error " + err);
+  //   }
+
+    let redPlayers = req.body.redTeam;
+    let greenPlayers = req.body.greenTeam;
+    
+    for (let i = 0; i < MAX_PLAYERS; i++) {
+      let redID = redPlayers[i].id;
+      let redName = redPlayers[i].name;
+      let greenID = greenPlayers[i].id;
+      let greenName = greenPlayers[i].name;
+
+      // add red player
+      if (redID != 0 && redID != "" && redName != "") {
+        // Insert new player into database
         var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
         pool.query(sql, function (err) {
           if (!err) {
             // Add player to current red team
-            if (i < MAX_PLAYERS) {
-              redTeam.push(new Player(id, codeName));
-            }
-            // Add player to current green team
-            else {
-              greenTeam.push(new Player(id, codeName));
-            }
+            redTeam.push(new Player(redID, redName));
           }
           else {
             res.send("Error!");
           }
         })
-        }
       }
 
-      // Waits 2000ms (2 seconds) before proceeding to give the asynchronous pool.query function time to add all players to the array.
+      // Add green player
+      if (greenID != 0 && greenID != "" && greenName != "") {
+        // Insert new player into database
+        var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+        pool.query(sql, function (err) {
+          if (!err) {
+            // Add player to current green team
+            greenTeam.push(new Player(greenID, greenName));
+          }
+          else {
+            res.send("Error!");
+          }
+        })
+      }
+
+      // Wait 2 seconds (2000ms) to give pool.query time to add all players, then redirect to playerAction screen.
       setTimeout(function() {
         res.render('pages/playerAction')
-        // res.send("redTeam length: " + readTeam.length);
       }, 2000)
-
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
     }
   })
 

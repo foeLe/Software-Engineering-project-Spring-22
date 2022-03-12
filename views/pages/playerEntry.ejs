@@ -4,10 +4,30 @@
     <title>Laser Tag Client</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/playerEntry.css" />
     <script type="text/javascript" src="/stylesheets/playerEntry.js"></script>
+    <script>
+        $("#submitButton").on("click", function() {
+            let redTeam = Array();
+            let greenTeam = Array();
+            for (let i = 0; i < 15; i++) {
+                let redID = document.getElementById("redIdNumber" + (i+1)).value;
+                let redName = document.getElementById("redCodeName" + (i+1)).value;
+                redTeam.push({"id": redID, "name": redName});
+                let greenID = document.getElementById("greenIdNumber" + (i+1)).value;
+                let greenName = document.getElementById("greenCodeName" + (i+1)).value;
+                redTeam.push({"id": greenID, "name": greenName}); 
+            }
+            $.ajax({
+                type: "POST",
+                url: "https://team-11-app.herokuapp.com/playerEntry/submit",
+                timeout: 2000,
+                data: {"redTeam": redTeam, "greenTeam": greenTeam}
+            });
+        })
+    </script>
   </head>
   <body>
 	<div id="mainContainer">
-        <form action="/playerEntry/submit" method="post">
+        <!--<form action="/playerEntry/submit" method="post">-->
             <div id="redTeamContainer" class="teamContainer">
                 <p> Red Team </p>
                     Player 1)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber1" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName1" class="redTextInput"> <br>
@@ -46,9 +66,9 @@
                     Player 15) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber15" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName15" class="greenTextInput"> <br>
                     <br>
             </div>
-            <button id="submit" name="submit" class="btn btn-primary">Start [F5]</button>
-            <!-- <input type="button" onclick="onSubmit()" value="Submit" id="submitButton"> -->
+            <!--<button id="submit" name="submit" class="btn btn-primary">Start [F5]</button>-->
+            <input type="button" value="Submit" id="submitButton">
 		</div>
-        </form>
+        <!--</form>-->
 	</body>
 </html>
