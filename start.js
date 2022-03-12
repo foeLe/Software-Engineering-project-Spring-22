@@ -54,9 +54,10 @@ class Player {
 
  express()
  .use(express.static(path.join(__dirname, 'public')))
- .use(bodyParser.urlencoded({extended:false}))
+ .use(bodyParser.urlencoded({extended:true}))
  .set('views', path.join(__dirname, 'views'))
  .set('view engine', 'ejs')
+
 
  // Views
  .get('/', (req, res) => res.render('pages/splash')) 
@@ -117,8 +118,8 @@ class Player {
   //     res.send("Error " + err);
   //   }
 
-    let data = JSON.parse(JSON.stringify(req.body));
-    let redPlayers = (data).redTeam;
+    let data = req.body;
+    let redPlayers = data.redTeam;
     let greenPlayers = data.greenTeam;
     console.log("--------------------------------------")
     console.log(data);
