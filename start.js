@@ -35,7 +35,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
 
-// Current team members 
+// Current team members
 var redTeam = Array();
 var greenTeam = Array();
 
@@ -87,9 +87,9 @@ class Player {
         })
         }
       }
+      // Waits 2000ms (2 seconds) before proceeding to allow the async function time to add all players to the array.
       setTimeout(function() {
-        res.send("redTeam length: " + redTeam.length);
-        //res.render('pages/playerAction')
+        res.render('pages/playerAction')
       }, 2000)
     } catch (err) {
       console.error(err);
