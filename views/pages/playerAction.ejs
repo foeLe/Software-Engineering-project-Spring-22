@@ -7,9 +7,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                console.log("data: ");
                 $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
-                console.log(data);
+                    for (let i = 0; i < 3; i++) {
+                        console.log(data[i].codeName);
+                    }
                 })
             })
         </script>
