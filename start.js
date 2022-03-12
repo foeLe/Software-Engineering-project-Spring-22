@@ -134,7 +134,7 @@ class Player {
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
         // Insert new player into database
-        var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+        var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
         pool.query(sql, function (err) {
           if (!err) {
             // Add player to current red team
@@ -149,7 +149,7 @@ class Player {
       // Add green player
       if (greenID != 0 && greenID != "" && greenName != "") {
         // Insert new player into database
-        var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
+        var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
         pool.query(sql, function (err) {
           if (!err) {
             // Add player to current green team
