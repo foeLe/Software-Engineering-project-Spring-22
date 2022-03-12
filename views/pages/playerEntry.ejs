@@ -14,10 +14,14 @@
                 for (let i = 0; i < 15; i++) {
                     let redID = document.getElementById("redIdNumber" + (i+1)).value;
                     let redName = document.getElementById("redCodeName" + (i+1)).value;
-                    redTeam.push({"id": redID, "name": redName});
+                    if (redID != "" && redID != 0 && redName != "") {
+                        redTeam.push({"id": redID, "name": redName});
+                    }
                     let greenID = document.getElementById("greenIdNumber" + (i+1)).value;
                     let greenName = document.getElementById("greenCodeName" + (i+1)).value;
-                    redTeam.push({"id": greenID, "name": greenName}); 
+                    if (greenID != "" && greenID != 0 && greenName != "") {
+                        redTeam.push({"id": greenID, "name": greenName});
+                    }
                 }
                 $.ajax({
                     type: "POST",
