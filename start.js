@@ -87,8 +87,7 @@ class Player {
         })
         }
       }
-      res.send("redteam length: " + redTeam.length);
-      //res.render('pages/playerAction')
+      res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
