@@ -75,7 +75,6 @@ class Player {
             // Add player to current red team
             if (i < MAX_PLAYERS) {
               redTeam.push(new Player(id, codeName));
-              res.send("see id: " + redTeam[redTeam.length - 1].getID());
             }
             // Add player to current green team
             else {
@@ -87,7 +86,8 @@ class Player {
           }
         })
         }
-      }     
+      }
+      res.send("redteam length: " + redTeam.length);
       //res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
