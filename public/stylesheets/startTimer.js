@@ -3,7 +3,7 @@
 //Time in milliseconds
 const TIMER_MS = 5000;
 
-function timerStart() {
+function countdown() {
     //Set timer length to the specified value in MS
 	var timeLeft = TIMER_MS;
 
