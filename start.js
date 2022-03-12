@@ -87,10 +87,13 @@ class Player {
         })
         }
       }
-      // Waits 2000ms (2 seconds) before proceeding to allow the async function time to add all players to the array.
+
+      // Waits 2000ms (2 seconds) before proceeding to give the asynchronous pool.query function time to add all players to the array.
       setTimeout(function() {
         res.render('pages/playerAction')
+        // res.send("redTeam length: " + readTeam.length);
       }, 2000)
+
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
