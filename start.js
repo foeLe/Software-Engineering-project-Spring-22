@@ -109,4 +109,7 @@ class Player {
       res.send("Error " + err);
     }
   })
+  .get('/players', (req, res) => function() {
+    res.send(redTeam);
+  })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))

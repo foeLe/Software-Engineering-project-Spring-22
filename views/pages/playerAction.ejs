@@ -176,5 +176,10 @@
 				<script> timerStart(); </script>
             </div>
         </div>
+        <script>
+            $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
+                console.log(data);
+            })
+        </script>
     </body>
 </html>
