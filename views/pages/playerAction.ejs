@@ -9,6 +9,7 @@
             $(document).ready(function() {
                 $.get('https://team-11-app.herokuapp.com/players', {}, function(data){
                     for (let i = 0; i <= data.redTeam.length && i < 15; i++) {
+                        console.log(i);
                         document.getElementById("redPlayer" + (i + 1)).innerHTML = data.redTeam[i].codeName;
                         document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = "0";
                     }
