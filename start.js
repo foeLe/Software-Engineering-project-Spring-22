@@ -82,7 +82,7 @@ class Player {
         })
         }
       }     
-      res.render('pages/playerAction')
+      //res.render('pages/playerAction')
     } catch (err) {
       console.error(err);
       res.send("Error " + err);
