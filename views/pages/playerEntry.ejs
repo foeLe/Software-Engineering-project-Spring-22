@@ -23,7 +23,7 @@
                     type: "POST",
                     url: "https://team-11-app.herokuapp.com/playerEntry/submit",
                     timeout: 2000,
-                    data: {"redTeam": redTeam, "greenTeam": greenTeam}
+                    data: JSON.stringify({"redTeam": redTeam, "greenTeam": greenTeam})
                 });
             })
         })
