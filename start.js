@@ -119,7 +119,7 @@ class Player {
   //     res.send("Error " + err);
   //   }
 
-    let data = req.body;
+    let data = JSON.parse(JSON.stringify(req.body));
     let redPlayers = data.redTeam;
     let greenPlayers = data.greenTeam;
     console.log("--------------------------------------")
