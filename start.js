@@ -175,7 +175,7 @@ class Player {
     // Wait 2 seconds (2000ms) to give pool.query time to add all players, then redirect to playerAction screen.
     setTimeout(function() {
       console.log("test");
-      res.render('pages/db');
+      res.render('pages/splash');
     }, 2000)
   })
   // Sends client the current players on each team
