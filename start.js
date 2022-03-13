@@ -120,8 +120,6 @@ class Player {
   //   }
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
-      let red0 = req.body.redTeam[i];
-      console.log(red0);
       let redID = req.body.redTeam[i].id;
       let redName =req.body.redTeam[i].name;
       let greenID = req.body.greenTeam[i].id;
