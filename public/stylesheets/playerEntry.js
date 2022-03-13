@@ -12,12 +12,6 @@ document.addEventListener('keydown', function(e) {
 	}
 })
 
-$(document).ready(function() {
-    $("#submitButton").click(function() {
-        onSubmit();
-    })
-})
-
 class Player {
     constructor(idNumber, codeName) {
         this.idNumber = idNumber;
