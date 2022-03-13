@@ -79,59 +79,61 @@ class Player {
 
   // Receive player data submitted by client.
  .post('/playerEntry/submit', async (req, res) => {
-      for (let i = 0; i < MAX_PLAYERS; i++) {
-        let redID;
-        let redName;
-        let greenID;
-        let greenName;
+    redTeam = Array()
+    greenTeam = Array()
+    for (let i = 0; i < MAX_PLAYERS; i++) {
+      let redID;
+      let redName;
+      let greenID;
+      let greenName;
 
-        if (i < req.body.redTeam.length) {
-          redID = req.body.redTeam[i].id;
-          redName =req.body.redTeam[i].name;
-        }
-        else {
-          redID = 0;
-          redName = "";
-        }
-        if (i < req.body.greenTeam.length) {
-          greenID = req.body.greenTeam[i].id;
-          greenName = req.body.greenTeam[i].name;
-        }
-        else {
-          greenID = 0;
-          greenName = "";
-        }
-
-        // add red player
-        if (redID != 0 && redID != "" && redName != "") {
-          // Insert new player into database
-          var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
-          pool.query(sql, function (err) {
-            if (!err) {
-              // Add player to current red team
-              redTeam.push(new Player(redID, redName));
-            }
-            else {
-              res.send("Error!");
-            }
-          })
-        }
-
-        // Add green player
-        if (greenID != 0 && greenID != "" && greenName != "") {
-          // Insert new player into database
-          var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
-          pool.query(sql, function (err) {
-            if (!err) {
-              // Add player to current green team
-              greenTeam.push(new Player(greenID, greenName));
-            }
-            else {
-              res.send("Error!");
-            }
-          })
-        }
+      if (i < req.body.redTeam.length) {
+        redID = req.body.redTeam[i].id;
+        redName =req.body.redTeam[i].name;
       }
+      else {
+        redID = 0;
+        redName = "";
+      }
+      if (i < req.body.greenTeam.length) {
+        greenID = req.body.greenTeam[i].id;
+        greenName = req.body.greenTeam[i].name;
+      }
+      else {
+        greenID = 0;
+        greenName = "";
+      }
+
+      // add red player
+      if (redID != 0 && redID != "" && redName != "") {
+        // Insert new player into database
+        var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
+        pool.query(sql, function (err) {
+          if (!err) {
+            // Add player to current red team
+            redTeam.push(new Player(redID, redName));
+          }
+          else {
+            res.send("Error!");
+          }
+        })
+      }
+
+      // Add green player
+      if (greenID != 0 && greenID != "" && greenName != "") {
+        // Insert new player into database
+        var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
+        pool.query(sql, function (err) {
+          if (!err) {
+            // Add player to current green team
+            greenTeam.push(new Player(greenID, greenName));
+          }
+          else {
+            res.send("Error!");
+          }
+        })
+      }
+    }
   })
   .get('/playerAction', (req, res) => res.render('pages/playerAction'))
   .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
