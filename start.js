@@ -173,8 +173,13 @@ class Player {
     }
     // Wait 2 seconds (2000ms) to give pool.query time to add all players, then redirect to playerAction screen.
     setTimeout(function() {
-      console.log("test");
+      console.log(res);
+      try {
       res.render('pages/playerAction');
+      }
+      catch(e) {
+        console.log(e);
+      }
     }, 2000)
   })
   .get('/playerAction', (req, res) => res.render('pages/playerAction'))
