@@ -23,13 +23,14 @@
                         greenTeam.push({"id": greenID, "name": greenName});
                     }
                 }
-                console.log(JSON.stringify({"redTeam": redTeam, "greenTeam": greenTeam}));
                 $.ajax({
                     type: "POST",
                     url: "https://team-11-app.herokuapp.com/playerEntry/submit",
                     dataType: "json",
                     timeout: 2000,
                     data: {"redTeam": redTeam, "greenTeam": greenTeam}
+                });
+                $.get('https://team-11-app.herokuapp.com/playerAction', {}, function(data){
                 });
             })
         })
