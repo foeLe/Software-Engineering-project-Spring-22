@@ -177,7 +177,7 @@ class Player {
       console.log("------------test---------")
       console.log(redTeam);
       console.log(greenTeam);
-      res.render('pages/playerAction');
+      res.render('pages/splash');
     }, 2000)
   })
   // Sends client the current players on each team
