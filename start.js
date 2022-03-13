@@ -120,10 +120,14 @@ class Player {
   //   }
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
-      let redID = req.body.redTeam[i].id;
-      let redName =req.body.redTeam[i].name;
-      let greenID = req.body.greenTeam[i].id;
-      let greenName = req.body.greenTeam[i].name;
+      if (i < req.body.redTeam.length) {
+        var redID = req.body.redTeam[i].id;
+        var redName =req.body.redTeam[i].name;
+      }
+      if (i < req.body.greenTeam.length) {
+        var greenID = req.body.greenTeam[i].id;
+        var greenName = req.body.greenTeam[i].name;
+      }
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
