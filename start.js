@@ -129,9 +129,17 @@ class Player {
         redID = req.body.redTeam[i].id;
         redName =req.body.redTeam[i].name;
       }
+      else {
+        redID = 0;
+        redName = "";
+      }
       if (i < req.body.greenTeam.length) {
         greenID = req.body.greenTeam[i].id;
         greenName = req.body.greenTeam[i].name;
+      }
+      else {
+        greenID = 0;
+        greenName = "";
       }
 
       console.log("redID: " + redID + "redName: " + redName + "greenID: " + greenID + "greenName: " + greenName);
