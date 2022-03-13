@@ -79,44 +79,6 @@ class Player {
 
   // Receive player data submitted by client.
  .post('/playerEntry/submit', async (req, res) => {
-  // try{
-  //   let idValues = req.body.id;
-  //   let codeValues = req.body.code;
-  //   for (let i = 0; i < MAX_PLAYERS * 2; i++) {
-  //     let id = idValues[i];
-  //     let codeName = codeValues[i];
-
-  //     if (id != 0 && id != "" && codeName != "") {
-  //        // Submit player to database
-  //       var sql = "insert into player (id, codeName) values(" + id + ", '" + codeName + "')";
-  //       pool.query(sql, function (err) {
-  //         if (!err) {
-  //           // Add player to current red team
-  //           if (i < MAX_PLAYERS) {
-  //             redTeam.push(new Player(id, codeName));
-  //           }
-  //           // Add player to current green team
-  //           else {
-  //             greenTeam.push(new Player(id, codeName));
-  //           }
-  //         }
-  //         else {
-  //           res.send("Error!");
-  //         }
-  //       })
-  //       }
-  //     }
-
-  //     // Waits 2000ms (2 seconds) before proceeding to give the asynchronous pool.query function time to add all players to the array.
-  //     setTimeout(function() {
-  //       res.render('pages/playerAction')
-  //       // res.send("redTeam length: " + readTeam.length);
-  //     }, 2000)
-
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.send("Error " + err);
-  //   }
       for (let i = 0; i < MAX_PLAYERS; i++) {
         let redID;
         let redName;
