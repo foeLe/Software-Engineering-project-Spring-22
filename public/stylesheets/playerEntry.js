@@ -9,10 +9,14 @@ document.addEventListener('keydown', function(e) {
 		e.preventDefault();
 		//TO-DO: ALLOW PRESSING F5 TO ADD ENTERED INFO TO DATABASE (MOVE FROM start.js INTO onSubmit() IF NEEDED?)
 		onSubmit();
-		location.assign("https://team-11-app.herokuapp.com/playerAction");
 	}
 })
 
+$(document).ready(function() {
+    $("#submitButton").click(function() {
+        onSubmit();
+    })
+})
 
 class Player {
     constructor(idNumber, codeName) {
@@ -23,33 +27,28 @@ class Player {
 
 
 function onSubmit() {
-    // Gets the idNumber and codeName for each red player and submits it to the database.
-    for (let i = 1; i <= MAX_PLAYERS; i++) {
-        let idNumber = document.getElementById("redIdNumber" + i).value;
-        let codeName = document.getElementById("redCodeName" + i).value;
-
-		// Check to make sure the player info is not blank before submitting player
-		if (idNumber != 0 && idNumber != "" && codeName != "") {
-			let player = new Player(idNumber, codeName);
-			
-			// Submit player to database
-			submitPlayer(player);
-		}
+    let redTeam = Array();
+    let greenTeam = Array();
+    for (let i = 0; i < 15; i++) {
+        let redID = document.getElementById("redIdNumber" + (i+1)).value;
+        let redName = document.getElementById("redCodeName" + (i+1)).value;
+        if (redID != "" && redID != 0 && redName != "") {
+            redTeam.push({"id": redID, "name": redName});
+        }
+        let greenID = document.getElementById("greenIdNumber" + (i+1)).value;
+        let greenName = document.getElementById("greenCodeName" + (i+1)).value;
+        if (greenID != "" && greenID != 0 && greenName != "") {
+            greenTeam.push({"id": greenID, "name": greenName});
+        }
     }
-
-    // Gets the idNumber and codeName for each green player and submits it to the database.
-    for (let i = 1; i <= MAX_PLAYERS; i++) {
-        let idNumber = document.getElementById("greenIdNumber" + i).value;
-        let codeName = document.getElementById("greenCodeName" + i).value;
-
-		// Check to make sure the player info is not blank before submitting player
-		if (idNumber != 0 && idNumber != "" && codeName != "") {
-			let player = new Player(idNumber, codeName);
-			
-			// Submit player to database
-			submitPlayer(player);
-		}
-    }
+    $.ajax({
+        type: "POST",
+        url: "https://team-11-app.herokuapp.com/playerEntry/submit",
+        dataType: "json",
+        timeout: 4000,
+        data: {"redTeam": redTeam, "greenTeam": greenTeam}
+    });
+    location.assign("https://team-11-app.herokuapp.com/playerAction");
 }
 
 function submitPlayer(player) {

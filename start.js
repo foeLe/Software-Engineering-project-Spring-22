@@ -170,10 +170,6 @@ class Player {
           })
         }
       }
-      // Wait 2 seconds (2000ms) to give pool.query time to add all players, then redirect to playerAction screen.
-      setTimeout(function() {
-        res.render('pages/playerAction');
-      }, 2000)
   })
   .get('/playerAction', (req, res) => res.render('pages/playerAction'))
   .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
