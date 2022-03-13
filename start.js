@@ -142,11 +142,10 @@ class Player {
         greenName = "";
       }
 
-      console.log("redID: " + redID + "redName: " + redName + "greenID: " + greenID + "greenName: " + greenName);
-
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
         // Insert new player into database
+        console.log("redID: " + redID + "redName: " + redName + "greenID: " + greenID + "greenName: " + greenName);
         var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
         pool.query(sql, function (err) {
           if (!err) {
@@ -162,6 +161,7 @@ class Player {
       // Add green player
       if (greenID != 0 && greenID != "" && greenName != "") {
         // Insert new player into database
+        console.log("redID: " + redID + "redName: " + redName + "greenID: " + greenID + "greenName: " + greenName);
         var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
         pool.query(sql, function (err) {
           if (!err) {
