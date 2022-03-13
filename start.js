@@ -120,14 +120,21 @@ class Player {
   //   }
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
+      let redID;
+      let redName;
+      let greenID;
+      let greenName;
+
       if (i < req.body.redTeam.length) {
-        var redID = req.body.redTeam[i].id;
-        var redName =req.body.redTeam[i].name;
+        redID = req.body.redTeam[i].id;
+        redName =req.body.redTeam[i].name;
       }
       if (i < req.body.greenTeam.length) {
-        var greenID = req.body.greenTeam[i].id;
-        var greenName = req.body.greenTeam[i].name;
+        greenID = req.body.greenTeam[i].id;
+        greenName = req.body.greenTeam[i].name;
       }
+
+      console.log("redID: " + redID + "redName: " + redName + "greenID: " + greenID + "greenName: " + greenName);
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
