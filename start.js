@@ -64,7 +64,6 @@ class Player {
  .get('/', (req, res) => res.render('pages/splash')) 
  .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
  .get('/startTimer', (req, res) => res.render('pages/startTimer'))
- .get('/playerAction', (req, res) => res.render('pages/playerAction'))
  .get('/db', async (req, res) => { //as of now, we need to manually change the web name to '.../db' to see database contents
     try {
       const client = await pool.connect();
@@ -175,9 +174,11 @@ class Player {
     // Wait 2 seconds (2000ms) to give pool.query time to add all players, then redirect to playerAction screen.
     setTimeout(function() {
       console.log("test");
-      res.render('pages/');
+      res.render('pages/playerAction');
     }, 2000)
   })
+  .get('/playerAction', (req, res) => res.render('pages/playerAction'))
+  .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
   // Sends client the current players on each team
   .get('/players', async (req, res) => {
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
