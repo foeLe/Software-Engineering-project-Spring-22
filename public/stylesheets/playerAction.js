@@ -1,5 +1,5 @@
 //Time in milliseconds to start with (60,000 ms/minute)
-const TIMER_MS = 60000;
+const TIMER_MS = 360000;
 
 function timerStart() {
     //Set timer length to the specified value in MS
