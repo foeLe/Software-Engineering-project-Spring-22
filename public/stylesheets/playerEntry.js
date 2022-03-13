@@ -42,7 +42,7 @@ function onSubmit() {
         timeout: 4000,
         data: {"redTeam": redTeam, "greenTeam": greenTeam}
     });
-    location.assign("https://team-11-app.herokuapp.com/playerAction");
+    location.assign("https://team-11-app.herokuapp.com/startTimer");
 }
 
 function submitPlayer(player) {
