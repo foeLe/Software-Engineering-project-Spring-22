@@ -16,7 +16,7 @@ function countdown() {
 	var timerInterval = setInterval(function() {
 		timeLeft -= 1000;
 		switch(timeLeft) {
-			case -1000:
+			case 0:
 		        	clearInterval(timerInterval);
 				document.getElementById("startTimer").innerHTML = "BEGIN!";
 				break;
