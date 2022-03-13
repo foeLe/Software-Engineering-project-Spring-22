@@ -123,7 +123,7 @@ class Player {
     let redPlayers = data.redTeam;
     let greenPlayers = data.greenTeam;
     console.log("--------------------------------------")
-    console.log(data);
+    console.log(req.body.redTeam);
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
       let redID = redPlayers[i].id;
