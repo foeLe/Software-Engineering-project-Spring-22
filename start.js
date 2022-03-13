@@ -119,17 +119,11 @@ class Player {
   //     res.send("Error " + err);
   //   }
 
-    let data = JSON.stringify(req.body);
-    let redPlayers = data.redTeam;
-    let greenPlayers = data.greenTeam;
-    console.log("--------------------------------------")
-    console.log(req.body.redTeam);
-
     for (let i = 0; i < MAX_PLAYERS; i++) {
-      let redID = redPlayers[i].id;
-      let redName = redPlayers[i].name;
-      let greenID = greenPlayers[i].id;
-      let greenName = greenPlayers[i].name;
+      let redID = req.body.redTeam[i].id;
+      let redName =req.body.redTeam[i].name;
+      let greenID = req.body.greenTeam[i].id;
+      let greenName = req.body.greenTeam[i].name;
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
