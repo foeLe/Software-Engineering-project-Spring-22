@@ -2,7 +2,7 @@
 //Created by: Evan Foley
 
 //Time in milliseconds
-const TIMER_MS = 5000;
+const TIMER_MS = 30000;
 
 function countdown() {
     //Set timer length to the specified value in MS
