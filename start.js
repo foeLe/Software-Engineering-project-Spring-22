@@ -146,21 +146,24 @@ class Player {
   })
 
   .get('/playerEntry/checkIDs', async (req, res) => {
-    let redTeam = req.body.redTeam;
-    let greenTeam = req.body.greenTeam;
+    console.log("--------------------------------------------------------");
+    console.log(req.body);
+    console.log("-----------------------------------------------------------");
+    // let redTeam = req.body.redTeam;
+    // let greenTeam = req.body.greenTeam;
 
-    for (let i = 0; i < redTeam.length && i < 15; i++) {
-      if ((redTeam[i].id != "" && redTeam[i].id != 0) && (redTeam[i].name == "")) {
-        redTeam[i].name = "AutofilledName";
-      }
-    }
-    for (let i = 0; i < greenTeam.length && i < 15; i++) {
-      if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "")) {
-        greenTeam[i].name = "AutofilledName";
-      }
-    }
+    // for (let i = 0; i < redTeam.length && i < 15; i++) {
+    //   if ((redTeam[i].id != "" && redTeam[i].id != 0) && (redTeam[i].name == "")) {
+    //     redTeam[i].name = "AutofilledName";
+    //   }
+    // }
+    // for (let i = 0; i < greenTeam.length && i < 15; i++) {
+    //   if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "")) {
+    //     greenTeam[i].name = "AutofilledName";
+    //   }
+    // }
 
-    // Sends client the updated lists of player data
-    res.send({"redTeam": redTeam, "greenTeam": greenTeam});
+    // // Sends client the updated lists of player data
+    // res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
