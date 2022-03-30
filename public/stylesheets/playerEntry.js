@@ -34,9 +34,6 @@ function onSubmit() {
             greenTeam.push({"id": greenID, "name": greenName});
         }
     }
-    
-    console.log(redTeam);
-    console.log(greenTeam);
 
     // Checks the server to see if any of the IDs match a known user from the DB.
     checkIDs(redTeam, greenTeam);
@@ -70,11 +67,12 @@ function isMissingNames(redTeam, greenTeam) {
 
 // Asks the server for a list if the usernames that correspond to the given IDs.
 function checkIDs(redTeam, greenTeam) {
+    console.log(redTeam);
+    console.log(greenTeam);
     $.ajax({
         type: "GET",
         url: "https://team-11-app.herokuapp.com/playerEntry/checkIDs",
         dataType: "json",
-        timeout: 4000,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
             console.log(response);
