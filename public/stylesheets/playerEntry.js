@@ -36,7 +36,10 @@ function onSubmit() {
     }
 
     // Checks the server to see if any of the IDs match a known user from the DB.
-    checkIDs(redTeam, greenTeam);
+    let newPlayerData = checkIDs(redTeam, greenTeam);
+    redTeam = newPlayerData.redTeam;
+    greenTeam = newPlayerData.greenTeam;
+    updateUI(redTeam, greenTeam);
 
     // If all of the IDs have a name filled in, post the players and procceed to start the game.
     if (!isMissingNames(redTeam, greenTeam)) {
@@ -73,15 +76,16 @@ function checkIDs(redTeam, greenTeam) {
         dataType: "json",
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
-            console.log(response);
-            // TODO return updated player data.
+            return response;
         },
         error: function(e) {
             console.log("error checking IDs");
+            return {};
         }
     });
 }
 
+// Posts the players to the server.
 function postPlayers(redTeam, greenTeam) {
     // If every player's ID has a corresponding name, post the players to the DB.
     if (!isMissingNames(redTeam, greenTeam)) {
@@ -92,5 +96,16 @@ function postPlayers(redTeam, greenTeam) {
             timeout: 4000,
             data: {"redTeam": redTeam, "greenTeam": greenTeam}
         });
+    }
+}
+
+function updateUI(redTeam, greenTeam) {
+    for (let i = 0; i < redTeam.length && i < 15; i++) {
+        document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
+        document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
+    }
+    for (let i = 0; i < greenTeam.length && i < 15; i++) {
+        document.getElementById("redIdNumber" + (i+1)).value = greenTeam[i].id;
+        document.getElementById("redCodeName" + (i+1)).value = greenTeam[i].name;
     }
 }
