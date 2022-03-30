@@ -156,7 +156,7 @@ class Player {
     }
     for (let i = 0; i < greenTeam.length && i < 15; i++) {
       if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "")) {
-        greenTeam[i].name = "AutofilledName";
+        greenTeam[i].name = "";
       }
     }
 

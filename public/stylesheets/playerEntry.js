@@ -105,9 +105,17 @@ function updateUI(redTeam, greenTeam) {
     for (let i = 0; i < redTeam.length && i < 15; i++) {
         document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
         document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
+        // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
+        if (redTeam[i].name == "") {
+            document.getElementById("redCodeName" + (i+1)).style.borderColor = "red";
+        }
     }
     for (let i = 0; i < greenTeam.length && i < 15; i++) {
         document.getElementById("greenIdNumber" + (i+1)).value = greenTeam[i].id;
         document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
+        // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
+        if (greenTeam[i].name == "") {
+            document.getElementById("greenCodeName" + (i+1)).style.borderColor = "red";
+        }
     }
 }
