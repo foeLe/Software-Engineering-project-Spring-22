@@ -151,7 +151,9 @@ class Player {
 
     // -----------------------------------------------------------------------------
     // TO DO:   Query the DB for each id in redTeam and greenTeam.
-    //          If the id already exists in the DB, set the name of the corresponding id in redTeam or greenTeam.
+    //          If the id already exists in the DB, change the name in redTeam or greenTeam arrays.
+    //          ex:
+    //          if (redTeam[i].id == dbQueryID) then redTeam[i].name == dbQueryName
     // -----------------------------------------------------------------------------
 
     // Sends client the updated lists of player data
