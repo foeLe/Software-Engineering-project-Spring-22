@@ -78,15 +78,12 @@ function checkIDs(redTeam, greenTeam) {
         async: false,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
-            console.log(response);
             res = response;
-            console.log(res);
         },
         error: function(e) {
             console.log("error checking IDs");
         }
     });
-    console.log(res);
     return res;
 }
 
@@ -110,7 +107,7 @@ function updateUI(redTeam, greenTeam) {
         document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
     }
     for (let i = 0; i < greenTeam.length && i < 15; i++) {
-        document.getElementById("redIdNumber" + (i+1)).value = greenTeam[i].id;
-        document.getElementById("redCodeName" + (i+1)).value = greenTeam[i].name;
+        document.getElementById("greenIdNumber" + (i+1)).value = greenTeam[i].id;
+        document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
     }
 }
