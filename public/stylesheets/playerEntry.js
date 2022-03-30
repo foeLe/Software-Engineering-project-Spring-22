@@ -55,7 +55,7 @@ function onSubmit() {
     if (!hasChanged) {
         // If all of the IDs have a name filled in, post the players and procceed to start the game.
         if (!isMissingNames(redTeam, greenTeam)) {
-            //postPlayers(redTeam, greenTeam);
+            postPlayers(redTeam, greenTeam);
             location.assign("https://team-11-app.herokuapp.com/startTimer");
         }
     }
