@@ -85,6 +85,7 @@ function checkIDs(redTeam, greenTeam) {
         }
     });
 
+    console.log(res);
     return res;
 }
 
