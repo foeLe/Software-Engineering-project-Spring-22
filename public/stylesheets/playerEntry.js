@@ -38,6 +38,7 @@ function onSubmit() {
     // Checks the server to see if any of the IDs match a known user from the DB.
     let newPlayerData = checkIDs(redTeam, greenTeam);
 
+    // Checks if the data the server sends back is the same as the sent data
     let hasChanged = false;
     for (let i = 0; i < redTeam.length && i < newPlayerData.redTeam.length && i < 15; i++) {
         if (redTeam[i].id != newPlayerData.redTeam[i].id || redTeam[i].name != newPlayerData.redTeam[i].name)
@@ -51,7 +52,7 @@ function onSubmit() {
             hasChanged = true;
         }
     }
-    // If the data the server sends back is the same as the sent data
+
     if (!hasChanged) {
         // If all of the IDs have a name filled in, post the players and procceed to start the game.
         if (!isMissingNames(redTeam, greenTeam)) {
