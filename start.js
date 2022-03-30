@@ -145,7 +145,7 @@ class Player {
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
 
-  .get('/checkIDs', async (req, res) => {
+  .get('/playerEntry/checkIDs', async (req, res) => {
     let redTeam = req.body.redTeam;
     let greenTeam = req.body.greenTeam;
 
