@@ -85,7 +85,7 @@ function checkIDs(redTeam, greenTeam) {
             console.log("error checking IDs");
         }
     });
-
+    console.log(res);
     return res;
 }
 
