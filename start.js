@@ -147,7 +147,7 @@ class Player {
 
   .get('/playerEntry/checkIDs', async (req, res) => {
     console.log("--------------------------------------------------------");
-    console.log(req);
+    console.log(req.query);
     console.log("-----------------------------------------------------------");
     // let redTeam = req.body.redTeam;
     // let greenTeam = req.body.greenTeam;
