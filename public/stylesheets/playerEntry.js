@@ -38,10 +38,14 @@ function onSubmit() {
     // Checks the server to see if any of the IDs match a known user from the DB.
     let newPlayerData = checkIDs(redTeam, greenTeam);
 
-    console.log("redTeam: "+ redTeam);
-    console.log("newRedTeam: "+ newPlayerData.redTeam);
-    console.log("greenTeam: "+ greenTeam);
-    console.log("newGreenTeam: "+ newPlayerData.greenTeam);
+    console.log("redTeam:");
+    console.log(redTeam);
+    console.log("newRedTeam:");
+    console.log(newPlayerData.redTeam);
+    console.log("greenTeam:");
+    console.log(greenTeam);
+    console.log("newGreenTeam:");
+    console.log(newPlayerData.greenTeam);
 
     // If the data the server sends back is the same as the sent data
     if (redTeam == newPlayerData.redTeam && greenTeam == newPlayerData.greenTeam) {
