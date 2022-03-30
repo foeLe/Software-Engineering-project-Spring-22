@@ -1,4 +1,3 @@
-//import {insertUser} from '../../start.js';      //imports needed function for entering data into database
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
@@ -7,7 +6,6 @@ const MAX_PLAYERS = 15;
 document.addEventListener('keydown', function(e) {
 	if(e.keyCode == 116) {
 		e.preventDefault();
-		//TO-DO: ALLOW PRESSING F5 TO ADD ENTERED INFO TO DATABASE (MOVE FROM start.js INTO onSubmit() IF NEEDED?)
 		onSubmit();
 	}
 })
@@ -21,6 +19,7 @@ class Player {
 
 
 function onSubmit() {
+    // Collect the IDs and names entered on the UI and add them to the corresponding team array.
     let redTeam = Array();
     let greenTeam = Array();
     for (let i = 0; i < 15; i++) {
@@ -35,25 +34,64 @@ function onSubmit() {
             greenTeam.push({"id": greenID, "name": greenName});
         }
     }
-    $.ajax({
-        type: "POST",
-        url: "https://team-11-app.herokuapp.com/playerEntry/submit",
-        dataType: "json",
-        timeout: 4000,
-        data: {"redTeam": redTeam, "greenTeam": greenTeam}
-    });
-    location.assign("https://team-11-app.herokuapp.com/startTimer");
+    
+    // Checks the server to see if any of the IDs match a known user from the DB.
+    checkIDs(redTeam, greenTeam);
+
+    // If all of the IDs have a name filled in, post the players and procceed to start the game.
+    if (!isMissingNames(redTeam, greenTeam)) {
+        postPlayers(redTeam, greenTeam);
+        location.assign("https://team-11-app.herokuapp.com/startTimer");
+    }
 }
 
-function submitPlayer(player) {
+// Returns true if any of the userIDs do not yet have a name filled in.
+function isMissingNames(redTeam, greenTeam) {
+    let missingNames = false;
 
-    // To do: submit player info to database.
-    console.log("submitPlayer function here")
-    console.log(player.idNumber + " " + player.codeName)
-    
-    // insertUser(player.idNumber, player.codeName).then((result) => {
-    //     if(result){
-    //         console.log('player added')
-    //     }
-    // })
+    // Checks each entry on the red team to make sure all of the entered IDs have a name.
+    for (let i = 0; i < redTeam.length && i < 15; i++) {
+        if ((redTeam[i].id != "" && redTeam[i].id != 0) && (redTeam[i].name == "")) {
+            missingNames = true;
+        }
+    }
+    // Checks each entry on the green team to make sure all of the entered IDs have a name.
+    for (let i = 0; i < greenTeam.length && i < 15; i++) {
+        if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "")) {
+            missingNames = true;
+        }
+    }
+
+    return missingNames;
+}
+
+// Asks the server for a list if the usernames that correspond to the given IDs.
+function checkIDs(redTeam, greenTeam) {
+    $.ajax({
+        type: "GET",
+        url: "https://team-11-app.herokuapp.com/playerEntry/checkIDs",
+        dataType: "json",
+        timeout: 4000,
+        data: {"redTeam": redTeam, "greenTeam": greenTeam},
+        success: function(response) {
+            console.log(response);
+            // TODO return updated player data.
+        },
+        error: function(e) {
+            console.log("error checking IDs");
+        }
+    });
+}
+
+function postPlayers(redTeam, greenTeam) {
+    // If every player's ID has a corresponding name, post the players to the DB.
+    if (!isMissingNames(redTeam, greenTeam)) {
+        $.ajax({
+            type: "POST",
+            url: "https://team-11-app.herokuapp.com/playerEntry/submit",
+            dataType: "json",
+            timeout: 4000,
+            data: {"redTeam": redTeam, "greenTeam": greenTeam}
+        });
+    }
 }
