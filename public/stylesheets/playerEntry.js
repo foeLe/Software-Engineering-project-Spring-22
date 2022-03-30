@@ -35,6 +35,9 @@ function onSubmit() {
         }
     }
     
+    console.log(redTeam);
+    console.log(greenTeam);
+
     // Checks the server to see if any of the IDs match a known user from the DB.
     checkIDs(redTeam, greenTeam);
 
