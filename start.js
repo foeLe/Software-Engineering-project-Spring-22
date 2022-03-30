@@ -149,8 +149,10 @@ class Player {
     let redTeam = req.query.redTeam;
     let greenTeam = req.query.greenTeam;
 
+    // -----------------------------------------------------------------------------
     // TO DO:   Query the DB for each id in redTeam and greenTeam.
     //          If the id already exists in the DB, set the name of the corresponding id in redTeam or greenTeam.
+    // -----------------------------------------------------------------------------
 
     // Sends client the updated lists of player data
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
