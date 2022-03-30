@@ -38,6 +38,11 @@ function onSubmit() {
     // Checks the server to see if any of the IDs match a known user from the DB.
     let newPlayerData = checkIDs(redTeam, greenTeam);
 
+    console.log("redTeam: "+ redTeam);
+    console.log("newRedTeam: "+ newPlayerData.redTeam);
+    console.log("greenTeam: "+ greenTeam);
+    console.log("newGreenTeam: "+ newPlayerData.greenTeam);
+
     // If the data the server sends back is the same as the sent data
     if (redTeam == newPlayerData.redTeam && greenTeam == newPlayerData.greenTeam) {
         // If all of the IDs have a name filled in, post the players and procceed to start the game.
