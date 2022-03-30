@@ -37,7 +37,6 @@ function onSubmit() {
 
     // Checks the server to see if any of the IDs match a known user from the DB.
     let newPlayerData = checkIDs(redTeam, greenTeam);
-    console.log(newPlayerData);
     redTeam = newPlayerData.redTeam;
     greenTeam = newPlayerData.greenTeam;
     updateUI(redTeam, greenTeam);
@@ -78,6 +77,7 @@ function checkIDs(redTeam, greenTeam) {
         dataType: "json",
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
+            console.log(response);
             res = response;
         },
         error: function(e) {
