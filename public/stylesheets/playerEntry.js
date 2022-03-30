@@ -70,7 +70,8 @@ function isMissingNames(redTeam, greenTeam) {
 
 // Asks the server for a list if the usernames that correspond to the given IDs.
 function checkIDs(redTeam, greenTeam) {
-    let res = {};
+    let newRedTeam = Array();
+    let newGreenTeam = Array();
     $.ajax({
         type: "GET",
         url: "https://team-11-app.herokuapp.com/playerEntry/checkIDs",
@@ -78,15 +79,17 @@ function checkIDs(redTeam, greenTeam) {
         timeout: 4000,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
-            res = response;
+            newRedTeam = response.redTeam;
+            newGreenTeam = response.greenTeam;
         },
         error: function(e) {
             console.log("error checking IDs");
         }
     });
 
-    console.log(res);
-    return res;
+    console.log(newRedTeam);
+    console.log(newGreenTeam);
+    return {"redTeam": newRedTeam, "greenTeam": newGreenTeam};
 }
 
 // Posts the players to the server.
