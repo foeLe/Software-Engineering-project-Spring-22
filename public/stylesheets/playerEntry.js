@@ -25,12 +25,12 @@ function onSubmit() {
     for (let i = 0; i < 15; i++) {
         let redID = document.getElementById("redIdNumber" + (i+1)).value;
         let redName = document.getElementById("redCodeName" + (i+1)).value;
-        if (redID != "" && redID != 0 && redName != "") {
+        if (redID != "" && redID != 0) {
             redTeam.push({"id": redID, "name": redName});
         }
         let greenID = document.getElementById("greenIdNumber" + (i+1)).value;
         let greenName = document.getElementById("greenCodeName" + (i+1)).value;
-        if (greenID != "" && greenID != 0 && greenName != "") {
+        if (greenID != "" && greenID != 0) {
             greenTeam.push({"id": greenID, "name": greenName});
         }
     }
