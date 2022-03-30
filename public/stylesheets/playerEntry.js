@@ -75,9 +75,9 @@ function checkIDs(redTeam, greenTeam) {
         type: "GET",
         url: "https://team-11-app.herokuapp.com/playerEntry/checkIDs",
         dataType: "json",
+        timeout: 4000,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
         success: function(response) {
-            console.log(response);
             res = response;
         },
         error: function(e) {
