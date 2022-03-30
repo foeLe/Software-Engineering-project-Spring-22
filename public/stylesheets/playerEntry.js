@@ -37,14 +37,20 @@ function onSubmit() {
 
     // Checks the server to see if any of the IDs match a known user from the DB.
     let newPlayerData = checkIDs(redTeam, greenTeam);
-    redTeam = newPlayerData.redTeam;
-    greenTeam = newPlayerData.greenTeam;
-    updateUI(redTeam, greenTeam);
 
-    // If all of the IDs have a name filled in, post the players and procceed to start the game.
-    if (!isMissingNames(redTeam, greenTeam)) {
-        //postPlayers(redTeam, greenTeam);
-        //location.assign("https://team-11-app.herokuapp.com/startTimer");
+    // If the data the server sends back is the same as the sent data
+    if (redTeam == newPlayerData.redTeam && greenTeam == newPlayerData.greenTeam) {
+        // If all of the IDs have a name filled in, post the players and procceed to start the game.
+        if (!isMissingNames(redTeam, greenTeam)) {
+            //postPlayers(redTeam, greenTeam);
+            location.assign("https://team-11-app.herokuapp.com/startTimer");
+        }
+    }
+    // If any of the data the server sends back is different from what was sent.
+    else {
+        redTeam = newPlayerData.redTeam;
+        greenTeam = newPlayerData.greenTeam;
+        updateUI(redTeam, greenTeam);
     }
 }
 
@@ -101,6 +107,7 @@ function postPlayers(redTeam, greenTeam) {
     }
 }
 
+// Take the new player data received from the server and updates the UI to match.
 function updateUI(redTeam, greenTeam) {
     for (let i = 0; i < redTeam.length && i < 15; i++) {
         document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
