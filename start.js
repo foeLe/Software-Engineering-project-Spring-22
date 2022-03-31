@@ -113,22 +113,8 @@ class Player {
       let countID = 0;
       let submitted = false;
       if (redID != 0 && redID != "" && redName != "") {
-        // Add unique player to current red team for playerAction display
-        for (let i = 0; i < req.body.redTeam.length; i++) {
-          console.log("--------------")
-          console.log("length: " + req.body.redTeam.length)
-          console.log("id: " + req.body.redTeam[i].id)
-          console.log("--------------")
-          if (req.body.redTeam[i].id == redID) 
-            countID = countID + 1;
-        }
-        console.log("--------------")
-        console.log("countID: " + countID)
-        console.log("--------------")
-        if (submitted == false) {
-          submitted = true;
-          redTeam.push(new Player(redID, redName));
-        }
+        // Add player to current green team for playerAction display
+        redTeam.push(new Player(redID, redName));
 
         // Only insert new player into the database 
         searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redID +" " ; 
@@ -187,6 +173,7 @@ class Player {
 
   // Sends client the current players on each team
   .get('/players', async (req, res) => {
+    redTeam = redTeam.filter((item, index) => redTeam.indexOf(item) === index);
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
 
