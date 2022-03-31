@@ -179,7 +179,7 @@ class Player {
             } else {
               // pull codeName from database
               searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
-              await pool.query(searchName, function(err, result){
+              pool.query(searchName, function(err, result){
                 if (err)  {
                   res.send("Error " + err.message);
                 } 
@@ -198,12 +198,14 @@ class Player {
       })
     }
     
-    console.log("After updates: ----------")
-    for (let i = 0; i < redTeam.length; i++) {
-      console.log(redTeam[i].id)
-      console.log(redTeam[i].name)
-    }
-    console.log("-------------------------")
+    setTimeout(function() {
+      console.log("After updates: ----------")
+      for (let i = 0; i < redTeam.length; i++) {
+        console.log(redTeam[i].id)
+        console.log(redTeam[i].name)
+      }
+      console.log("-------------------------")
+    }, 2000)
 
     // Sends client the updated lists of player data
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
