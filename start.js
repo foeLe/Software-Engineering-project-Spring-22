@@ -172,11 +172,25 @@ class Player {
             // Get row count with matching id
             parseRow = result["rows"]
             dbResult = parseRow[0].total
-            if (dbResult == 0) { 
-              console.log("---------------------------------------------")
-              console.log("result == 0: " + dbResult)
-              console.log("---------------------------------------------")
+            if (dbResult != 0) { 
+                // pull codeName from database
+                searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
+                pool.query(searchName, function(err, result){
+                  if (err)  {
+                    res.send("Error " + err.message);
+                  } 
+                  else {
+                    console.log("---------------------------------------------")
+                    parseRow = result["rows"]
+                    dbResult = parseRow[0].name
+                    redTeam[i].name = dbResult
+                    console.log("db result: " + redTeam[i].name)
+                    console.log("---------------------------------------------")
+                  }
+                })
             } else {
+              console.log("should print unique id (result == 0): " + redTeam[i].id + " " + dbResult)
+              /*
               // pull codeName from database
               searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
               pool.query(searchName, function(err, result){
@@ -192,12 +206,14 @@ class Player {
                   console.log("---------------------------------------------")
                 }
               })
+              */
             }
           }
         }
       })
     }
     
+    // Waits for arrays to properly update before sending the updated info (due to 'async' function)
     setTimeout(function() {
       console.log("After updates: ----------")
       for (let i = 0; i < redTeam.length; i++) {
@@ -205,6 +221,7 @@ class Player {
         console.log(redTeam[i].name)
       }
       console.log("-------------------------")
+
       // Sends client the updated lists of player data
       res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
