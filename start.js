@@ -158,9 +158,6 @@ class Player {
     //          ex:
     //          if (redTeam[i].id == dbQueryID) then redTeam[i].name == dbQueryName
     // -----------------------------------------------------------------------------
-    console.log("-------------------------")
-    console.log("check length: " + redTeam.length)
-    console.log("-------------------------")
     for (let i = 0; i < redTeam.length; i++) {
       console.log(redTeam[i].id)
       console.log(redTeam[i].name)
@@ -179,9 +176,21 @@ class Player {
               console.log("result == 0: " + dbResult)
               console.log("---------------------------------------------")
             } else {
-              console.log("---------------------------------------------")
-              console.log("id exists: " + dbResult)
-              console.log("---------------------------------------------")
+              // pull codeName from database
+              searchName = "SELECT codename as name FROM player WHERE id = "+ redID +" " ; 
+              pool.query(searchName, function(err, result){
+                if (err)  {
+                  res.send("Error " + err.message);
+                } 
+                else {
+                  console.log("---------------------------------------------")
+                  parseRow = result["rows"]
+                  dbResult = parseRow[0].name
+                  redTeam[i].name = dbResult
+                  console.log("db result: " + redTeam[i].name)
+                  console.log("---------------------------------------------")
+                }
+              })
             }
           }
         }
