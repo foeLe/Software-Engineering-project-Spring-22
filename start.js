@@ -114,6 +114,10 @@ class Player {
       if (redID != 0 && redID != "" && redName != "") {
         // Add unique player to current red team for playerAction display
         for (let i = 0; i < redTeam.length; i++) {
+          console.log("--------------")
+          console.log("length: " + redTeam.length)
+          console.log("id: " + redTeam[i].id)
+          console.log("--------------")
           if (redTeam[i].id == redID) 
             countID = countID + 1;
         }
