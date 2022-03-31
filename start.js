@@ -25,6 +25,7 @@ const res = require('express/lib/response');
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg'); 
+const { ReadStream } = require('fs');
 const pool = new Pool({ // connects to our database (re-run 'npm install' since made a change to 'package.json')
   connectionString: process.env.DATABASE_URL, // check url: 'heroku config'; should be set 
   ssl: {
@@ -110,8 +111,14 @@ class Player {
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
-        // Add player to current red team for playerAction display
-        redTeam.push(new Player(redID, redName));
+        // Add unique player to current red team for playerAction display
+        let repeatedID = false;
+        for (let i = 0; i < redTeam.length; i++) {
+          if (redTeam[i].id == redID)
+            repeatedID = true;
+        }
+        if (!repeatedID)
+          redTeam.push(new Player(redID, redName));
 
         // Only insert new player into the database 
         searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redID +" " ; 
