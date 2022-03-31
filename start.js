@@ -81,6 +81,11 @@ class Player {
  .post('/playerEntry/submit', async (req, res) => {
     redTeam = Array();
     greenTeam = Array();
+    var searchId;
+    var parseRow;
+    var dbResult;
+    var tempID;
+
     for (let i = 0; i < MAX_PLAYERS; i++) {
       let redID;
       let redName;
@@ -88,7 +93,25 @@ class Player {
       let greenName;
 
       if (i < req.body.redTeam.length) {
-        redID = req.body.redTeam[i].id;
+        tempID = req.body.redTeam[i].id;
+        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ tempID +" " ; 
+        pool.query(searchId, function(err, result){
+          if (err)  {
+            res.send("Error " + err.message);
+          } 
+          else {
+            if (!result.length)  {
+              parseRow = result["rows"]
+              dbResult = parseRow[0].total
+              if (dbResult == 0) { // New id 
+                redID = tempID;
+              }
+              else { // id already exists -- set redID to 0 to avoid saving duplicated data into database again
+                redID = 0;
+              }
+            }
+          }
+        })
         redName =req.body.redTeam[i].name;
       }
       else {
@@ -172,20 +195,20 @@ class Player {
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-                // Pulls the code name from the database
-                searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
-                pool.query(searchName, function(err, result){
-                  if (err)  {
-                    res.send("Error " + err.message);
-                  } 
-                  else {
-                    parseRow = result["rows"]
-                    dbResult = parseRow[0].name
-                    redTeam[i].name = dbResult
-                    //console.log("db result: " + redTeam[i].name)
-                    //console.log("---------------------------------------------") (uncomment to test)
-                  }
-                })
+              // Pulls the code name from the database
+              searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
+              pool.query(searchName, function(err, result){
+                if (err)  {
+                  res.send("Error " + err.message);
+                } 
+                else {
+                  parseRow = result["rows"]
+                  dbResult = parseRow[0].name
+                  redTeam[i].name = dbResult
+                  //console.log("db result: " + redTeam[i].name)
+                  //console.log("---------------------------------------------") (uncomment to test)
+                }
+              })
             }
           }
         }
@@ -205,27 +228,27 @@ class Player {
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-                // Pulls the code name from the database
-                searchName = "SELECT codename as name FROM player WHERE id = "+ greenTeam[i].id +" " ; 
-                pool.query(searchName, function(err, result){
-                  if (err)  {
-                    res.send("Error " + err.message);
-                  } 
-                  else {
-                    parseRow = result["rows"]
-                    dbResult = parseRow[0].name
-                    greenTeam[i].name = dbResult
-                    //console.log("db result: " + greenTeam[i].name)
-                    //console.log("---------------------------------------------") (uncomment to test)
-                  }
-                })
+              // Pulls the code name from the database
+              searchName = "SELECT codename as name FROM player WHERE id = "+ greenTeam[i].id +" " ; 
+              pool.query(searchName, function(err, result){
+                if (err)  {
+                  res.send("Error " + err.message);
+                } 
+                else {
+                  parseRow = result["rows"]
+                  dbResult = parseRow[0].name
+                  greenTeam[i].name = dbResult
+                  //console.log("db result: " + greenTeam[i].name)
+                  //console.log("---------------------------------------------") (uncomment to test)
+                }
+              })
             }
           }
         }
       })
     }
     
-    // Waits for arrays to properly update before sending the updated info back (due to 'async' function)
+    // Waits for arrays to properly update before sending the updated info back since used an 'async' function
     setTimeout(function() {
       // Sends client the updated lists of player data
       res.send({"redTeam": redTeam, "greenTeam": greenTeam});
