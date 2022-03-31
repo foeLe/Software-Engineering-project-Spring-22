@@ -148,6 +148,9 @@ class Player {
   .get('/playerEntry/checkIDs', async (req, res) => {
     let redTeam = req.query.redTeam;
     let greenTeam = req.query.greenTeam;
+    var searchId;
+    var parseRow;
+    var dbResult;
 
     // -----------------------------------------------------------------------------
     // TO DO:   Query the DB for each id in redTeam and greenTeam.
@@ -155,6 +158,38 @@ class Player {
     //          ex:
     //          if (redTeam[i].id == dbQueryID) then redTeam[i].name == dbQueryName
     // -----------------------------------------------------------------------------
+    console.log("-------------------------")
+    console.log("check length: " + redTeam.length)
+    console.log("-------------------------")
+    for (let i = 0; i < redTeam.length; i++) {
+      console.log(redTeam[i].id)
+      console.log(redTeam[i].name)
+      searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redTeam[i].id +" " ; 
+      pool.query(searchId, function(err, result){
+        if (err)  {
+          res.send("Error " + err.message);
+        } 
+        else {
+          if (!result.length)  {
+            // Get row count with matching id
+            parseRow = result["rows"]
+            dbResult = row[0].total
+            if (result == "0") { 
+              redName = ""; 
+              console.log("---------------------------------------------")
+              console.log("result == '0': " + dbResult)
+              console.log("---------------------------------------------")
+            } else {
+              console.log("---------------------------------------------")
+              console.log("id exists: " + dbResult)
+              console.log("---------------------------------------------")
+            }
+          }
+        }
+      })
+    }
+    console.log("-------------------------")
+    console.log("-------------------------")
 
     // Sends client the updated lists of player data
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
