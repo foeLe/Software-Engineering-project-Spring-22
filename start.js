@@ -111,6 +111,7 @@ class Player {
 
       // add red player
       let countID = 0;
+      let submitted = false;
       if (redID != 0 && redID != "" && redName != "") {
         // Add unique player to current red team for playerAction display
         for (let i = 0; i < req.body.redTeam.length; i++) {
@@ -124,8 +125,10 @@ class Player {
         console.log("--------------")
         console.log("countID: " + countID)
         console.log("--------------")
-        if (countID == 1)
+        if (submitted == false) {
+          submitted = true;
           redTeam.push(new Player(redID, redName));
+        }
 
         // Only insert new player into the database 
         searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redID +" " ; 
