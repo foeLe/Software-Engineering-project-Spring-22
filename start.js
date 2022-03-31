@@ -173,7 +173,16 @@ class Player {
 
   // Sends client the current players on each team
   .get('/players', async (req, res) => {
-    redTeam = redTeam.filter((item, index) => redTeam.indexOf(item) === index);
+    redTeam = redTeam.filter((value, index, self) => index === self.findIndex((t) => (
+      t.id === value.id && t.name === value.name
+    )))
+    console.log("------------------------")
+    for (let i = 0; i<redTeam.length; i++) {
+      console.log("length: " + redTeam.length)
+      console.log("content: " + redTeam[i].id)
+      console.log("content: " + redTeam[i].name)
+    }
+    console.log("------------------------")
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
 
