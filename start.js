@@ -137,6 +137,7 @@ class Player {
             }
           }
         })
+        redTeam.push(new Player(redID, redName));
 
         /*
         // Insert new player into database
