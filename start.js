@@ -160,8 +160,7 @@ class Player {
     //          if (redTeam[i].id == dbQueryID) then redTeam[i].name == dbQueryName
     // -----------------------------------------------------------------------------
     for (let i = 0; i < redTeam.length; i++) {
-      console.log(redTeam[i].id)
-      console.log(redTeam[i].name)
+      // Queries database for the count of an id's code name
       searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redTeam[i].id +" " ; 
       pool.query(searchId, function(err, result){
         if (err)  {
@@ -169,59 +168,65 @@ class Player {
         } 
         else {
           if (!result.length)  {
-            // Get row count with matching id
+            // Parses result (dictionary) to get the specific count value
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-                // pull codeName from database
+                // Pulls the code name from the database
                 searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
                 pool.query(searchName, function(err, result){
                   if (err)  {
                     res.send("Error " + err.message);
                   } 
                   else {
-                    console.log("---------------------------------------------")
                     parseRow = result["rows"]
                     dbResult = parseRow[0].name
                     redTeam[i].name = dbResult
-                    console.log("db result: " + redTeam[i].name)
-                    console.log("---------------------------------------------")
+                    //console.log("db result: " + redTeam[i].name)
+                    //console.log("---------------------------------------------") (uncomment to test)
                   }
                 })
-            } else {
-              console.log("should print unique id (result == 0): " + redTeam[i].id + " " + dbResult)
-              /*
-              // pull codeName from database
-              searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
-              pool.query(searchName, function(err, result){
-                if (err)  {
-                  res.send("Error " + err.message);
-                } 
-                else {
-                  console.log("---------------------------------------------")
-                  parseRow = result["rows"]
-                  dbResult = parseRow[0].name
-                  redTeam[i].name = dbResult
-                  console.log("db result: " + redTeam[i].name)
-                  console.log("---------------------------------------------")
-                }
-              })
-              */
+            }
+          }
+        }
+      })
+    }
+
+    for (let i = 0; i < greenTeam.length; i++) {
+      // Queries database for the count of an id's code name
+      searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ greenTeam[i].id +" " ; 
+      pool.query(searchId, function(err, result){
+        if (err)  {
+          res.send("Error " + err.message);
+        } 
+        else {
+          if (!result.length)  {
+            // Parses result (dictionary) to get the specific count value
+            parseRow = result["rows"]
+            dbResult = parseRow[0].total
+            if (dbResult != 0) { 
+                // Pulls the code name from the database
+                searchName = "SELECT codename as name FROM player WHERE id = "+ greenTeam[i].id +" " ; 
+                pool.query(searchName, function(err, result){
+                  if (err)  {
+                    res.send("Error " + err.message);
+                  } 
+                  else {
+                    parseRow = result["rows"]
+                    dbResult = parseRow[0].name
+                    greenTeam[i].name = dbResult
+                    //console.log("db result: " + greenTeam[i].name)
+                    //console.log("---------------------------------------------") (uncomment to test)
+                  }
+                })
             }
           }
         }
       })
     }
     
-    // Waits for arrays to properly update before sending the updated info (due to 'async' function)
+    // Waits for arrays to properly update before sending the updated info back (due to 'async' function)
     setTimeout(function() {
-      console.log("After updates: ----------")
-      for (let i = 0; i < redTeam.length; i++) {
-        console.log(redTeam[i].id)
-        console.log(redTeam[i].name)
-      }
-      console.log("-------------------------")
-
       // Sends client the updated lists of player data
       res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
