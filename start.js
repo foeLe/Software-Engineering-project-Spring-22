@@ -197,7 +197,11 @@ class Player {
         }
       })
     }
-    console.log("-------------------------")
+    console.log("After updates: ----------")
+    for (let i = 0; i < redTeam.length; i++) {
+      console.log(redTeam[i].id)
+      console.log(redTeam[i].name)
+    }
     console.log("-------------------------")
 
     // Sends client the updated lists of player data
