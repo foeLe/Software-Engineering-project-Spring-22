@@ -163,7 +163,7 @@ class Player {
       console.log(redTeam[i].id)
       console.log(redTeam[i].name)
       searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redTeam[i].id +" " ; 
-      await pool.query(searchId, function(err, result){
+      pool.query(searchId, function(err, result){
         if (err)  {
           res.send("Error " + err.message);
         } 
