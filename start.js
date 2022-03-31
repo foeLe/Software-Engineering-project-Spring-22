@@ -138,7 +138,7 @@ class Player {
       // Add green player
       if (greenID != 0 && greenID != "" && greenName != "") {
         // Add player to current green team for playerAction display
-        greenTeam.push(new Player(greebID, greenName));
+        greenTeam.push(new Player(greenID, greenName));
 
         // Only insert new player into the database 
         searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ greenID +" " ; 
