@@ -111,8 +111,11 @@ class Player {
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
-        tempID = req.body.redTeam[i].id;
-        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ tempID +" " ; 
+        // Add player to current red team
+        redTeam.push(new Player(redID, redName));
+
+        // Only insert player into database if their info is not already in it
+        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redID +" " ; 
         pool.query(searchId, function(err, result){
           if (err)  {
             res.send("Error " + err.message);
@@ -121,23 +124,17 @@ class Player {
             if (!result.length)  {
               parseRow = result["rows"]
               dbResult = parseRow[0].total
-              if (dbResult == 0) { // New id 
-                // Insert new player into database
+              if (dbResult == 0) { 
                 var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
                 pool.query(sql, function (err) {
-                  if (!err) {
-                    // Add player to current red team
-                    redTeam.push(new Player(redID, redName));
-                  }
-                  else {
+                  if (err) 
                     res.send("Error!");
-                  }
                 })
               }
             }
           }
         })
-        redTeam.push(new Player(redID, redName));
+        
 
         /*
         // Insert new player into database
