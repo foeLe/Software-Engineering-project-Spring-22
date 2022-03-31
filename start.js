@@ -174,10 +174,10 @@ class Player {
             // Get row count with matching id
             parseRow = result["rows"]
             dbResult = parseRow[0].total
-            if (result == "0") { 
+            if (result === 0) { 
               redName = ""; 
               console.log("---------------------------------------------")
-              console.log("result == '0': " + dbResult)
+              console.log("result === 0: " + dbResult)
               console.log("---------------------------------------------")
             } else {
               console.log("---------------------------------------------")
