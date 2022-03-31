@@ -115,16 +115,16 @@ class Player {
         // Add unique player to current red team for playerAction display
         for (let i = 0; i < req.body.redTeam.length; i++) {
           console.log("--------------")
-          console.log("length: " + redTeam.length)
+          console.log("length: " + req.body.redTeam.length)
           console.log("id: " + req.body.redTeam[i].id)
           console.log("--------------")
           if (req.body.redTeam[i].id == redID) 
             countID = countID + 1;
         }
         console.log("--------------")
-        console.log(countID)
+        console.log("countID: " + countID)
         console.log("--------------")
-        if (countID == 0)
+        if (countID == 1)
           redTeam.push(new Player(redID, redName));
 
         // Only insert new player into the database 
