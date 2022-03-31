@@ -149,6 +149,7 @@ class Player {
     let redTeam = req.query.redTeam;
     let greenTeam = req.query.greenTeam;
     var searchId;
+    var searchName;
     var parseRow;
     var dbResult;
 
