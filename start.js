@@ -145,7 +145,7 @@ class Player {
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
 
-  .get('/playerEntry/checkIDs', async (req, res) => {
+  .get('/playerEntry/checkIDs', (req, res) => {
     let redTeam = req.query.redTeam;
     let greenTeam = req.query.greenTeam;
     var searchId;
@@ -197,6 +197,7 @@ class Player {
         }
       })
     }
+
     console.log("After updates: ----------")
     for (let i = 0; i < redTeam.length; i++) {
       console.log(redTeam[i].id)
