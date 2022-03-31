@@ -171,29 +171,29 @@ class Player {
 
   // Sends client the current players on each team
   .get('/players', async (req, res) => {
-    // Delete duplicated player info from arrays 
-    console.log("original---------")
-    console.log(redTeam)
-    console.log("-----------------")
+    // Store unique player info into a new array for each team
     let newRedTeam = [];
     let uniqueRed = {};
     for (let i in redTeam){
       let redID = redTeam[i]['idNumber'];
-      console.log("redID: " + redID);
       uniqueRed[redID] = redTeam[i];
-      console.log("uniqueRed[redID]: " + uniqueRed[redID]);
     }
     for (i in uniqueRed) {
       newRedTeam.push(uniqueRed[i])
     }
-    console.log("after: ---------")
-    console.log(newRedTeam)
-    console.log("-----------------")
+    
+    let newGreenTeam = [];
+    let uniqueGreen = {};
+    for (let i in greenTeam){
+      let greenID = greenTeam[i]['idNumber'];
+      uniqueGreen[greenID] = greenTeam[i];
+    }
+    for (i in uniqueGreen) {
+      newGreenTeam.push(uniqueGreen[i])
+    }
 
-    greenTeam = greenTeam.filter((value, index, self) => index === self.findIndex((i) => (
-      i.id === value.id && i.name === value.name
-    )))
-    res.send({"redTeam": newRedTeam, "greenTeam": greenTeam});
+    // Pass arrays with unique player(s) in each team for playerAction display
+    res.send({"redTeam": newRedTeam, "greenTeam": newGreenTeam});
   })
 
   .get('/playerEntry/checkIDs', async (req, res) => {
