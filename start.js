@@ -93,25 +93,7 @@ class Player {
       let greenName;
 
       if (i < req.body.redTeam.length) {
-        tempID = req.body.redTeam[i].id;
-        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ tempID +" " ; 
-        pool.query(searchId, function(err, result){
-          if (err)  {
-            res.send("Error " + err.message);
-          } 
-          else {
-            if (!result.length)  {
-              parseRow = result["rows"]
-              dbResult = parseRow[0].total
-              if (dbResult == 0) { // New id 
-                redID = tempID;
-              }
-              else { // id already exists -- set redID to 0 to avoid saving duplicated data into database again
-                redID = 0;
-              }
-            }
-          }
-        })
+        redID = req.body.redTeam[i].id;
         redName =req.body.redTeam[i].name;
       }
       else {
@@ -129,6 +111,34 @@ class Player {
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
+        tempID = req.body.redTeam[i].id;
+        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ tempID +" " ; 
+        pool.query(searchId, function(err, result){
+          if (err)  {
+            res.send("Error " + err.message);
+          } 
+          else {
+            if (!result.length)  {
+              parseRow = result["rows"]
+              dbResult = parseRow[0].total
+              if (dbResult == 0) { // New id 
+                // Insert new player into database
+                var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
+                pool.query(sql, function (err) {
+                  if (!err) {
+                    // Add player to current red team
+                    redTeam.push(new Player(redID, redName));
+                  }
+                  else {
+                    res.send("Error!");
+                  }
+                })
+              }
+            }
+          }
+        })
+
+        /*
         // Insert new player into database
         var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
         pool.query(sql, function (err) {
@@ -140,6 +150,7 @@ class Player {
             res.send("Error!");
           }
         })
+        */
       }
 
       // Add green player
