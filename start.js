@@ -178,7 +178,7 @@ class Player {
     let newRedTeam = [];
     let uniqueRed = {};
     for (let i in redTeam){
-      let redID = redTeam[i]['id'];
+      let redID = redTeam[i]['idNumber'];
       console.log("redID: " + redID);
       uniqueRed[redID] = redTeam[i];
       console.log("uniqueRed[redID]: " + uniqueRed[redID]);
