@@ -92,25 +92,7 @@ class Player {
       let greenID;
       let greenName;
 
-      // Thinking of adding the checks to see if the same user data is being used on both sides.(Not sure if this is the best place) - Callum
-      // There is a better way doing these checks. We could make a function so we can check and make sure that the same id is not being on twice on either team.
-      // The idea is that the code sends a break and lets sends a clear message to the user on how to correct the issue.
 
-      if (i < req.body.redTeam.length){
-        if (i < req.body.greenTeam.length){
-          if(req.body.redTeam[i].id == req.body.greenTeam[i].id){
-            alert("You currently have the same id on both teams. Please make sure that every member has their own unqie id.")
-            break;
-          }
-          if(req.body.redTeam[i].name == req.body.greenTeam[i].name){
-            alert("Two people currently have the same name. Please make sure that each member has their own unqie name.")
-            break;
-          }
-        }
-      }
-
-      // End of my idea. Way to expand this is to do the same check for each team. Since it would be werid to have the same ID on either team.
-      // Same name should be filtered out due to the confusion it can cause.
 
       if (i < req.body.redTeam.length) {
         redID = req.body.redTeam[i].id;
