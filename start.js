@@ -178,7 +178,7 @@ class Player {
               console.log("---------------------------------------------")
             } else {
               // pull codeName from database
-              searchName = "SELECT codename as name FROM player WHERE id = "+ redID +" " ; 
+              searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
               pool.query(searchName, function(err, result){
                 if (err)  {
                   res.send("Error " + err.message);
