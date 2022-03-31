@@ -84,7 +84,6 @@ class Player {
     var searchId;
     var parseRow;
     var dbResult;
-    var tempID;
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
       let redID;
@@ -111,10 +110,10 @@ class Player {
 
       // add red player
       if (redID != 0 && redID != "" && redName != "") {
-        // Add player to current red team
+        // Add player to current red team for playerAction display
         redTeam.push(new Player(redID, redName));
 
-        // Only insert player into database if their info is not already in it
+        // Only insert new player into the database 
         searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redID +" " ; 
         pool.query(searchId, function(err, result){
           if (err)  {
@@ -134,34 +133,31 @@ class Player {
             }
           }
         })
-        
-
-        /*
-        // Insert new player into database
-        var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
-        pool.query(sql, function (err) {
-          if (!err) {
-            // Add player to current red team
-            redTeam.push(new Player(redID, redName));
-          }
-          else {
-            res.send("Error!");
-          }
-        })
-        */
       }
 
       // Add green player
       if (greenID != 0 && greenID != "" && greenName != "") {
-        // Insert new player into database
-        var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
-        pool.query(sql, function (err) {
-          if (!err) {
-            // Add player to current green team
-            greenTeam.push(new Player(greenID, greenName));
-          }
+        // Add player to current green team for playerAction display
+        greenTeam.push(new Player(greebID, greenName));
+
+        // Only insert new player into the database 
+        searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ greenID +" " ; 
+        pool.query(searchId, function(err, result){
+          if (err)  {
+            res.send("Error " + err.message);
+          } 
           else {
-            res.send("Error!");
+            if (!result.length)  {
+              parseRow = result["rows"]
+              dbResult = parseRow[0].total
+              if (dbResult == 0) { 
+                var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
+                pool.query(sql, function (err) {
+                  if (err) 
+                    res.send("Error!");
+                })
+              }
+            }
           }
         })
       }
@@ -200,22 +196,20 @@ class Player {
         } 
         else {
           if (!result.length)  {
-            // Parses result (dictionary) to get the specific count value
+            // Parse the result (dictionary) to get the specific count value
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-              // Pulls the code name from the database
+              // Pull the code name from the database
               searchName = "SELECT codename as name FROM player WHERE id = "+ redTeam[i].id +" " ; 
               pool.query(searchName, function(err, result){
                 if (err)  {
                   res.send("Error " + err.message);
                 } 
-                else {
+                else { // Update code name to the existing one
                   parseRow = result["rows"]
                   dbResult = parseRow[0].name
                   redTeam[i].name = dbResult
-                  //console.log("db result: " + redTeam[i].name)
-                  //console.log("---------------------------------------------") (uncomment to test)
                 }
               })
             }
@@ -233,22 +227,20 @@ class Player {
         } 
         else {
           if (!result.length)  {
-            // Parses result (dictionary) to get the specific count value
+            // Parse the result (dictionary) to get the specific count value
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-              // Pulls the code name from the database
+              // Pull the code name from the database
               searchName = "SELECT codename as name FROM player WHERE id = "+ greenTeam[i].id +" " ; 
               pool.query(searchName, function(err, result){
                 if (err)  {
                   res.send("Error " + err.message);
                 } 
-                else {
+                else { // Update code name to the existing one
                   parseRow = result["rows"]
                   dbResult = parseRow[0].name
                   greenTeam[i].name = dbResult
-                  //console.log("db result: " + greenTeam[i].name)
-                  //console.log("---------------------------------------------") (uncomment to test)
                 }
               })
             }
