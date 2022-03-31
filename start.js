@@ -110,8 +110,6 @@ class Player {
       }
 
       // add red player
-      let countID = 0;
-      let submitted = false;
       if (redID != 0 && redID != "" && redName != "") {
         // Add player to current green team for playerAction display
         redTeam.push(new Player(redID, redName));
@@ -173,16 +171,13 @@ class Player {
 
   // Sends client the current players on each team
   .get('/players', async (req, res) => {
-    redTeam = redTeam.filter((value, index, self) => index === self.findIndex((t) => (
-      t.id === value.id && t.name === value.name
+    // Delete duplicated player info from arrays 
+    redTeam = redTeam.filter((value, index, self) => index === self.findIndex((i) => (
+      i.id === value.id && i.name === value.name
     )))
-    console.log("------------------------")
-    for (let i = 0; i<redTeam.length; i++) {
-      console.log("length: " + redTeam.length)
-      console.log("content: " + redTeam[i].id)
-      console.log("content: " + redTeam[i].name)
-    }
-    console.log("------------------------")
+    greenTeam = greenTeam.filter((value, index, self) => index === self.findIndex((i) => (
+      i.id === value.id && i.name === value.name
+    )))
     res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
 
