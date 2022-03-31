@@ -205,9 +205,8 @@ class Player {
         console.log(redTeam[i].name)
       }
       console.log("-------------------------")
+      // Sends client the updated lists of player data
+      res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
-
-    // Sends client the updated lists of player data
-    res.send({"redTeam": redTeam, "greenTeam": greenTeam});
   })
  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
