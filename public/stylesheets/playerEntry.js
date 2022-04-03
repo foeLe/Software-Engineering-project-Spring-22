@@ -83,6 +83,7 @@ function checkDuplicates(redTeam, greenTeam)
             if (redTeamp[i].id == greenTeam[i].id)
             {
                 duplicateIds = true;
+                //leave the loop and send user back to data entry screen.
             }
         }
     }
@@ -94,6 +95,7 @@ function checkDuplicates(redTeam, greenTeam)
             if (redTeamp[i].name == greenTeam[i].name)
             {
                 duplicateNames = true;
+                //leave the loop and send user back to data entry screen.
             }
         }
     }
