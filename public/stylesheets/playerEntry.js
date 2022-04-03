@@ -72,8 +72,8 @@ function onSubmit() {
 // There might be a better way to pass data in to make this function more generic.
 function checkDuplicates(redTeam, greenTeam)
 {
-    let duplicateIds = false;
-    let duplicateNames = false;
+    //let duplicateIds = false;
+    //let duplicateNames = false;
     
     //checking for duplicate Ids between teams
     for (let i = 0; i < redTeam.length && i < 15; i++)
@@ -82,7 +82,7 @@ function checkDuplicates(redTeam, greenTeam)
         {
             if (redTeamp[i].id == greenTeam[i].id)
             {
-                duplicateIds = true;
+                //duplicateIds = true;
                 //leave the loop and send user back to data entry screen.
             }
         }
@@ -94,7 +94,7 @@ function checkDuplicates(redTeam, greenTeam)
         {
             if (redTeamp[i].name == greenTeam[i].name)
             {
-                duplicateNames = true;
+                //duplicateNames = true;
                 //leave the loop and send user back to data entry screen.
             }
         }
