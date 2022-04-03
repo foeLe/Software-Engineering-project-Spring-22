@@ -74,6 +74,9 @@ function checkDuplicates(redTeam, greenTeam)
 {
     let duplicateIds = false;
     let duplicateNames = false;
+
+    var valTempRed = [];
+    var valTempGreen = [];
     
     //checking for duplicate Ids between teams
     for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
