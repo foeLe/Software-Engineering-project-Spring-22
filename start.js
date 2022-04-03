@@ -127,10 +127,29 @@ class Player {
               parseRow = result["rows"]
               dbResult = parseRow[0].total
               if (dbResult == 0) { 
-                var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
-                pool.query(sql, function (err) {
-                  if (err) 
-                    res.send("Error!");
+                searchName = "SELECT COUNT(*) as total FROM player WHERE codename = '"+ redName +"' " ; 
+                pool.query(searchName, function(err, result){
+                  if (err)  {
+                    res.send("Error " + err.message);
+                  } 
+                  else {
+                    if (!result.length)  {
+                      parseRow = result["rows"]
+                      dbResult = parseRow[0].total
+                      if (dbResult == 0) {
+                        var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
+                        pool.query(sql, function (err) {
+                          if (err) 
+                            res.send("Error!");
+                        })
+                      }
+                      else {
+                        console.log("---------------------------");
+                        console.log("repeated code name");
+                        console.log("---------------------------");
+                      }
+                    }                     
+                  }
                 })
               }
             }
@@ -154,10 +173,29 @@ class Player {
               parseRow = result["rows"]
               dbResult = parseRow[0].total
               if (dbResult == 0) { 
-                var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
-                pool.query(sql, function (err) {
-                  if (err) 
-                    res.send("Error!");
+                searchName = "SELECT COUNT(*) as total FROM player WHERE codename = '"+ greenName +"' " ; 
+                pool.query(searchName, function(err, result){
+                  if (err)  {
+                    res.send("Error " + err.message);
+                  } 
+                  else {
+                    if (!result.length)  {
+                      parseRow = result["rows"]
+                      dbResult = parseRow[0].total
+                      if (dbResult == 0) {
+                        var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
+                        pool.query(sql, function (err) {
+                          if (err) 
+                            res.send("Error!");
+                        })
+                      }
+                      else {
+                        console.log("---------------------------");
+                        console.log("repeated code name");
+                        console.log("---------------------------");
+                      }
+                    }                     
+                  }
                 })
               }
             }
