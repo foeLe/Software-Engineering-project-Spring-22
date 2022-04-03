@@ -72,35 +72,45 @@ function onSubmit() {
 // There might be a better way to pass data in to make this function more generic.
 function checkDuplicates(redTeam, greenTeam)
 {
-    //let duplicateIds = false;
-    //let duplicateNames = false;
+    let duplicateIds = false;
+    let duplicateNames = false;
     
     //checking for duplicate Ids between teams
-    for (let i = 0; i < redTeam.length && i < 15; i++)
+    for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
     {
-        for (let i = 0; i < greenTeam.length && i < 15; i++)
+        for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
         {
-            if (redTeamp[i].id == greenTeam[i].id)
+            if (redTeamp[redI].id == greenTeam[greenI].id)
             {
-                //duplicateIds = true;
-                //leave the loop and send user back to data entry screen.
+                duplicateIds = true;
+                alert("Both teams have the same user ID. Please change the ID found at: " + (redI+1) + " for the red team or change the ID found at: " + (greenI+1) + " for the green team.")
             }
         }
     }
     //checking for duplicate names between teams
-    for (let i = 0; i < redTeam.length && i < 15; i++)
+    for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
     {
-        for (let i = 0; i < greenTeam.length && i < 15; i++)
+        for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
         {
-            if (redTeamp[i].name == greenTeam[i].name)
+            if (redTeamp[redI].name == greenTeam[greenI].name)
             {
-                //duplicateNames = true;
-                //leave the loop and send user back to data entry screen.
+                duplicateNames = true;
+                alert("Both teams have the same playername. Please change the name found at: " + (redI+1) + " for the red team or change the name found at: " + (greenI+1) + " for the green team.")
             }
         }
     }
+    //This is where the check for names and IDS start for the red team.
+
+
+    //This is where the check for names and ID start for the red team.
     
 
+    //This is where the logic goes to call the next function if 
+    //We will text all the entered text before checking the ids. 
+    if( duplicateIds && duplicateNames == false)
+    {
+        //Not sure what I should call here
+    }
 }
 
 // Returns true if any of the userIDs do not yet have a name filled in.
