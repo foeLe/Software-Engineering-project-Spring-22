@@ -211,7 +211,7 @@ class Player {
     //          if (redTeam[i].id == dbQueryID) then redTeam[i].name == dbQueryName
     // -----------------------------------------------------------------------------
     for (let i = 0; i < redTeam.length; i++) {
-      // Queries database for the count of an id's code name
+      // Query database for the count of an id
       searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ redTeam[i].id +" " ; 
       pool.query(searchId, function(err, result){
         if (err)  {
@@ -229,10 +229,28 @@ class Player {
                 if (err)  {
                   res.send("Error " + err.message);
                 } 
-                else { // Update code name to the existing one
+                else { // Update the code name to the existing one
                   parseRow = result["rows"]
                   dbResult = parseRow[0].name
                   redTeam[i].name = dbResult
+                }
+              })
+            }
+            else { // New id - make sure it's code name is not duplicated
+              searchName = "SELECT COUNT(*) as total FROM player WHERE codename = '"+ redTeam[i].name +"' " ; 
+              pool.query(searchName, function(err, result){
+                if (err)  {
+                  res.send("Error " + err.message);
+                } 
+                else {
+                  if (!result.length)  {
+                    parseRow = result["rows"]
+                    dbResult = parseRow[0].total
+                    // Let users know that the name is taken
+                    if (dbResult != 0) { 
+                      redTeam[i].name = "<Name taken!>"
+                    }
+                  }
                 }
               })
             }
@@ -242,7 +260,7 @@ class Player {
     }
 
     for (let i = 0; i < greenTeam.length; i++) {
-      // Queries database for the count of an id's code name
+      // Query database for the count of an id
       searchId = "SELECT COUNT(*) as total FROM player WHERE id = "+ greenTeam[i].id +" " ; 
       pool.query(searchId, function(err, result){
         if (err)  {
@@ -254,13 +272,12 @@ class Player {
             parseRow = result["rows"]
             dbResult = parseRow[0].total
             if (dbResult != 0) { 
-              // Pull the code name from the database
               searchName = "SELECT codename as name FROM player WHERE id = "+ greenTeam[i].id +" " ; 
               pool.query(searchName, function(err, result){
                 if (err)  {
                   res.send("Error " + err.message);
                 } 
-                else { // Update code name to the existing one
+                else { // Update the code name to the existing one
                   parseRow = result["rows"]
                   dbResult = parseRow[0].name
                   greenTeam[i].name = dbResult
@@ -268,13 +285,31 @@ class Player {
               })
             }
           }
+          else { // New id - make sure it's code name is not duplicated
+            searchName = "SELECT COUNT(*) as total FROM player WHERE codename = '"+ greenTeam[i].name +"' " ; 
+            pool.query(searchName, function(err, result){
+              if (err)  {
+                res.send("Error " + err.message);
+              } 
+              else {
+                if (!result.length)  {
+                  parseRow = result["rows"]
+                  dbResult = parseRow[0].total
+                  // Let users know that the name is taken
+                  if (dbResult != 0) { 
+                    greenTeam[i].name = "<Name taken!>"
+                  }
+                }
+              }
+            })
+          }
         }
       })
     }
     
     // Waits for arrays to properly update before sending the updated info back since used an 'async' function
     setTimeout(function() {
-      // Sends client the updated lists of player data
+      // Sends client the updated lists of player data bacak to CheckIDs() in playerEntry.js
       res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
   })

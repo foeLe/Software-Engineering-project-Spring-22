@@ -74,13 +74,13 @@ function isMissingNames(redTeam, greenTeam) {
 
     // Checks each entry on the red team to make sure all of the entered IDs have a name.
     for (let i = 0; i < redTeam.length && i < 15; i++) {
-        if ((redTeam[i].id != "" && redTeam[i].id != 0) && (redTeam[i].name == "")) {
+        if ((redTeam[i].id != "" && redTeam[i].id != 0) && (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>")) {
             missingNames = true;
         }
     }
     // Checks each entry on the green team to make sure all of the entered IDs have a name.
     for (let i = 0; i < greenTeam.length && i < 15; i++) {
-        if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "")) {
+        if ((greenTeam[i].id != "" && greenTeam[i].id != 0) && (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>")) {
             missingNames = true;
         }
     }
@@ -88,7 +88,8 @@ function isMissingNames(redTeam, greenTeam) {
     return missingNames;
 }
 
-// Asks the server for a list if the usernames that correspond to the given IDs.
+// Asks the server for a list if the usernames that correspond to the given IDs. 
+// Returns "<Name taken!>" if a name if already taken. 
 function checkIDs(redTeam, greenTeam) {
     let res = {};
     $.ajax({
@@ -127,7 +128,7 @@ function updateUI(redTeam, greenTeam) {
         document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
         document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
         // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
-        if (redTeam[i].name == "") {
+        if (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>") {
             document.getElementById("redCodeName" + (i+1)).style.borderColor = "red";
         }
     }
@@ -135,7 +136,7 @@ function updateUI(redTeam, greenTeam) {
         document.getElementById("greenIdNumber" + (i+1)).value = greenTeam[i].id;
         document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
         // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
-        if (greenTeam[i].name == "") {
+        if (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>") {
             document.getElementById("greenCodeName" + (i+1)).style.borderColor = "red";
         }
     }
