@@ -68,6 +68,39 @@ function onSubmit() {
     }
 }
 
+// Checks if there duplicates for names/IDs.
+// There might be a better way to pass data in to make this function more generic.
+function checkDuplicates(redTeam, greenTeam)
+{
+    let duplicateIds = false;
+    let duplicateNames = false;
+    
+    //checking for duplicate Ids between teams
+    for (let i = 0; i < redTeam.length && i < 15; i++)
+    {
+        for (let i = 0; i < greenTeam.length && i < 15; i++)
+        {
+            if (redTeamp[i].id == greenTeam[i].id)
+            {
+                duplicateIds = true;
+            }
+        }
+    }
+    //checking for duplicate names between teams
+    for (let i = 0; i < redTeam.length && i < 15; i++)
+    {
+        for (let i = 0; i < greenTeam.length && i < 15; i++)
+        {
+            if (redTeamp[i].name == greenTeam[i].name)
+            {
+                duplicateNames = true;
+            }
+        }
+    }
+    
+
+}
+
 // Returns true if any of the userIDs do not yet have a name filled in.
 function isMissingNames(redTeam, greenTeam) {
     let missingNames = false;
