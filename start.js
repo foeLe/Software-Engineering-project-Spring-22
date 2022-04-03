@@ -92,6 +92,8 @@ class Player {
       let greenID;
       let greenName;
 
+
+
       if (i < req.body.redTeam.length) {
         redID = req.body.redTeam[i].id;
         redName =req.body.redTeam[i].name;
