@@ -237,20 +237,32 @@ function postPlayers(redTeam, greenTeam) {
 
 // Take the new player data received from the server and updates the UI to match.
 function updateUI(redTeam, greenTeam) {
-    for (let i = 0; i < redTeam.length && i < MAX_PLAYERS; i++) {
-        document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
-        document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
-        // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
-        if (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>") {
-            highlightInputBox(true, false, i + 1, "#FF0000");
+    for (let i = 0; i < MAX_PLAYERS; i++) {
+        if (i < redTeam.length) {
+            document.getElementById("redIdNumber" + (i+1)).value = redTeam[i].id;
+            document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
+            // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
+            if (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>") {
+                highlightInputBox(true, false, i + 1, "#FF0000");
+            }
+        }
+        else {
+            document.getElementById("redIdNumber" + (i+1)).value = "";
+            document.getElementById("redCodeName" + (i+1)).value = "";
         }
     }
-    for (let i = 0; i < greenTeam.length && i < MAX_PLAYERS; i++) {
-        document.getElementById("greenIdNumber" + (i+1)).value = greenTeam[i].id;
-        document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
-        // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
-        if (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>") {
-            highlightInputBox(false, false, i + 1, "#FF0000");
+    for (let i = 0; i < MAX_PLAYERS; i++) {
+        if (i < greenTeam.length) {
+            document.getElementById("greenIdNumber" + (i+1)).value = greenTeam[i].id;
+            document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
+            // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
+            if (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>") {
+                highlightInputBox(false, false, i + 1, "#FF0000");
+            }
+        }
+        else {
+            document.getElementById("greenIdNumber" + (i+1)).value = "";
+            document.getElementById("greenCodeName" + (i+1)).value = "";
         }
     }
 }
