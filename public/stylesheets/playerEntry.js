@@ -163,7 +163,7 @@ function checkDuplicates(redTeam, greenTeam)
         {
             if(greenI != greenI2)
             {
-                if(greenTeam[greenI].name == greenTeam[greenI2].name
+                if(greenTeam[greenI].name == greenTeam[greenI2].name)
                 {
                     duplicateNamesGreen = true;
                     alert("The green team seems to be using the same name for two members. Please change the name for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
