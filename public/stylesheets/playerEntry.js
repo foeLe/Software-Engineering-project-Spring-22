@@ -4,15 +4,22 @@ const MAX_PLAYERS = 15;
 // Default border color of the user input boxes.
 const DEFAULT_BORDER_COLOR = "#767676";
 
+// KeyCode of the key used to submit the players to the server.
+const SUBMIT_KEY = 116; // [F5]
 
-//On startup, binds F5 to move to playerAction
+document.getElementById("submitButton").addEventListener("click", function() {
+    onSubmit();
+});
+
+// On startup, binds key listener to SUBMIT_KEY.
 document.addEventListener('keydown', function(e) {
-	if(e.keyCode == 116) {
+	if(e.keyCode == SUBMIT_KEY) {
 		e.preventDefault();
 		onSubmit();
 	}
 })
 
+// This is the function that is called when the user presses the submit key.
 function onSubmit() {
     // Collect the IDs and names entered on the UI and add them to the corresponding team array.
     let redTeam = Array();
