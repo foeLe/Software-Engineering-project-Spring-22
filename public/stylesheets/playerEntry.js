@@ -72,20 +72,23 @@ function onSubmit() {
 // There might be a better way to pass data in to make this function more generic.
 function checkDuplicates(redTeam, greenTeam)
 {
-    let duplicateIds = false;
-    let duplicateNames = false;
-
-    var valTempRed = [];
-    var valTempGreen = [];
+    //Holds the boolean values to let the user name what is duplicated entries.
+    let duplicateIdsBoth = false;
+    let duplicateNamesBoth = false;
+    let duplicateIdsRed = false;
+    let duplicateNamesRed = false;
+    let duplicateIdsGreen = false;
+    let duplicateNamesGreen = false;
     
     //checking for duplicate Ids between teams
     for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
     {
         for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
         {
-            if (redTeamp[redI].id == greenTeam[greenI].id)
+            if (redTeam[redI].id == greenTeam[greenI].id)
             {
-                duplicateIds = true;
+                //Maybe we should make sure if anything is null it should not impact the result.
+                duplicateIdsBoth = true;
                 alert("Both teams have the same user ID. Please change the ID found at: " + (redI+1) + " for the red team or change the ID found at: " + (greenI+1) + " for the green team.")
             }
         }
@@ -95,22 +98,83 @@ function checkDuplicates(redTeam, greenTeam)
     {
         for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
         {
-            if (redTeamp[redI].name == greenTeam[greenI].name)
+            if (redTeam[redI].name == greenTeam[greenI].name)
             {
-                duplicateNames = true;
+                //Maybe we should make sure if anything is null it should not impact the result.
+                duplicateNamesBoth = true;
                 alert("Both teams have the same playername. Please change the name found at: " + (redI+1) + " for the red team or change the name found at: " + (greenI+1) + " for the green team.")
             }
         }
     }
-    //This is where the check for names and IDS start for the red team.
+    //This is where the check for IDs and name start for the red team.
+    //This is the checks for the Ids. 
+    for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
+    {
+        for (let redI2 = 0; redI2 < redTeam.length && redI2 < 15; redI2++)
+        {
+            if(redI != redI2)
+            {
+                if(redTeam[redI].id == redTeam[redI2].id)
+                {
+                    duplicateIdsRed = true;
+                    alert("The red team seems to be using the same id for two members. Please change the id for either player: " + (redI+1) + " or for player: " + (redI2 +1));
+                }
+            }
+        }
+    }
 
+    //This is the checks for names
+    for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
+    {
+        for (let redI2 = 0; redI2 < redTeam.length && redI2 < 15; redI2++)
+        {
+            if(redI != redI2)
+            {
+                if(redTeam[redI].name == redTeam[redI2].name)
+                {
+                    duplicateNamesRed = true;
+                    alert("The red team seems to be using the same name for two members. Please change the name for either player: " + (redI+1) + " or for player: " + (redI2 +1));
+                }
+            }
+        }
+    }
 
-    //This is where the check for names and ID start for the red team.
-    
+    //This is where the check for names and ID start for the green team.
+    //This is the checks for the Ids. 
+    for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
+    {
+        for (let greenI2 = 0; greenI2 < greenTeam.length && greenI2 < 15; greenI2++)
+        {
+            if(greenI != greenI2)
+            {
+                if(greenTeam[greenI].id == greenTeam[greenI2].id)
+                {
+                    duplicateIdsGreen = true;
+                    alert("The green team seems to be using the same id for two members. Please change the id for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
+                }
+            }
+        }
+    }
+
+    //This is the checks for names
+    for (let greenI = 0; greenI < greenTeam.length && greenI < 15; greenI++)
+    {
+        for (let greenI2 = 0; greenI2 < greenTeam.length && greenI2 < 15; greenI2++)
+        {
+            if(greenI != greenI2)
+            {
+                if(greenTeam[greenI].name == greenTeam[greenI2].name
+                {
+                    duplicateNamesGreen = true;
+                    alert("The green team seems to be using the same name for two members. Please change the name for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
+                }
+            }
+        }
+    }    
 
     //This is where the logic goes to call the next function if 
     //We will text all the entered text before checking the ids. 
-    if( duplicateIds && duplicateNames == false)
+    if( duplicateIds && duplicateNames && == false)
     {
         //Not sure what I should call here
     }
