@@ -128,9 +128,9 @@ function checkDuplicates(redTeam, greenTeam)
     {
         for (let redI2 = 0; redI2 < redTeam.length && redI2 < MAX_PLAYERS; redI2++)
         {
-            if(redI != redI2 && redTeam[redI].name != "")
+            if(redI != redI2)
             {
-                if(redTeam[redI].name == redTeam[redI2].name)
+                if(redTeam[redI].name == redTeam[redI2].name && redTeam[redI].name != "")
                 {
                     duplicateNamesRed = true;
                     highlightInputBox(true, false, redI + 1, "#FF0000");
@@ -164,9 +164,9 @@ function checkDuplicates(redTeam, greenTeam)
     {
         for (let greenI2 = 0; greenI2 < greenTeam.length && greenI2 < MAX_PLAYERS; greenI2++)
         {
-            if(greenI != greenI2 && greenTeam[greenI].name != "")
+            if(greenI != greenI2)
             {
-                if(greenTeam[greenI].name == greenTeam[greenI2].name)
+                if(greenTeam[greenI].name == greenTeam[greenI2].name && greenTeam[greenI].name != "")
                 {
                     duplicateNamesGreen = true;
                     highlightInputBox(false, false, greenI + 1, "#FF0000");
