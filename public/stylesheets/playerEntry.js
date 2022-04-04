@@ -278,18 +278,18 @@ function updateUI(redTeam, greenTeam) {
 function highlightInputBox(isTeamRed, isID, playerNumber) {
     if (isTeamRed) {
         if (isID) {
-            document.getElementById("redCodeName" + playerNumber).style.borderColor = "red";
+            document.getElementById("redIdNumber" + playerNumber).style.borderColor = "red";
         }
         else {
-            document.getElementById("redIdNumber" + playerNumber).style.borderColor = "red";
+            document.getElementById("redCodeName" + playerNumber).style.borderColor = "red";
         }
     }
     else {
         if (isID) {
-            document.getElementById("greenCodeName" + playerNumber).style.borderColor = "red";
+            document.getElementById("greenIdNumber" + playerNumber).style.borderColor = "red";
         }
         else {
-            document.getElementById("greenIdNumber" + playerNumber).style.borderColor = "red";
+            document.getElementById("greenCodeName" + playerNumber).style.borderColor = "red";
         }
     }
 }
