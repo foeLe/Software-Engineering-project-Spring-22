@@ -66,6 +66,9 @@ function onSubmit() {
                 updateUI(redTeam, greenTeam);
             }
         }
+        else {
+            alert("Duplicate player names or IDs have been entered!")
+        }
     }
     else {
         alert("Each team must have at least one player!");
