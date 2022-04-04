@@ -82,6 +82,8 @@ function checkDuplicates(redTeam, greenTeam)
     let duplicateNamesRed = false;
     let duplicateIdsGreen = false;
     let duplicateNamesGreen = false;
+
+    resetHighlights();
     
     //checking for duplicate Ids between teams
     for (let redI = 0; redI < redTeam.length && redI < 15; redI++)
@@ -275,21 +277,30 @@ function updateUI(redTeam, greenTeam) {
 // Highlights the user input box for the given player.
 //  - isTeamRed parameter is true when the team is red and false when the team is green.
 //  - isID parameter is true when you want to highlight the ID box and false when you want to highlight the name box.
-function highlightInputBox(isTeamRed, isID, playerNumber) {
+//  - color parameter is a string that represents the html color of the box. It can be hex "#FFFFFF", rgb "rgb(255,255,255)", or a color name "white".
+function highlightInputBox(isTeamRed, isID, playerNumber, color) {
     if (isTeamRed) {
         if (isID) {
-            document.getElementById("redIdNumber" + playerNumber).style.borderColor = "red";
+            document.getElementById("redIdNumber" + playerNumber).style.borderColor = color;
         }
         else {
-            document.getElementById("redCodeName" + playerNumber).style.borderColor = "red";
+            document.getElementById("redCodeName" + playerNumber).style.borderColor = color;
         }
     }
     else {
         if (isID) {
-            document.getElementById("greenIdNumber" + playerNumber).style.borderColor = "red";
+            document.getElementById("greenIdNumber" + playerNumber).style.borderColor = color;
         }
         else {
-            document.getElementById("greenCodeName" + playerNumber).style.borderColor = "red";
+            document.getElementById("greenCodeName" + playerNumber).style.borderColor = color;
         }
+    }
+}
+function resetHighlights() {
+    for (let i = 1; i <= 15; i++) {
+        highlightInputBox(true, true, i, "#767676");
+        highlightInputBox(true, false, i, "#767676");
+        highlightInputBox(false, true, i, "#767676");
+        highlightInputBox(false, false, i, "#767676");
     }
 }
