@@ -35,36 +35,39 @@ function onSubmit() {
         }
     }
 
-    // Checks the server to see if any of the IDs match a known user from the DB.
-    let newPlayerData = checkIDs(redTeam, greenTeam);
+    // Checks if any of the current IDs or names are duplicates.
+    if (!checkDuplicates(redTeam, greenTeam)) {
+        // Checks the server to see if any of the IDs match a known user from the DB.
+        let newPlayerData = checkIDs(redTeam, greenTeam);
 
-    // Checks if the data the server sends back is the same as the sent data
-    let hasChanged = false;
-    for (let i = 0; i < redTeam.length && i < newPlayerData.redTeam.length && i < 15; i++) {
-        if (redTeam[i].id != newPlayerData.redTeam[i].id || redTeam[i].name != newPlayerData.redTeam[i].name)
-        {
-            hasChanged = true;
+        // Checks if the data the server sends back is the same as the sent data
+        let hasChanged = false;
+        for (let i = 0; i < redTeam.length && i < newPlayerData.redTeam.length && i < 15; i++) {
+            if (redTeam[i].id != newPlayerData.redTeam[i].id || redTeam[i].name != newPlayerData.redTeam[i].name)
+            {
+                hasChanged = true;
+            }
         }
-    }
-    for (let i = 0; i < greenTeam.length && i < newPlayerData.greenTeam.length && i < 15; i++) {
-        if (greenTeam[i].id != newPlayerData.greenTeam[i].id || greenTeam[i].name != newPlayerData.greenTeam[i].name)
-        {
-            hasChanged = true;
+        for (let i = 0; i < greenTeam.length && i < newPlayerData.greenTeam.length && i < 15; i++) {
+            if (greenTeam[i].id != newPlayerData.greenTeam[i].id || greenTeam[i].name != newPlayerData.greenTeam[i].name)
+            {
+                hasChanged = true;
+            }
         }
-    }
 
-    if (!hasChanged) {
-        // If all of the IDs have a name filled in, post the players and procceed to start the game.
-        if (!isMissingNames(redTeam, greenTeam)) {
-            postPlayers(redTeam, greenTeam);
-            location.assign("https://team-11-app.herokuapp.com/startTimer");
+        if (!hasChanged) {
+            // If all of the IDs have a name filled in, post the players and procceed to start the game.
+            if (!isMissingNames(redTeam, greenTeam)) {
+                postPlayers(redTeam, greenTeam);
+                location.assign("https://team-11-app.herokuapp.com/startTimer");
+            }
         }
-    }
-    // If any of the data the server sends back is different from what was sent.
-    else {
-        redTeam = newPlayerData.redTeam;
-        greenTeam = newPlayerData.greenTeam;
-        updateUI(redTeam, greenTeam);
+        // If any of the data the server sends back is different from what was sent.
+        else {
+            redTeam = newPlayerData.redTeam;
+            greenTeam = newPlayerData.greenTeam;
+            updateUI(redTeam, greenTeam);
+        }
     }
 }
 
@@ -174,10 +177,13 @@ function checkDuplicates(redTeam, greenTeam)
 
     //This is where the logic goes to call the next function if 
     //We will text all the entered text before checking the ids. 
-    if( duplicateIdsBoth && duplicateNamesBoth && duplicateIdsRed && duplicateNamesRed && duplicateIdsGreen && duplicateNamesGreen == false)
-    {
-        //We can use this to call the next function.
-    }
+    // if( duplicateIdsBoth && duplicateNamesBoth && duplicateIdsRed && duplicateNamesRed && duplicateIdsGreen && duplicateNamesGreen == false)
+    // {
+    //     //We can use this to call the next function.
+    // }
+
+    // Returns true if any duplicate info is found.
+    return duplicateIdsBoth || duplicateNamesBoth || duplicateIdsRed || duplicateNamesRed || duplicateIdsGreen || duplicateNamesGreen;
 }
 
 // Returns true if any of the userIDs do not yet have a name filled in.
