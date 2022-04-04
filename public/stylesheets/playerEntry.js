@@ -67,6 +67,9 @@ function onSubmit() {
             }
         }
     }
+    else {
+        alert("Each team must have at least one player!");
+    }
 }
 
 // Checks if there duplicates for names/IDs.
