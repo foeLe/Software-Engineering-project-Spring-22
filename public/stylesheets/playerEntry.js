@@ -174,9 +174,9 @@ function checkDuplicates(redTeam, greenTeam)
 
     //This is where the logic goes to call the next function if 
     //We will text all the entered text before checking the ids. 
-    if( duplicateIds && duplicateNames && == false)
+    if( duplicateIdsBoth && duplicateNamesBoth && duplicateIdsRed && duplicateNamesRed && duplicateIdsGreen && duplicateNamesGreen == false)
     {
-        //Not sure what I should call here
+        //We can use this to call the next function.
     }
 }
 
