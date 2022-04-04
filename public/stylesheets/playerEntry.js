@@ -7,7 +7,12 @@ const DEFAULT_BORDER_COLOR = "#767676";
 // KeyCode of the key used to submit the players to the server.
 const SUBMIT_KEY = 116; // [F5]
 
-document.getElementById("submitButton").addEventListener("click", onSubmit);
+// On startup, binds submit button to the submit function.
+$(document).ready(function() {
+    document.getElementById("submitButton").addEventListener("click", function() {
+        onSubmit();
+    });
+});
 
 // On startup, binds key listener to SUBMIT_KEY.
 document.addEventListener('keydown', function(e) {
