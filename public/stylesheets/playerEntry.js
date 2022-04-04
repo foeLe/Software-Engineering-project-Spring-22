@@ -92,8 +92,8 @@ function checkDuplicates(redTeam, greenTeam)
             {
                 //Maybe we should make sure if anything is null it should not impact the result.
                 duplicateIdsBoth = true;
-                highlightInputBox(true, redI + 1);
-                highlightInputBox(false, greenI + 1);
+                highlightInputBox(true, true, redI + 1);
+                highlightInputBox(false, true, greenI + 1);
                 //alert("Both teams have the same user ID. Please change the ID found at: " + (redI+1) + " for the red team or change the ID found at: " + (greenI+1) + " for the green team.")
             }
         }
@@ -107,8 +107,8 @@ function checkDuplicates(redTeam, greenTeam)
             {
                 //Maybe we should make sure if anything is null it should not impact the result.
                 duplicateNamesBoth = true;
-                highlightInputBox(true, redI + 1);
-                highlightInputBox(false, greenI + 1);
+                highlightInputBox(true, false, redI + 1);
+                highlightInputBox(false, false, greenI + 1);
                 //alert("Both teams have the same playername. Please change the name found at: " + (redI+1) + " for the red team or change the name found at: " + (greenI+1) + " for the green team.")
             }
         }
@@ -124,8 +124,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(redTeam[redI].id == redTeam[redI2].id)
                 {
                     duplicateIdsRed = true;
-                    highlightInputBox(true, redI + 1);
-                    highlightInputBox(true, redI2 + 1);
+                    highlightInputBox(true, true, redI + 1);
+                    highlightInputBox(true, true, redI2 + 1);
                     //alert("The red team seems to be using the same id for two members. Please change the id for either player: " + (redI+1) + " or for player: " + (redI2 +1));
                 }
             }
@@ -142,8 +142,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(redTeam[redI].name == redTeam[redI2].name)
                 {
                     duplicateNamesRed = true;
-                    highlightInputBox(true, redI + 1);
-                    highlightInputBox(true, redI2 + 1);
+                    highlightInputBox(true, false, redI + 1);
+                    highlightInputBox(true, false, redI2 + 1);
                     //alert("The red team seems to be using the same name for two members. Please change the name for either player: " + (redI+1) + " or for player: " + (redI2 +1));
                 }
             }
@@ -161,8 +161,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(greenTeam[greenI].id == greenTeam[greenI2].id)
                 {
                     duplicateIdsGreen = true;
-                    highlightInputBox(false, greenI + 1);
-                    highlightInputBox(false, greenI2 + 1);
+                    highlightInputBox(false, true, greenI + 1);
+                    highlightInputBox(false, true, greenI2 + 1);
                     //alert("The green team seems to be using the same id for two members. Please change the id for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
                 }
             }
@@ -179,8 +179,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(greenTeam[greenI].name == greenTeam[greenI2].name)
                 {
                     duplicateNamesGreen = true;
-                    highlightInputBox(false, greenI + 1);
-                    highlightInputBox(false, greenI2 + 1);
+                    highlightInputBox(false, false, greenI + 1);
+                    highlightInputBox(false, false, greenI2 + 1);
                     //alert("The green team seems to be using the same name for two members. Please change the name for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
                 }
             }
@@ -259,7 +259,7 @@ function updateUI(redTeam, greenTeam) {
         document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
         // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
         if (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>") {
-            highlightInputBox(true, i+1);
+            highlightInputBox(true, false, i+1);
         }
     }
     for (let i = 0; i < greenTeam.length && i < 15; i++) {
@@ -267,18 +267,29 @@ function updateUI(redTeam, greenTeam) {
         document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
         // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
         if (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>") {
-            highlightInputBox(false, i+1);
+            highlightInputBox(false, false, i+1);
         }
     }
 }
 
-// Hilights the user input box for the given player.
-// isTeamRed parameter is true when the team is red and false when the team is green.
-function highlightInputBox(isTeamRed, playerNumber) {
+// Highlights the user input box for the given player.
+//  - isTeamRed parameter is true when the team is red and false when the team is green.
+//  - isID parameter is true when you want to highlight the ID box and false when you want to highlight the name box.
+function highlightInputBox(isTeamRed, isID, playerNumber) {
     if (isTeamRed) {
-        document.getElementById("redCodeName" + playerNumber).style.borderColor = "red";
+        if (isID) {
+            document.getElementById("redCodeName" + playerNumber).style.borderColor = "red";
+        }
+        else {
+            document.getElementById("redIdNumber" + playerNumber).style.borderColor = "red";
+        }
     }
     else {
-        document.getElementById("greenCodeName" + playerNumber).style.borderColor = "red";
+        if (isID) {
+            document.getElementById("greenCodeName" + playerNumber).style.borderColor = "red";
+        }
+        else {
+            document.getElementById("greenIdNumber" + playerNumber).style.borderColor = "red";
+        }
     }
 }
