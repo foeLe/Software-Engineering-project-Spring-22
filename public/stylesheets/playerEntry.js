@@ -1,6 +1,9 @@
 // Maximum number of players on each team.
 const MAX_PLAYERS = 15;
 
+// Default border color of the user input boxes.
+const DEFAULT_BORDER_COLOR = "#767676";
+
 
 //On startup, binds F5 to move to playerAction
 document.addEventListener('keydown', function(e) {
@@ -27,38 +30,41 @@ function onSubmit() {
         }
     }
 
-    // Checks if any of the current IDs or names are duplicates.
-    if (!checkDuplicates(redTeam, greenTeam)) {
-        // Checks the server to see if any of the IDs match a known user from the DB.
-        let newPlayerData = checkIDs(redTeam, greenTeam);
+    // Checks to make sure there is at least 1 player on each team.
+    if (redTeam.length > 0 && greenTeam.length > 0) {
+        // Checks if any of the current IDs or names are duplicates.
+        if (!checkDuplicates(redTeam, greenTeam)) {
+            // Checks the server to see if any of the IDs match a known user from the DB.
+            let newPlayerData = checkIDs(redTeam, greenTeam);
 
-        // Checks if the data the server sends back is the same as the sent data
-        let hasChanged = false;
-        for (let i = 0; i < redTeam.length && i < newPlayerData.redTeam.length && i < MAX_PLAYERS; i++) {
-            if (redTeam[i].id != newPlayerData.redTeam[i].id || redTeam[i].name != newPlayerData.redTeam[i].name)
-            {
-                hasChanged = true;
+            // Checks if the data the server sends back is the same as the sent data
+            let hasChanged = false;
+            for (let i = 0; i < redTeam.length && i < newPlayerData.redTeam.length && i < MAX_PLAYERS; i++) {
+                if (redTeam[i].id != newPlayerData.redTeam[i].id || redTeam[i].name != newPlayerData.redTeam[i].name)
+                {
+                    hasChanged = true;
+                }
             }
-        }
-        for (let i = 0; i < greenTeam.length && i < newPlayerData.greenTeam.length && i < MAX_PLAYERS; i++) {
-            if (greenTeam[i].id != newPlayerData.greenTeam[i].id || greenTeam[i].name != newPlayerData.greenTeam[i].name)
-            {
-                hasChanged = true;
+            for (let i = 0; i < greenTeam.length && i < newPlayerData.greenTeam.length && i < MAX_PLAYERS; i++) {
+                if (greenTeam[i].id != newPlayerData.greenTeam[i].id || greenTeam[i].name != newPlayerData.greenTeam[i].name)
+                {
+                    hasChanged = true;
+                }
             }
-        }
 
-        if (!hasChanged) {
-            // If all of the IDs have a name filled in, post the players and procceed to start the game.
-            if (!isMissingNames(redTeam, greenTeam)) {
-                postPlayers(redTeam, greenTeam);
-                location.assign("https://team-11-app.herokuapp.com/startTimer");
+            if (!hasChanged) {
+                // If all of the IDs have a name filled in, post the players and procceed to start the game.
+                if (!isMissingNames(redTeam, greenTeam)) {
+                    postPlayers(redTeam, greenTeam);
+                    location.assign("https://team-11-app.herokuapp.com/startTimer");
+                }
             }
-        }
-        // If any of the data the server sends back is different from what was sent.
-        else {
-            redTeam = newPlayerData.redTeam;
-            greenTeam = newPlayerData.greenTeam;
-            updateUI(redTeam, greenTeam);
+            // If any of the data the server sends back is different from what was sent.
+            else {
+                redTeam = newPlayerData.redTeam;
+                greenTeam = newPlayerData.greenTeam;
+                updateUI(redTeam, greenTeam);
+            }
         }
     }
 }
@@ -289,11 +295,13 @@ function highlightInputBox(isTeamRed, isID, playerNumber, color) {
         }
     }
 }
+
+// Resets the border color of all the user input boxes to their default color.
 function resetHighlights() {
     for (let i = 1; i <= MAX_PLAYERS; i++) {
-        highlightInputBox(true, true, i, "#767676");
-        highlightInputBox(true, false, i, "#767676");
-        highlightInputBox(false, true, i, "#767676");
-        highlightInputBox(false, false, i, "#767676");
+        highlightInputBox(true, true, i, DEFAULT_BORDER_COLOR);
+        highlightInputBox(true, false, i, DEFAULT_BORDER_COLOR);
+        highlightInputBox(false, true, i, DEFAULT_BORDER_COLOR);
+        highlightInputBox(false, false, i, DEFAULT_BORDER_COLOR);
     }
 }
