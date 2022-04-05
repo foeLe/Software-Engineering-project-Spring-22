@@ -24,6 +24,9 @@ document.addEventListener('keydown', function(e) {
 
 // This is the function that is called when the user presses the submit key.
 function onSubmit() {
+    // renders loading gif.
+    document.getElementById("loadingOverlay").style.display = "block";
+    
     // Collect the IDs and names entered on the UI and add them to the corresponding team array.
     let redTeam = Array();
     let greenTeam = Array();
@@ -44,12 +47,8 @@ function onSubmit() {
     if (redTeam.length > 0 && greenTeam.length > 0) {
         // Checks if any of the current IDs or names are duplicates.
         if (!checkDuplicates(redTeam, greenTeam)) {
-            // renders loading gif.
-            document.getElementById("loadingOverlay").style.display = "block";
             // Checks the server to see if any of the IDs match a known user from the DB.
             let newPlayerData = checkIDs(redTeam, greenTeam);
-            // removes loading gif.
-            document.getElementById("loadingOverlay").style.display = "none";
 
             // Checks if the data the server sends back is the same as the sent data
             let hasChanged = false;
@@ -87,6 +86,9 @@ function onSubmit() {
     else {
         alert("Each team must have at least one player!");
     }
+
+    // removes loading gif.
+    document.getElementById("loadingOverlay").style.display = "none";
 }
 
 // Checks if there duplicates for names/IDs.
