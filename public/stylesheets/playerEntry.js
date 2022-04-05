@@ -49,7 +49,7 @@ function onSubmit() {
             // Checks the server to see if any of the IDs match a known user from the DB.
             let newPlayerData = checkIDs(redTeam, greenTeam);
             // removes loading gif.
-            document.getElementById("loadingOverlay").style.display = "block";
+            document.getElementById("loadingOverlay").style.display = "none";
 
             // Checks if the data the server sends back is the same as the sent data
             let hasChanged = false;
