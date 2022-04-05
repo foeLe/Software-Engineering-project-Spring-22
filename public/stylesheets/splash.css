@@ -6,12 +6,17 @@
 body
 {
     background-color: black;
+    text-align: center;
 }
 
-img 
+#logo 
 {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+#loadingGif {
+    width: 100px;
+    height: 100px;
 }
