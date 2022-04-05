@@ -24,9 +24,6 @@ document.addEventListener('keydown', function(e) {
 
 // This is the function that is called when the user presses the submit key.
 function onSubmit() {
-    // renders loading gif.
-    document.getElementById("loadingOverlay").style.display = "block";
-    
     // Collect the IDs and names entered on the UI and add them to the corresponding team array.
     let redTeam = Array();
     let greenTeam = Array();
@@ -86,9 +83,6 @@ function onSubmit() {
     else {
         alert("Each team must have at least one player!");
     }
-
-    // removes loading gif.
-    document.getElementById("loadingOverlay").style.display = "none";
 }
 
 // Checks if there duplicates for names/IDs.
