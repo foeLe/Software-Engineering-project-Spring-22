@@ -44,8 +44,12 @@ function onSubmit() {
     if (redTeam.length > 0 && greenTeam.length > 0) {
         // Checks if any of the current IDs or names are duplicates.
         if (!checkDuplicates(redTeam, greenTeam)) {
+            // renders loading gif.
+            document.getElementById("loadingGif").style.display = "block";
             // Checks the server to see if any of the IDs match a known user from the DB.
             let newPlayerData = checkIDs(redTeam, greenTeam);
+            // removes loading gif.
+            document.getElementById("loadingGif").style.display = "block";
 
             // Checks if the data the server sends back is the same as the sent data
             let hasChanged = false;
