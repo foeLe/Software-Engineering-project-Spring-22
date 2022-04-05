@@ -127,7 +127,7 @@ function checkDuplicates(redTeam, greenTeam)
             }
         }
     }
-    // Check IDs on green team
+    // Check IDs on red team
     for (let redI = 0; redI < redTeam.length && redI < MAX_PLAYERS; redI++)
     {
         for (let redI2 = 0; redI2 < redTeam.length && redI2 < MAX_PLAYERS; redI2++)
