@@ -63,7 +63,7 @@ socket.on('error', (err) => {
 socket.on('message', (msg, rinfo) => {
   console.log('Recieved UDP message');
 });
-socket.bind(SOCKET_PORT);
+socket.bind(PORT);
 
 // Express server
  express()
