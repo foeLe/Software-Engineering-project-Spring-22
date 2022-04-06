@@ -34,25 +34,6 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 });
 const dgram = require('dgram');
 const SOCKET_PORT = 7501;
-//test code
-const { networkInterfaces } = require('os');
-const nets = networkInterfaces();
-const results = Object.create(null); // Or just '{}', an empty object
-
-for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        if (net.family === 'IPv4' && !net.internal) {
-            if (!results[name]) {
-                results[name] = [];
-            }
-            results[name].push(net.address);
-        }
-    }
-}
-console.log("------------------------");
-console.log(results);
-console.log("------------------------");
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
@@ -82,7 +63,7 @@ socket.on('error', (err) => {
 socket.on('message', (msg, rinfo) => {
   console.log('Recieved UDP message');
 });
-socket.bind(SOCKET_PORT);
+socket.bind(SOCKET_PORT, "172.16.120.154");
 
 // Express server
  express()
