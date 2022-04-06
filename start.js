@@ -32,6 +32,8 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
     rejectUnauthorized: false
   }
 });
+const dgram = require('dgram');
+const SOCKET_PORT = 7501;
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
@@ -53,6 +55,23 @@ class Player {
   }
 }
 
+// Game traffic server
+const socket = dgram.createSocket('udp4');
+socket.on('listening', () => {
+  let addr = socket.address();
+  console.log(`Listening for UDP packets at ${addr.address}:${addr.port}`);
+});
+
+socket.on('error', (err) => {
+  console.error(`UDP error: ${err.stack}`);
+});
+
+socket.on('message', (msg, rinfo) => {
+  console.log('Recieved UDP message');
+});
+socket.bind(SOCKET_PORT);
+
+// Express server
  express()
  .use(express.static(path.join(__dirname, 'public')))
  .use(bodyParser.urlencoded({extended:true}))
