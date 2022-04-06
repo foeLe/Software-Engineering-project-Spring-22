@@ -33,7 +33,7 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
   }
 });
 const dgram = require('dgram');
-const SOCKET_PORT = 7501;
+const SOCKET_PORT = 443;
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
@@ -63,7 +63,7 @@ socket.on('error', (err) => {
 socket.on('message', (msg, rinfo) => {
   console.log('Recieved UDP message');
 });
-socket.bind(SOCKET_PORT, "172.16.120.154");
+socket.bind(SOCKET_PORT);
 
 // Express server
  express()
