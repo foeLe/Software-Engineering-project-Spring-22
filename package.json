@@ -1,32 +1,32 @@
 {
-  "name": "user-data",
-  "version": "0.3.0",
-  "description": "",
-  "engines": {
-    "node": "14.x"
-  },
-  "main": "start.js",
-  "scripts": {
-    "start": "node start.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "ejs": "^3.1.5",
-    "express": "^4.15.2",
-    "pg": "^8.7.3"
-  },
-  "devDependencies": {
-    "got": "^11.3.0",
-    "tape": "^4.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+    "name": "user-data",
+    "version": "0.3.0",
+    "description": "",
+    "engines": {
+        "node": "14.x"
+    },
+    "main": "start.js",
+    "scripts": {
+        "start": "node start.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "ejs": "^3.1.5",
+        "express": "^4.15.2",
+        "pg": "^8.7.3"
+    },
+    "devDependencies": {
+        "got": "^11.3.0",
+        "tape": "^4.7.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/foeLe/Software-Engineering-project-Spring-22.git"
+    },
+    "keywords": [
+        "node",
+        "heroku",
+        "express"
+    ],
+    "license": "MIT"
 }
