@@ -48,27 +48,30 @@ class Player {
   }
 }
 
-// Game traffic server
-const socket = dgram.createSocket('udp4');
-socket.on('listening', () => {
-  let addr = socket.address();
-  console.log(`Listening for UDP packets at ${addr.address}:${addr.port}`);
-});
+// // Game traffic server
+// const socket = dgram.createSocket('udp4');
+// socket.on('listening', () => {
+//   let addr = socket.address();
+//   console.log(`Listening for UDP packets at ${addr.address}:${addr.port}`);
+// });
 
-socket.on('error', (err) => {
-  console.error(`UDP error: ${err.stack}`);
-});
+// socket.on('error', (err) => {
+//   console.error(`UDP error: ${err.stack}`);
+// });
 
-socket.on('message', (msg, rinfo) => {
-  console.log('Recieved UDP message');
-});
-socket.bind(7501);
+// socket.on('message', (msg, rinfo) => {
+//   console.log('Recieved UDP message');
+// });
+// socket.bind(7501);
 
-// const socket2 = dgram.createSocket('udp4');
-// socket2.connect(7501, '70.178.4.252', function() {
-//     console.log("connection");
-//     socket2.send("This is a test from the node server.");
-// })
+const socket2 = dgram.createSocket('udp4');
+socket2.connect(7501, '70.178.4.252', function() {
+    console.log("connection to 70.178.4.252:7501");
+    socket2.send("This is a test from the node server.");
+});
+socket2.on('message', (msg, rinfo) => {
+    console.log("message received!!");
+})
 
 // Express server
  express()
