@@ -62,13 +62,13 @@ socket.on('error', (err) => {
 socket.on('message', (msg, rinfo) => {
   console.log('Recieved UDP message');
 });
-socket.bind(PORT);
+socket.bind(7501);
 
-const socket2 = dgram.createSocket('udp4');
-socket2.connect(7501, '70.178.4.252', function() {
-    console.log("connection");
-    socket2.send("This is a test from the node server.");
-})
+// const socket2 = dgram.createSocket('udp4');
+// socket2.connect(7501, '70.178.4.252', function() {
+//     console.log("connection");
+//     socket2.send("This is a test from the node server.");
+// })
 
 // Express server
  express()
