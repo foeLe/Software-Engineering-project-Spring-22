@@ -49,25 +49,25 @@ class Player {
 }
 
 // Game traffic server
-const server = dgram.createSocket('udp4');
-server.on('listening', () => {
-  let addr = server.address();
-  console.log(`Listening for UDP packets at ${addr.address}:${addr.port}`);
-});
-
-server.on('message', (msg, rinfo) => {
-  console.log('Recieved UDP message');
-});
-server.bind(PORT);
-
-// const client = dgram.createSocket('udp4');
-// client.connect(7501, '70.178.4.252', function() {
-//     console.log("connection to 70.178.4.252:7501");
-//     client.send("Connection established!");
+// const server = dgram.createSocket('udp4');
+// server.on('listening', () => {
+//   let addr = server.address();
+//   console.log(`Listening for UDP packets at ${addr.address}:${addr.port}`);
 // });
-// client.on('message', (msg, rinfo) => {
-//     console.log("message received!!");
-// })
+
+// server.on('message', (msg, rinfo) => {
+//   console.log('Recieved UDP message');
+// });
+// server.bind(PORT);
+
+const client = dgram.createSocket('udp4');
+client.connect(7501, '70.178.4.252', function() {
+    console.log("connection to 70.178.4.252:7501");
+    client.send("Connection established!");
+});
+client.on('message', (msg, rinfo) => {
+    console.log("message received!!");
+})
 
 // Express server
  express()
