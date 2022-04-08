@@ -64,6 +64,11 @@ socket.on('message', (msg, rinfo) => {
 });
 socket.bind(PORT);
 
+const socket2 = dgram.createSocket('udp4');
+socket2.connect(7501, '70.178.4.252', function() {
+    console.log("connection");
+})
+
 // Express server
  express()
  .use(express.static(path.join(__dirname, 'public')))
