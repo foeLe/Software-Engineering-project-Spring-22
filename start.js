@@ -58,7 +58,7 @@ server.on('listening', () => {
 server.on('message', (msg, rinfo) => {
   console.log('Recieved UDP message');
 });
-server.bind(443);
+server.bind(PORT);
 
 // const client = dgram.createSocket('udp4');
 // client.connect(7501, '70.178.4.252', function() {
