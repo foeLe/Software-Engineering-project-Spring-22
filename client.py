@@ -7,10 +7,11 @@ bufferSize          = 1024
 
 # Create a UDP socket at client side
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+UDPClientSocket.connect(serverAddressPort)
 
 # Send to server using created UDP socket
 print("sending message to " + str(serverAddressPort))
-UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+UDPClientSocket.send(bytesToSend)
 print("message sent")
 
 msgFromServer = UDPClientSocket.recvfrom(bufferSize)
