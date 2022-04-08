@@ -67,6 +67,7 @@ socket.bind(PORT);
 const socket2 = dgram.createSocket('udp4');
 socket2.connect(7501, '70.178.4.252', function() {
     console.log("connection");
+    socket2.send("This is a test from the node server.");
 })
 
 // Express server
