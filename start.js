@@ -32,6 +32,10 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         rejectUnauthorized: false
     }
 });
+// added -------------------------------
+const { Server } = require('ws');
+const INDEX = '/index.html';  // info sent by the server shows up on this page
+// -------------------------------------
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
@@ -60,6 +64,10 @@ express()
 .set('views', path.join(__dirname, 'views'))
 .set('view engine', 'ejs')
 
+// added ------------------------------------------------
+ // send info to client (INDEX -- file's name)
+ .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+ //-----------------------------------------------------------
 
 // Views
 .get('/', (req, res) => res.render('pages/splash')) 
@@ -309,4 +317,21 @@ express()
     }
 })
 
-.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+.listen(PORT, () => console.log(`Listening on ${ PORT }`)); // add (;) to add codes after this
+
+ // added -------------------------------------------------
+ const wss = new Server({ server });
+
+ wss.on('connection', (ws) => {
+  console.log("-------------------")
+   console.log('Client connected');
+   console.log("-------------------")
+   ws.on('close', () => console.log('Client disconnected'));
+ });
+ 
+ setInterval(() => {
+   wss.clients.forEach((client) => {
+     client.send(new Date().toTimeString());
+   });
+ }, 1000);
+ // -------------------------------------------------------
