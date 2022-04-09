@@ -159,7 +159,7 @@ class Player {
     }
 }
 
-const server = express()
+express()
 .use(express.static(path.join(__dirname, 'public')))
 .use(bodyParser.urlencoded({extended:true}))
 .use(express.json())
