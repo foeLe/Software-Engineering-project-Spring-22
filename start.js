@@ -36,18 +36,14 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
 // Example from: https://gist.github.com/sid24rane/6e6698e93360f2694e310dd347a2e2eb
 var udp = require('dgram');
 
-// Server here (UDP?)----------------------------------------
-
-// creating a udp server
+// Server
 var server = udp.createSocket('udp4');
 
-// emits when any error occurs
 server.on('error',function(error){
   console.log('Error: ' + error);
   server.close();
 });
 
-// emits on new datagram msg
 server.on('message',function(msg,info){
     console.log('Data received from client : ' + msg.toString());
     console.log(' - Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
@@ -64,7 +60,6 @@ server.on('message',function(msg,info){
     // });
 });
 
-//emits when socket is ready and listening for datagram msgs
 server.on('listening',function(){
   var address = server.address();
   var family = address.family;
@@ -72,26 +67,15 @@ server.on('listening',function(){
   console.log('Server is listening at PORT' + PORT);
 });
 
-//emits after the socket is closed using socket.close();
 server.on('close',function(){
   console.log('Socket is closed !');
 });
 
 server.bind(PORT);
 
-// comment this out --- otherwise getting H11 error (?)
-// setTimeout(function(){
-// server.close();
-// },8000);
-
-// Client below (same file as Server?) -----------------------
-
+// Client
 var buffer = require('buffer');
-
-// creating a client socket
 var client = udp.createSocket('udp4');
-
-//buffer msg
 var data = Buffer.from('test-sockets');
 
 client.on('message',function(msg,info){
@@ -99,7 +83,6 @@ client.on('message',function(msg,info){
   console.log(' - Received %d bytes from %s:%d (info.port)\n',msg.length, info.address, info.port);
 });
 
-//sending msg
 client.send(data,PORT,'localhost',function(error){
   if(error){
     client.close();
@@ -108,22 +91,22 @@ client.send(data,PORT,'localhost',function(error){
   }
 });
 
-var testArr = Array();
-var num = 1
-testArr.push(num) 
-testArr.push(2)
-var data1 = Buffer.from(testArr.toString()); // toString is necessary to view numbers as numbers
-var data2 = Buffer.from(' & data 2');
+// var testArr = Array();
+// var num = 1
+// testArr.push(num) 
+// testArr.push(2)
+// var data1 = Buffer.from(testArr.toString()); // toString is necessary to view numbers as numbers
+// var data2 = Buffer.from(' & data 2');
 
-//sending multiple msg
-client.send([data1,data2],PORT,'localhost',function(error){
-  if(error){
-    console.log('Error client sending data');
-    client.close();
-  }else{
-    console.log('Data sent by client');
-  }
-});
+// //sending multiple msg
+// client.send([data1,data2],PORT,'localhost',function(error){
+//   if(error){
+//     console.log('Error client sending data');
+//     client.close();
+//   }else{
+//     console.log('Data sent by client');
+//   }
+// });
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
