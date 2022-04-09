@@ -143,6 +143,16 @@ express()
 .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
 
 
+.get ('/testsocket', (req, res) => {
+    client.send(data,PORT,'localhost',function(error){
+        if(error){
+          client.close();
+        }else{
+          console.log('Data sent by client');
+        }
+    });
+})
+
 // Renders the content of the database to the clients browser.
 .get('/db', async (req, res) => {
     try {
