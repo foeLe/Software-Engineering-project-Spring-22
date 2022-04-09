@@ -32,10 +32,112 @@ const pool = new Pool({ // connects to our database (re-run 'npm install' since 
         rejectUnauthorized: false
     }
 });
-// added -------------------------------
-const { Server } = require('ws');
-const INDEX = '/index.html';  // info sent by the server shows up on this page
-// -------------------------------------
+
+// Example from: https://gist.github.com/sid24rane/6e6698e93360f2694e310dd347a2e2eb
+var udp = require('dgram');
+
+// Server here (UDP?)----------------------------------------
+
+// creating a udp server
+var server = udp.createSocket('udp4');
+
+// emits when any error occurs
+server.on('error',function(error){
+  console.log('Error: ' + error);
+  server.close();
+});
+
+// emits on new datagram msg
+server.on('message',function(msg,info){
+  console.log("-----------------------------------")
+  console.log('Data received from client : ' + msg.toString());
+  console.log('* Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
+  console.log("-----------------------------------")
+
+//sending msg
+server.send(msg,PORT,'localhost',function(error){
+  if(error){
+    client.close();
+  }else{
+    console.log("-----------------------------------")
+    console.log('Data sent by server');
+    console.log("-----------------------------------")
+  }
+
+});
+
+});
+
+//emits when socket is ready and listening for datagram msgs
+server.on('listening',function(){
+  var address = server.address();
+  var family = address.family;
+  var ipaddr = address.address;
+  console.log("-----------------------------------")
+  console.log('Server ip :' + ipaddr);
+  console.log('Server is IP4/IP6 : ' + family);
+  console.log('* Server is listening at PORT' + PORT);
+  console.log("-----------------------------------")
+});
+
+//emits after the socket is closed using socket.close();
+server.on('close',function(){
+  console.log('Socket is closed !');
+});
+
+server.bind(PORT);
+
+// comment this out --- otherwise getting H11 error (?)
+// setTimeout(function(){
+// server.close();
+// },8000);
+
+// Client below (same file as Server?) -----------------------
+
+var buffer = require('buffer');
+
+// creating a client socket
+var client = udp.createSocket('udp4');
+
+//buffer msg
+var data = Buffer.from('test-sockets');
+
+client.on('message',function(msg,info){
+  console.log("-----------------------------------")
+  console.log('Data received from server : ' + msg.toString());
+  console.log('Received %d bytes from %s:%d (info.port)\n',msg.length, info.address, info.port);
+  console.log("-----------------------------------")
+});
+
+//sending msg
+client.send(data,PORT,'localhost',function(error){
+  if(error){
+    client.close();
+  }else{
+    console.log('Data sent by client');
+  }
+});
+
+var testArr = Array();
+var num = 1
+testArr.push(num) 
+testArr.push(2)
+var data1 = Buffer.from(testArr.toString()); // toString is necessary to view numbers as numbers
+var data2 = Buffer.from(' & data 2');
+
+//sending multiple msg
+client.send([data1,data2],PORT,'localhost',function(error){
+  if(error){
+    console.log("-----------------------------------")
+    console.log('Error client sending data');
+    client.close();
+    console.log("-----------------------------------")
+  }else{
+    console.log("-----------------------------------")
+    console.log('Data sent by client');
+    console.log("-----------------------------------")
+  }
+});
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
@@ -63,11 +165,6 @@ const server = express()
 .use(express.json())
 .set('views', path.join(__dirname, 'views'))
 .set('view engine', 'ejs')
-
-// added ------------------------------------------------
- // send info to client (INDEX -- file's name)
- .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
- //-----------------------------------------------------------
 
 // Views
 .get('/', (req, res) => res.render('pages/splash')) 
@@ -317,21 +414,4 @@ const server = express()
     }
 })
 
-.listen(PORT, () => console.log(`Listening on ${ PORT }`)); // add (;) to add codes after this
-
- // added -------------------------------------------------
- const wss = new Server({ server });
-
- wss.on('connection', (ws) => {
-  console.log("-------------------")
-   console.log('Client connected');
-   console.log("-------------------")
-   ws.on('close', () => console.log('Client disconnected'));
- });
- 
- setInterval(() => {
-   wss.clients.forEach((client) => {
-     client.send(new Date().toTimeString());
-   });
- }, 1000);
- // -------------------------------------------------------
+.listen(PORT, () => console.log(`Listening on ${ PORT }`))
