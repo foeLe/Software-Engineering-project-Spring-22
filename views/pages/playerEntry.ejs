@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Laser Tag Client</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/playerEntry.css" />
-    <script type="text/javascript" src="/stylesheets/playerEntry.js"></script>
-  </head>
-  <body>
+    <head>
+        <title>Laser Tag Client</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/playerEntry.css" />
+        <script type="text/javascript" src="/stylesheets/playerEntry.js"></script>
+    </head>
+    <body>
 	<div id="mainContainer">
-      <div id="redTeamContainer" class="teamContainer">
-        <p> Red Team </p>
-            Player 1)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber1" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName1" class="redTextInput"> <br>
-            Player 2)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber2" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName2" class="redTextInput"> <br>
-            Player 3)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber3" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName3" class="redTextInput"> <br>
-            Player 4)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber4" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName4" class="redTextInput"> <br>
-            Player 5)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber5" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName5" class="redTextInput"> <br>
-            Player 6)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber6" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName6" class="redTextInput"> <br>
-            Player 7)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber7" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName7" class="redTextInput"> <br>
-            Player 8)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber8" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName8" class="redTextInput"> <br>
-            Player 9)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber9" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName9" class="redTextInput"> <br>
-            Player 10) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber10" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName10" class="redTextInput"> <br>
-            Player 11) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber11" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName11" class="redTextInput"> <br>
-            Player 12) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber12" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName12" class="redTextInput"> <br>
-            Player 13) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber13" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName13" class="redTextInput"> <br>
-            Player 14) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber14" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName14" class="redTextInput"> <br>
-            Player 15) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber15" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName15" class="redTextInput"> <br>
-          <br>
-      </div>
-			<div id="greenTeamContainer" class="teamContainer">
-        <p> Green Team </p>
-            Player 1)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber1" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName1" class="greenTextInput"> <br>
-            Player 2)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber2" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName2" class="greenTextInput"> <br>
-            Player 3)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber3" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName3" class="greenTextInput"> <br>
-            Player 4)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber4" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName4" class="greenTextInput"> <br>
-            Player 5)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber5" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName5" class="greenTextInput"> <br>
-            Player 6)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber6" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName6" class="greenTextInput"> <br>
-            Player 7)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber7" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName7" class="greenTextInput"> <br>
-            Player 8)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber8" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName8" class="greenTextInput"> <br>
-            Player 9)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber9" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName9" class="greenTextInput"> <br>
-            Player 10) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber10" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName10" class="greenTextInput"> <br>
-            Player 11) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber11" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName11" class="greenTextInput"> <br>
-            Player 12) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber12" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName12" class="greenTextInput"> <br>
-            Player 13) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber13" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName13" class="greenTextInput"> <br>
-            Player 14) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber14" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName14" class="greenTextInput"> <br>
-            Player 15) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber15" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName15" class="greenTextInput"> <br>
-          <br>
-      </div>
-      <input type="button" id="submitButton" value="Submit [F5]">
+        <div id="redTeamContainer" class="teamContainer">
+            <p> Red Team </p>
+                Player 1)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber1" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName1" class="redTextInput"> <br>
+                Player 2)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber2" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName2" class="redTextInput"> <br>
+                Player 3)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber3" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName3" class="redTextInput"> <br>
+                Player 4)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber4" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName4" class="redTextInput"> <br>
+                Player 5)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber5" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName5" class="redTextInput"> <br>
+                Player 6)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber6" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName6" class="redTextInput"> <br>
+                Player 7)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber7" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName7" class="redTextInput"> <br>
+                Player 8)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber8" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName8" class="redTextInput"> <br>
+                Player 9)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="redIdNumber9" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName9" class="redTextInput"> <br>
+                Player 10) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber10" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName10" class="redTextInput"> <br>
+                Player 11) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber11" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName11" class="redTextInput"> <br>
+                Player 12) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber12" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName12" class="redTextInput"> <br>
+                Player 13) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber13" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName13" class="redTextInput"> <br>
+                Player 14) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber14" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName14" class="redTextInput"> <br>
+                Player 15) &nbsp       ID:<input type="number" min="0" name = "id" id="redIdNumber15" class="redTextInput"> Name:<input type="text" name= "code" id="redCodeName15" class="redTextInput"> <br>
+                <br>
+        </div>
+        <div id="greenTeamContainer" class="teamContainer">
+            <p> Green Team </p>
+                Player 1)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber1" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName1" class="greenTextInput"> <br>
+                Player 2)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber2" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName2" class="greenTextInput"> <br>
+                Player 3)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber3" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName3" class="greenTextInput"> <br>
+                Player 4)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber4" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName4" class="greenTextInput"> <br>
+                Player 5)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber5" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName5" class="greenTextInput"> <br>
+                Player 6)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber6" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName6" class="greenTextInput"> <br>
+                Player 7)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber7" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName7" class="greenTextInput"> <br>
+                Player 8)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber8" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName8" class="greenTextInput"> <br>
+                Player 9)  &nbsp &nbsp ID:<input type="number" min="0" name = "id" id="greenIdNumber9" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName9" class="greenTextInput"> <br>
+                Player 10) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber10" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName10" class="greenTextInput"> <br>
+                Player 11) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber11" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName11" class="greenTextInput"> <br>
+                Player 12) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber12" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName12" class="greenTextInput"> <br>
+                Player 13) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber13" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName13" class="greenTextInput"> <br>
+                Player 14) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber14" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName14" class="greenTextInput"> <br>
+                Player 15) &nbsp       ID:<input type="number" min="0" name = "id" id="greenIdNumber15" class="greenTextInput"> Name:<input type="text" name= "code" id="greenCodeName15" class="greenTextInput"> <br>
+            <br>
+        </div>
+            <input type="button" id="submitButton" value="Submit [F5]">
 		</div>
 	</body>
 </html>
