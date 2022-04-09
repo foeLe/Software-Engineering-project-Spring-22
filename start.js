@@ -49,10 +49,8 @@ server.on('error',function(error){
 
 // emits on new datagram msg
 server.on('message',function(msg,info){
-    console.log("-----------------------------------")
     console.log('Data received from client : ' + msg.toString());
-    console.log('* Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
-    console.log("-----------------------------------")
+    console.log(' - Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
 
     //sending msg
     // server.send(msg,PORT,'localhost',function(error){
@@ -71,11 +69,7 @@ server.on('listening',function(){
   var address = server.address();
   var family = address.family;
   var ipaddr = address.address;
-  console.log("-----------------------------------")
-  console.log('Server ip :' + ipaddr);
-  console.log('Server is IP4/IP6 : ' + family);
-  console.log('* Server is listening at PORT' + PORT);
-  console.log("-----------------------------------")
+  console.log('Server is listening at PORT' + PORT);
 });
 
 //emits after the socket is closed using socket.close();
@@ -101,10 +95,8 @@ var client = udp.createSocket('udp4');
 var data = Buffer.from('test-sockets');
 
 client.on('message',function(msg,info){
-  console.log("-----------------------------------")
   console.log('Data received from server : ' + msg.toString());
-  console.log('Received %d bytes from %s:%d (info.port)\n',msg.length, info.address, info.port);
-  console.log("-----------------------------------")
+  console.log(' - Received %d bytes from %s:%d (info.port)\n',msg.length, info.address, info.port);
 });
 
 //sending msg
@@ -126,14 +118,10 @@ var data2 = Buffer.from(' & data 2');
 //sending multiple msg
 client.send([data1,data2],PORT,'localhost',function(error){
   if(error){
-    console.log("-----------------------------------")
     console.log('Error client sending data');
     client.close();
-    console.log("-----------------------------------")
   }else{
-    console.log("-----------------------------------")
     console.log('Data sent by client');
-    console.log("-----------------------------------")
   }
 });
 
