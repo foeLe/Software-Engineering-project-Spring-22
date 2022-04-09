@@ -49,23 +49,21 @@ server.on('error',function(error){
 
 // emits on new datagram msg
 server.on('message',function(msg,info){
-  console.log("-----------------------------------")
-  console.log('Data received from client : ' + msg.toString());
-  console.log('* Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
-  console.log("-----------------------------------")
-
-//sending msg
-server.send(msg,PORT,'localhost',function(error){
-  if(error){
-    client.close();
-  }else{
     console.log("-----------------------------------")
-    console.log('Data sent by server');
+    console.log('Data received from client : ' + msg.toString());
+    console.log('* Received %d bytes from %s:%d (PORT)\n',msg.length, info.address, PORT);
     console.log("-----------------------------------")
-  }
 
-});
-
+    //sending msg
+    // server.send(msg,PORT,'localhost',function(error){
+    //     if(error){
+    //         client.close();
+    //     }else{
+    //         console.log("-----------------------------------")
+    //         console.log('Data sent by server');
+    //         console.log("-----------------------------------")
+    //     }
+    // });
 });
 
 //emits when socket is ready and listening for datagram msgs
