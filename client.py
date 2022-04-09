@@ -2,16 +2,16 @@ import socket
 
 msgFromClient       = "Hello-UDP-Server"
 bytesToSend         = str.encode(msgFromClient)
-serverAddressPort   = ("team-11-app.herokuapp.com", 11649)
+#serverAddressPort   = ("team-11-app.herokuapp.com", 5000)
+serverAddressPort   = ("localhost", 5000)
 bufferSize          = 16 * 8
 
 # Create a UDP socket at client side
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-UDPClientSocket.connect(serverAddressPort)
 
 # Send to server using created UDP socket
 print("sending message to " + str(serverAddressPort))
-UDPClientSocket.send(bytesToSend)
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 print("message sent")
 
 #msgFromServer = UDPClientSocket.recvfrom(bufferSize)
