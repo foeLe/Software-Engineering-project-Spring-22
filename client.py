@@ -16,7 +16,7 @@ def main():
     print('')
     counter = input('How many events do you want ==> ')
 
-    i = 1
+    i = 0
     while i < int(counter):
         if random.randint(1,2) == 1:
             redplayer = red1
