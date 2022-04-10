@@ -56,7 +56,7 @@ const server = express()
     }
 })
 // Sends client the current players on each team
-.get('/players', async (req, res) => {
+.get('/playerAction/getPlayers', async (req, res) => {
     // Store unique player info into a new array for each team
     let newRedTeam = [];
     let uniqueRed = {};

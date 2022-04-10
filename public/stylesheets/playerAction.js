@@ -1,7 +1,18 @@
-//Time in milliseconds to start with (60,000 ms/minute)
+// Time in milliseconds to start with (60,000 ms/minute).
 const TIMER_MS = 360000;
 
+// Score awarded to a player for hitting another player.
 const HIT_SCORE = 100;
+
+// Time in milliseconds between getAction requests.
+const GET_ACTION_INTERVAL = 5000;
+
+// Rate in milliseconds at which the highest team score blinks
+const SCORE_BLINK_INTERVAL = 750;
+
+// URLs
+const GET_ACTIONS_URL = '/playerAction/getActions';
+const GET_PLAYERS_URL = '/playerAction/getPlayers';
 
 // Player class
 class Player {
@@ -31,7 +42,7 @@ var greenScore = 0;
 
 // Retrieves current players from the server and fills in their info on the playerAction screen
 $(document).ready(function() {
-	$.get('/players', {}, function(data){
+	$.get(GET_PLAYERS_URL, {}, function(data){
 		for (let i = 0; i < data.redTeam.length && i < 15; i++) {
 			redTeam.push(new Player(data.redTeam[i].idNumber, data.redTeam[i].codeName));
 			document.getElementById("redPlayer" + (i + 1)).innerHTML = data.redTeam[i].codeName;
@@ -96,8 +107,9 @@ function timerStart() {
 	}, 1000);
 }
 
+// Gets updated player actions from the server every 
 setInterval(function() {
-	$.get('/playerAction/getActions', {}, function(data){
+	$.get(GET_ACTIONS_URL, {}, function(data){
 		let actions = data.actions;
 		for (let i = 0; i < actions.length; i++) {
 			let attacker = actions[i].substring(0, actions[i].indexOf(':'));
@@ -146,8 +158,9 @@ setInterval(function() {
 		}
 		document.getElementById("greenScoreTotal").innerHTML = greenScore;
 	});
-}, 5000);
+}, GET_ACTION_INTERVAL);
 
+// Makes the team score that is the highest blink.
 setInterval(function() {
 	let rs = document.getElementById("redScoreTotal");
 	let gs = document.getElementById("greenScoreTotal");
@@ -170,4 +183,4 @@ setInterval(function() {
 		rs.hidden = false;
 		gs.hidden = false;
 	}
-}, 750);
+}, SCORE_BLINK_INTERVAL);

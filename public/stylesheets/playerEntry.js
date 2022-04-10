@@ -4,8 +4,16 @@ const MAX_PLAYERS = 15;
 // Default border color of the user input boxes.
 const DEFAULT_BORDER_COLOR = "#767676";
 
+// Color that user input boxes are highlight when it needs attention.
+const HIGHLIGHT_COLOR = "#FF0000";
+
 // KeyCode of the key used to submit the players to the server.
 const SUBMIT_KEY = 116; // [F5]
+
+// URLs
+const START_TIMER_URL = "/startTimer";
+const CHECK_IDS_URL = "/playerEntry/checkIDs";
+const POST_PLAYERS_URL = "/playerEntry/submit";
 
 // On startup, binds submit button to the submit function.
 $(document).ready(function() {
@@ -66,7 +74,7 @@ function onSubmit() {
                 // If all of the IDs have a name filled in, post the players and procceed to start the game.
                 if (!isMissingNames(redTeam, greenTeam)) {
                     postPlayers(redTeam, greenTeam);
-                    location.assign("/startTimer");
+                    location.assign(START_TIMER_URL);
                 }
             }
             // If any of the data the server sends back is different from what was sent.
@@ -107,8 +115,8 @@ function checkDuplicates(redTeam, greenTeam)
             if (redTeam[redI].id == greenTeam[greenI].id)
             {
                 duplicateIdsBoth = true;
-                highlightInputBox(true, true, redI + 1, "#FF0000");
-                highlightInputBox(false, true, greenI + 1, "#FF0000");
+                highlightInputBox(true, true, redI + 1, HIGHLIGHT_COLOR);
+                highlightInputBox(false, true, greenI + 1, HIGHLIGHT_COLOR);
                 //alert("Both teams have the same user ID. Please change the ID found at: " + (redI+1) + " for the red team or change the ID found at: " + (greenI+1) + " for the green team.")
             }
         }
@@ -121,8 +129,8 @@ function checkDuplicates(redTeam, greenTeam)
             if (redTeam[redI].name == greenTeam[greenI].name && redTeam[redI].name != "")
             {
                 duplicateNamesBoth = true;
-                highlightInputBox(true, false, redI + 1, "#FF0000");
-                highlightInputBox(false, false, greenI + 1, "#FF0000");
+                highlightInputBox(true, false, redI + 1, HIGHLIGHT_COLOR);
+                highlightInputBox(false, false, greenI + 1, HIGHLIGHT_COLOR);
                 //alert("Both teams have the same playername. Please change the name found at: " + (redI+1) + " for the red team or change the name found at: " + (greenI+1) + " for the green team.")
             }
         }
@@ -137,8 +145,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(redTeam[redI].id == redTeam[redI2].id)
                 {
                     duplicateIdsRed = true;
-                    highlightInputBox(true, true, redI + 1, "#FF0000");
-                    highlightInputBox(true, true, redI2 + 1, "#FF0000");
+                    highlightInputBox(true, true, redI + 1, HIGHLIGHT_COLOR);
+                    highlightInputBox(true, true, redI2 + 1, HIGHLIGHT_COLOR);
                     //alert("The red team seems to be using the same id for two members. Please change the id for either player: " + (redI+1) + " or for player: " + (redI2 +1));
                 }
             }
@@ -155,8 +163,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(redTeam[redI].name == redTeam[redI2].name && redTeam[redI].name != "")
                 {
                     duplicateNamesRed = true;
-                    highlightInputBox(true, false, redI + 1, "#FF0000");
-                    highlightInputBox(true, false, redI2 + 1, "#FF0000");
+                    highlightInputBox(true, false, redI + 1, HIGHLIGHT_COLOR);
+                    highlightInputBox(true, false, redI2 + 1, HIGHLIGHT_COLOR);
                     //alert("The red team seems to be using the same name for two members. Please change the name for either player: " + (redI+1) + " or for player: " + (redI2 +1));
                 }
             }
@@ -173,8 +181,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(greenTeam[greenI].id == greenTeam[greenI2].id)
                 {
                     duplicateIdsGreen = true;
-                    highlightInputBox(false, true, greenI + 1, "#FF0000");
-                    highlightInputBox(false, true, greenI2 + 1, "#FF0000");
+                    highlightInputBox(false, true, greenI + 1, HIGHLIGHT_COLOR);
+                    highlightInputBox(false, true, greenI2 + 1, HIGHLIGHT_COLOR);
                     //alert("The green team seems to be using the same id for two members. Please change the id for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
                 }
             }
@@ -191,8 +199,8 @@ function checkDuplicates(redTeam, greenTeam)
                 if(greenTeam[greenI].name == greenTeam[greenI2].name && greenTeam[greenI].name != "")
                 {
                     duplicateNamesGreen = true;
-                    highlightInputBox(false, false, greenI + 1, "#FF0000");
-                    highlightInputBox(false, false, greenI2 + 1, "#FF0000");
+                    highlightInputBox(false, false, greenI + 1, HIGHLIGHT_COLOR);
+                    highlightInputBox(false, false, greenI2 + 1, HIGHLIGHT_COLOR);
                     //alert("The green team seems to be using the same name for two members. Please change the name for either player: " + (greenI+1) + " or for player: " + (greenI2 +1));
                 }
             }
@@ -229,7 +237,7 @@ function checkIDs(redTeam, greenTeam) {
     let res = {};
     $.ajax({
         type: "GET",
-        url: "/playerEntry/checkIDs",
+        url: CHECK_IDS_URL,
         dataType: "json",
         async: false,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
@@ -249,7 +257,7 @@ function postPlayers(redTeam, greenTeam) {
     if (!isMissingNames(redTeam, greenTeam)) {
         $.ajax({
             type: "POST",
-            url: "/playerEntry/submit",
+            url: POST_PLAYERS_URL,
             dataType: "json",
             timeout: 4000,
             data: {"redTeam": redTeam, "greenTeam": greenTeam}
@@ -265,7 +273,7 @@ function updateUI(redTeam, greenTeam) {
             document.getElementById("redCodeName" + (i+1)).value = redTeam[i].name;
             // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
             if (redTeam[i].name == "" || redTeam[i].name == "<Name taken!>") {
-                highlightInputBox(true, false, i + 1, "#FF0000");
+                highlightInputBox(true, false, i + 1, HIGHLIGHT_COLOR);
             }
         }
         else {
@@ -279,7 +287,7 @@ function updateUI(redTeam, greenTeam) {
             document.getElementById("greenCodeName" + (i+1)).value = greenTeam[i].name;
             // If a player's ID is not in the DB and hasn't entered a name yet, color the name outline red.
             if (greenTeam[i].name == "" || greenTeam[i].name == "<Name taken!>") {
-                highlightInputBox(false, false, i + 1, "#FF0000");
+                highlightInputBox(false, false, i + 1, HIGHLIGHT_COLOR);
             }
         }
         else {
