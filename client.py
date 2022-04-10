@@ -2,7 +2,7 @@ import asyncio
 import websockets
 
 async def hello():
-    async with websockets.connect("ws://team-11-app.herokuapp.com:52611") as websocket:
+    async with websockets.connect("ws://team-11-app.herokuapp.com/playerAction:5126") as websocket:
         await websocket.send("Hello world!")
         await websocket.recv()
 

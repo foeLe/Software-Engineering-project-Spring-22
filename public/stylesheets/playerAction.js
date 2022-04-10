@@ -67,8 +67,8 @@ function timerStart() {
 }
 
 let HOST = location.origin.replace(/^http/, 'ws')
-let ws = new WebSocket(HOST);
+      let ws = new WebSocket(HOST);
 
-ws.onmessage = (event) => {
-	console.log("received message");
-};
+      ws.onmessage = (event) => {
+        console.log("message received");
+      };
