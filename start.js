@@ -39,11 +39,10 @@ class Player {
     }
 }
 
-function hexToAscii(str1) {
-    let hex = str1.toString();
+function hexToAscii(message) {
     let str = "";
-    for (let n = 0; n < hex.length; n+=3) {
-        str += String.fromCharCode(parseInt(hex.substr(n,2), 16));
+    for (let n = 0; n < message.length; n+=1) {
+        str += String.fromCharCode(message[n]);
     }
     return str;
 }
@@ -316,9 +315,10 @@ wss.on('connection', (ws) => {
      console.log('Client connected');
      console.log("-------------------")
      ws.on('message', (message) => {
-        for (let i = 0; i < message.length; i++) {
-            console.log(message[i]);
-        } 
+        // for (let i = 0; i < message.length; i++) {
+        //     console.log(message[i]);
+        // } 
+        console.log(hexToAscii(message));
      });
      ws.on('close', () => console.log('Client disconnected'));
    });
