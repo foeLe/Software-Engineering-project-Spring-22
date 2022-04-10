@@ -149,10 +149,10 @@ setInterval(function() {
 }, 5000);
 
 setInterval(function() {
-	let rs = document.getElementById("redScoreTotal").innerHTML
-	let gs = document.getElementById("greenScoreTotal").innerHTML
-	redScore = parseInt(rs);
-	greenScore = parseInt(gs);
+	let rs = document.getElementById("redScoreTotal");
+	let gs = document.getElementById("greenScoreTotal");
+	redScore = parseInt(rs.innerHTML);
+	greenScore = parseInt(gs.innerHTML);
 	
 	if(redScore > greenScore)
 	{
