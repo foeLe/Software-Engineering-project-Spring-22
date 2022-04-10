@@ -21,10 +21,12 @@ const pool = new Pool({
     }
 });
 
-// Current team members
+// Global variables
 var redTeam = Array();
 var greenTeam = Array();
 var actions = Array();
+
+
 
 // Express http server
 const server = express()
@@ -34,14 +36,11 @@ const server = express()
 .set('views', path.join(__dirname, 'views'))
 .set('view engine', 'ejs')
 
-
 // Views
 .get('/', (req, res) => res.render('pages/splash'))
 .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
 .get('/startTimer', (req, res) => res.render('pages/startTimer'))
 .get('/playerAction', (req, res) => res.render('pages/playerAction'))
-// .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
-
 
 // Renders the content of the database to the clients browser.
 .get('/db', async (req, res) => {
@@ -289,6 +288,8 @@ const server = express()
 })
 // Binds express server to the designated port and starts listening for incoming traffic.
 .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+
 
 //Websocket game traffic server
 const wss = new WebSocket.Server({ server });
