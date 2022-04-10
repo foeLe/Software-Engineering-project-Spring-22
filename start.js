@@ -41,19 +41,19 @@ class Player {
 
 // Express http server
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(express.json())
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 
 // Views
-app.get('/', (req, res) => res.render('pages/splash')) 
-app.get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
-app.get('/startTimer', (req, res) => res.render('pages/startTimer'))
-app.get('/playerAction', (req, res) => res.render('pages/playerAction'))
-app.get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
+app.get('/', (req, res) => res.render('pages/splash')) ;
+app.get('/playerEntry', (req, res) => res.render('pages/playerEntry'));
+app.get('/startTimer', (req, res) => res.render('pages/startTimer'));
+app.get('/playerAction', (req, res) => res.render('pages/playerAction'));
+app.get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'));
 
 
 // Renders the content of the database to the clients browser.
@@ -68,7 +68,7 @@ app.get('/db', async (req, res) => {
         console.error(err);
         res.send("Error " + err);
     }
-})
+});
 // Sends client the current players on each team
 app.get('/players', async (req, res) => {
     // Store unique player info into a new array for each team
@@ -94,7 +94,7 @@ app.get('/players', async (req, res) => {
 
     // Pass arrays with unique player(s) in each team for playerAction display
     res.send({"redTeam": newRedTeam, "greenTeam": newGreenTeam});
-})
+});
 // Receives query from client to check the database for the listed IDs. Responds with updated list containing names of matches.
 app.get('/playerEntry/checkIDs', async (req, res) => {
     let redTeam = req.query.redTeam;
@@ -206,7 +206,7 @@ app.get('/playerEntry/checkIDs', async (req, res) => {
         // Sends client the updated lists of player data bacak to CheckIDs() in playerEntry.js
         res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
-})
+});
 // Receive player data submitted by client.
 app.post('/playerEntry/submit', async (req, res) => {
     redTeam = Array();
@@ -294,18 +294,13 @@ app.post('/playerEntry/submit', async (req, res) => {
             })
         }
     }
-})
+});
 // Binds express server to the designated port and starts listening for incoming traffic.
 const expressServer = app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // Websocket game traffic server
-const wsServer = new WebSocket.Server({ noServer: true });
-wsServer.on('connection', socket => {
-  socket.on('message', message => console.log(message));
-});
-
-expressServer.on('upgrade', (request, socket, head) => {
-  wsServer.handleUpgrade(request, socket, head, socket => {
-    wsServer.emit('connection', socket, request);
-  });
+const wsServer = new WebSocket.Server({ app });
+wsServer.on('connection', (ws) => {
+    console.log('Client connected');
+    wsServer.on('close', () => console.log('Client disconnected'));
 });
