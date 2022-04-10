@@ -315,19 +315,12 @@ const server = express()
 
 //Websocket game traffic server
 const wss = new WebSocket.Server({ server });
-
 wss.on('connection', (ws) => {
-    console.log("-------------------")
-     console.log('Client connected');
-     console.log("-------------------")
-     ws.on('message', (message) => {
-        actions.push(parseSocketData(message));
-     });
-     ws.on('close', () => console.log('Client disconnected'));
-   });
-
-   setInterval(() => {
-     wss.clients.forEach((client) => {
-       client.send(new Date().toTimeString());
-     });
-}, 1000);
+    console.log('Client websocket connected');
+    ws.on('message', (message) => {
+        let parsedMessage = parseSocketData(message);
+        console.log('Message received from client websocket: ' + parsedMessage);
+        actions.push(parsedMessage);
+    });
+    ws.on('close', () => console.log('Client websocket disconnected'));
+});
