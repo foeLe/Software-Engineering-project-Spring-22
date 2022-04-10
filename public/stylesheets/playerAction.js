@@ -112,54 +112,56 @@ function timerStart() {
 setInterval(function() {
 	if (timeLeft > 0) {
 		$.get(GET_ACTIONS_URL, {}, function(data){
-			let actions = data.actions;
-			for (let i = 0; i < actions.length; i++) {
-				let attacker = actions[i].substring(0, actions[i].indexOf(':'));
-				let hitPlayer = actions[i].substring(actions[i].indexOf(':') + 1, actions[i].length);
-				for(let j = 0; j < redTeam.length; j++) {
-					// Red team hit
-					if (attacker == redTeam[j].getID()) {
-						redTeam[j].addScore(HIT_SCORE);
-						let li = document.createElement("li");
-						let list = document.getElementById("redActionList");
-						for (let k = 0; k < greenTeam.length; k++) {
-							if (hitPlayer == greenTeam[k].getID()) {
-								li.appendChild(document.createTextNode(redTeam[j].getName() + " hit " + greenTeam[k].getName()));
+			if (timeLeft <= TIMER_MS - (GET_ACTION_INTERVAL * 1.2)) { // Makes sure that the data from the first request is ignored. This allows any extra data leftover from last game to be erased.
+				let actions = data.actions;
+				for (let i = 0; i < actions.length; i++) {
+					let attacker = actions[i].substring(0, actions[i].indexOf(':'));
+					let hitPlayer = actions[i].substring(actions[i].indexOf(':') + 1, actions[i].length);
+					for(let j = 0; j < redTeam.length; j++) {
+						// Red team hit
+						if (attacker == redTeam[j].getID()) {
+							redTeam[j].addScore(HIT_SCORE);
+							let li = document.createElement("li");
+							let list = document.getElementById("redActionList");
+							for (let k = 0; k < greenTeam.length; k++) {
+								if (hitPlayer == greenTeam[k].getID()) {
+									li.appendChild(document.createTextNode(redTeam[j].getName() + " hit " + greenTeam[k].getName()));
+								}
 							}
+							list.appendChild(li);
 						}
-						list.appendChild(li);
+					}
+					for (let j = 0; j < greenTeam.length; j++) {
+						// Green team hit
+						if (attacker == greenTeam[j].getID()) {
+							greenTeam[j].addScore(HIT_SCORE);
+							let li = document.createElement("li");
+							let list = document.getElementById("greenActionList");
+							for (let k = 0; k < redTeam.length; k++) {
+								if (hitPlayer == redTeam[k].getID()) {
+									li.appendChild(document.createTextNode(greenTeam[j].getName() + " hit " + redTeam[k].getName()));
+								}
+							}
+							list.appendChild(li);
+						}
 					}
 				}
-				for (let j = 0; j < greenTeam.length; j++) {
-					// Green team hit
-					if (attacker == greenTeam[j].getID()) {
-						greenTeam[j].addScore(HIT_SCORE);
-						let li = document.createElement("li");
-						let list = document.getElementById("greenActionList");
-						for (let k = 0; k < redTeam.length; k++) {
-							if (hitPlayer == redTeam[k].getID()) {
-								li.appendChild(document.createTextNode(greenTeam[j].getName() + " hit " + redTeam[k].getName()));
-							}
-						}
-						list.appendChild(li);
-					}
-				}
-			}
 
-			// Update score UI
-			redScore = 0;
-			for (let i = 0; i < redTeam.length; i++) {
-				redScore += redTeam[i].getScore();
-				document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
+				// Update score UI
+				redScore = 0;
+				for (let i = 0; i < redTeam.length; i++) {
+					redScore += redTeam[i].getScore();
+					document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
+				}
+				document.getElementById("redScoreTotal").innerHTML = redScore;
+				
+				greenScore = 0;
+				for (let i = 0; i < greenTeam.length; i++) {
+					greenScore += greenTeam[i].getScore();
+					document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
+				}
+				document.getElementById("greenScoreTotal").innerHTML = greenScore;
 			}
-			document.getElementById("redScoreTotal").innerHTML = redScore;
-			
-			greenScore = 0;
-			for (let i = 0; i < greenTeam.length; i++) {
-				greenScore += greenTeam[i].getScore();
-				document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
-			}
-			document.getElementById("greenScoreTotal").innerHTML = greenScore;
 		});
 	}
 }, GET_ACTION_INTERVAL);
