@@ -36,7 +36,7 @@ def main():
         print(message)
         i+=1
         asyncio.run(send(message))
-        time.sleep(random.randint(1,3))
+        time.sleep(random.randint(3,8))
 
 
 async def send(data):
