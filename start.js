@@ -85,10 +85,10 @@ const server = express()
 .get('/playerEntry/checkIDs', async (req, res) => {
     let redTeam = req.query.redTeam;
     let greenTeam = req.query.greenTeam;
-    var searchId;
-    var searchName;
-    var parseRow;
-    var dbResult;
+    let searchId;
+    let searchName;
+    let parseRow;
+    let dbResult;
 
     for (let i = 0; i < redTeam.length; i++) {
         // Query database for the count of an id
@@ -202,9 +202,9 @@ const server = express()
 .post('/playerEntry/submit', async (req, res) => {
     redTeam = Array();
     greenTeam = Array();
-    var searchId;
-    var parseRow;
-    var dbResult;
+    let searchId;
+    let parseRow;
+    let dbResult;
 
     for (let i = 0; i < MAX_PLAYERS; i++) {
         let redID;
@@ -247,7 +247,7 @@ const server = express()
                         parseRow = result["rows"]
                         dbResult = parseRow[0].total
                         if (dbResult == 0) { 
-                            var sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
+                            let sql = "insert into player (id, codeName) values(" + redID + ", '" + redName + "')";
                             pool.query(sql, function (err) {
                                 if (err) 
                                     res.send("Error!");
@@ -274,7 +274,7 @@ const server = express()
                         parseRow = result["rows"]
                         dbResult = parseRow[0].total
                         if (dbResult == 0) { 
-                            var sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
+                            let sql = "insert into player (id, codeName) values(" + greenID + ", '" + greenName + "')";
                             pool.query(sql, function (err) {
                                 if (err) 
                                     res.send("Error!");

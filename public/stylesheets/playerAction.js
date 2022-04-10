@@ -47,11 +47,11 @@ $(document).ready(function() {
 
 function timerStart() {
     //Set timer length to the specified value in MS
-	var timeLeft = TIMER_MS;
+	let timeLeft = TIMER_MS;
 
 	//Calculate the number of minutes and seconds left on the clock
-	var timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-	var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
+	let timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+	let timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
 	if(timerSec < 10)
 		document.getElementById("timer").innerHTML = "Time remaining: " + timerMin + ":0" + timerSec;
@@ -59,7 +59,7 @@ function timerStart() {
 		document.getElementById("timer").innerHTML = "Time remaining: " + timerMin + ":" + timerSec;
 
 	//Ticks the timer every 1000 ms/1 sec
-	var timerInterval = setInterval(function() {
+	let timerInterval = setInterval(function() {
 		timeLeft -= 1000;
 		
 		//TO-DO: IMPLEMENT CODE TO END GAME WHEN TIMER REACHES 0, ADDITIONAL WARNING CODE AT KEY TIMES IF NEEDED
@@ -84,8 +84,8 @@ function timerStart() {
                 document.getElementById("timer").innerHTML = "Ten seconds remaining!";
 		        break;
             default:
-                var timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-			    var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                let timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+			    let timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);
 			    
 			    if(timerSec < 10)
 				    document.getElementById("timer").innerHTML = "Time remaining: " + timerMin + ":0" + timerSec;
