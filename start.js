@@ -315,7 +315,11 @@ wss.on('connection', (ws) => {
     console.log("-------------------")
      console.log('Client connected');
      console.log("-------------------")
-     ws.on('message', message => console.log(message.data));
+     ws.on('message', (message) => {
+        for (let i = 0; i < message.length; i++) {
+            console.log(message[i]);
+        } 
+     });
      ws.on('close', () => console.log('Client disconnected'));
    });
 
