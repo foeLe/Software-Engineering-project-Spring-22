@@ -218,7 +218,7 @@ const server = express()
     }, 2000)
 })
 // Sends the client a list of actions created by the traffic generator.
-.get('playerAction/getActions', async (req, res) => {
+.get('/playerAction/getActions', async (req, res) => {
     res.send({"actions": actions});
     setTimeout(function() {
         actions = Array();
