@@ -137,11 +137,13 @@ setInterval(function() {
 			redScore += redTeam[i].getScore();
 			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
 		}
+		document.getElementById("redScoreTotal").innerHTML = redScore;
 		
 		greenScore = 0;
 		for (let i = 0; i < greenTeam.length; i++) {
 			greenScore += greenTeam[i].getScore();
 			document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
 		}
+		document.getElementById("greenScoreTotal").innerHTML = greenScore;
 	});
 }, 5000);
