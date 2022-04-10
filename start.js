@@ -27,7 +27,6 @@ var greenTeam = Array();
 var actions = Array();
 
 // Express http server
-express()
 const server = express()
 .use(express.static(path.join(__dirname, 'public')))
 .use(bodyParser.urlencoded({extended:true}))
