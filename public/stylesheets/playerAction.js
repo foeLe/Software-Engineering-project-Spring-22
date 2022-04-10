@@ -39,6 +39,7 @@ var redTeam = Array();
 var greenTeam = Array();
 var redScore = 0;
 var greenScore = 0;
+var timeLeft = TIMER_MS;
 
 // Retrieves current players from the server and fills in their info on the playerAction screen
 $(document).ready(function() {
@@ -58,7 +59,7 @@ $(document).ready(function() {
 
 function timerStart() {
     //Set timer length to the specified value in MS
-	let timeLeft = TIMER_MS;
+	timeLeft = TIMER_MS;
 
 	//Calculate the number of minutes and seconds left on the clock
 	let timerMin = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -109,55 +110,58 @@ function timerStart() {
 
 // Gets updated player actions from the server every 
 setInterval(function() {
-	$.get(GET_ACTIONS_URL, {}, function(data){
-		let actions = data.actions;
-		for (let i = 0; i < actions.length; i++) {
-			let attacker = actions[i].substring(0, actions[i].indexOf(':'));
-			let hitPlayer = actions[i].substring(actions[i].indexOf(':') + 1, actions[i].length);
-			for(let j = 0; j < redTeam.length; j++) {
-				// Red team hit
-				if (attacker == redTeam[j].getID()) {
-					redTeam[j].addScore(HIT_SCORE);
-					let li = document.createElement("li");
-					let list = document.getElementById("redActionList");
-					for (let k = 0; k < greenTeam.length; k++) {
-						if (hitPlayer == greenTeam[k].getID()) {
-							li.appendChild(document.createTextNode(redTeam[j].getName() + " hit " + greenTeam[k].getName()));
+	if (timeLeft > 0) {
+		$.get(GET_ACTIONS_URL, {}, function(data){
+			let actions = data.actions;
+			for (let i = 0; i < actions.length; i++) {
+				let attacker = actions[i].substring(0, actions[i].indexOf(':'));
+				let hitPlayer = actions[i].substring(actions[i].indexOf(':') + 1, actions[i].length);
+				for(let j = 0; j < redTeam.length; j++) {
+					// Red team hit
+					if (attacker == redTeam[j].getID()) {
+						redTeam[j].addScore(HIT_SCORE);
+						let li = document.createElement("li");
+						let list = document.getElementById("redActionList");
+						for (let k = 0; k < greenTeam.length; k++) {
+							if (hitPlayer == greenTeam[k].getID()) {
+								li.appendChild(document.createTextNode(redTeam[j].getName() + " hit " + greenTeam[k].getName()));
+							}
 						}
+						list.appendChild(li);
 					}
-					list.appendChild(li);
+				}
+				for (let j = 0; j < greenTeam.length; j++) {
+					// Green team hit
+					if (attacker == greenTeam[j].getID()) {
+						greenTeam[j].addScore(HIT_SCORE);
+						let li = document.createElement("li");
+						let list = document.getElementById("greenActionList");
+						for (let k = 0; k < redTeam.length; k++) {
+							if (hitPlayer == redTeam[k].getID()) {
+								li.appendChild(document.createTextNode(greenTeam[j].getName() + " hit " + redTeam[k].getName()));
+							}
+						}
+						list.appendChild(li);
+					}
 				}
 			}
-			for (let j = 0; j < greenTeam.length; j++) {
-				// Green team hit
-				if (attacker == greenTeam[j].getID()) {
-					greenTeam[j].addScore(HIT_SCORE);
-					let li = document.createElement("li");
-					let list = document.getElementById("greenActionList");
-					for (let k = 0; k < redTeam.length; k++) {
-						if (hitPlayer == redTeam[k].getID()) {
-							li.appendChild(document.createTextNode(greenTeam[j].getName() + " hit " + redTeam[k].getName()));
-						}
-					}
-					list.appendChild(li);
-				}
-			}
-		}
 
-		redScore = 0;
-		for (let i = 0; i < redTeam.length; i++) {
-			redScore += redTeam[i].getScore();
-			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
-		}
-		document.getElementById("redScoreTotal").innerHTML = redScore;
-		
-		greenScore = 0;
-		for (let i = 0; i < greenTeam.length; i++) {
-			greenScore += greenTeam[i].getScore();
-			document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
-		}
-		document.getElementById("greenScoreTotal").innerHTML = greenScore;
-	});
+			// Update score UI
+			redScore = 0;
+			for (let i = 0; i < redTeam.length; i++) {
+				redScore += redTeam[i].getScore();
+				document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
+			}
+			document.getElementById("redScoreTotal").innerHTML = redScore;
+			
+			greenScore = 0;
+			for (let i = 0; i < greenTeam.length; i++) {
+				greenScore += greenTeam[i].getScore();
+				document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
+			}
+			document.getElementById("greenScoreTotal").innerHTML = greenScore;
+		});
+	}
 }, GET_ACTION_INTERVAL);
 
 // Makes the team score that is the highest blink.
