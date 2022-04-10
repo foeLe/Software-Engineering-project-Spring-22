@@ -26,28 +26,6 @@ var redTeam = Array();
 var greenTeam = Array();
 var actions = Array();
 
-// Player class
-class Player {
-    constructor(idNumber, codeName) {
-        this.idNumber = idNumber;
-        this.codeName = codeName;
-    }
-    getID() {
-        return this.idNumber;
-    }
-    getName() {
-        return this.codeName;
-    }
-}
-
-function parseSocketData(message) {
-    let str = "";
-    for (let n = 0; n < message.length; n+=1) {
-        str += String.fromCharCode(message[n]);
-    }
-    return str;
-}
-
 // Express http server
 express()
 const server = express()
@@ -324,3 +302,26 @@ wss.on('connection', (ws) => {
     });
     ws.on('close', () => console.log('Client websocket disconnected'));
 });
+
+// Converts websocket raw data into a human-readable string.
+function parseSocketData(message) {
+    let str = "";
+    for (let n = 0; n < message.length; n+=1) {
+        str += String.fromCharCode(message[n]);
+    }
+    return str;
+}
+
+// Player class
+class Player {
+    constructor(idNumber, codeName) {
+        this.idNumber = idNumber;
+        this.codeName = codeName;
+    }
+    getID() {
+        return this.idNumber;
+    }
+    getName() {
+        return this.codeName;
+    }
+}

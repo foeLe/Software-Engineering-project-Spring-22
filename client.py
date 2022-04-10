@@ -42,6 +42,5 @@ def main():
 async def send(data):
     async with websockets.connect("wss://team-11-app.herokuapp.com") as websocket:
         await websocket.send(data)
-        await websocket.recv()
 
 if(__name__=="__main__"):main()
