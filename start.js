@@ -220,9 +220,7 @@ const server = express()
 // Sends the client a list of actions created by the traffic generator.
 .get('/playerAction/getActions', async (req, res) => {
     res.send({"actions": actions});
-    setTimeout(function() {
-        actions = Array();
-    }, 2000);
+    actions = Array();
 })
 // Receive player data submitted by client.
 .post('/playerEntry/submit', async (req, res) => {
