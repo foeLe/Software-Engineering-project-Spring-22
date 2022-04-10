@@ -300,7 +300,7 @@ const server = express()
 .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 //Websocket game traffic server
-const wsServer = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 
 wss.on('connection', (ws) => {
     console.log("-------------------")
