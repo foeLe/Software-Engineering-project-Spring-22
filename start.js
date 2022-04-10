@@ -1,45 +1,30 @@
-/**
- * To direct from a page to another page, we need a line that builds a route first 
- * before using regular html/ejs redirecting codes under '.ejs' files.
- * EX:
- *    1) A line that builds a route for 'playerEntry':
- *      - '.get('/playerEntry', (req, res) => res.render('pages/playerEntry'))'
- * 
- *       ** this line of code would make the playerEntry web be named: 
- *          "https://team-11-app.herokuapp.com/playerEntry"
- *       ** similar, since we did not specify a specific name for the splash screen as  
- *          the program starts, the initial app web would be (for 3 seconds):
- *          "https://team-11-app.herokuapp.com"
- *          
- * 
- *    2) Under 'splash.ejs,' add in the line that redirects to 'player.ejs.'
- *       Since we are redirecting automatically after 3 seconds, we use: 
- *      - '<meta http-equiv = "refresh" content = "3; url = https://team-11-app.herokuapp.com/playerEntry" />'     
- */
-
-// Program starts here as directed by 'package.json'
-// Initialize path & port requirements
+// Initialize Node requirements
 const express = require('express');
 const bodyParser = require('body-parser');
 const res = require('express/lib/response');
 const path = require('path')
-const PORT = process.env.PORT || 5000
-const { Pool } = require('pg'); 
 const { ReadStream } = require('fs');
-const pool = new Pool({ // connects to our database (re-run 'npm install' since made a change to 'package.json')
-    connectionString: process.env.DATABASE_URL, // check url: 'heroku config'; should be set 
+const { Pool } = require('pg'); 
+
+// Maximum number of players per team
+const MAX_PLAYERS = 15;
+
+// Set application port
+const PORT = process.env.PORT || 5000
+
+// Connect to database
+const pool = new Pool({ 
+    connectionString: process.env.DATABASE_URL, // check url: 'heroku config'
     ssl: {
         rejectUnauthorized: false
     }
 });
 
-// Maximum number of players per team
-const MAX_PLAYERS = 15;
-
 // Current team members
 var redTeam = Array();
 var greenTeam = Array();
 
+// Player class
 class Player {
     constructor(idNumber, codeName) {
         this.idNumber = idNumber;
@@ -53,6 +38,7 @@ class Player {
     }
 }
 
+// Express server
 express()
 .use(express.static(path.join(__dirname, 'public')))
 .use(bodyParser.urlencoded({extended:true}))
@@ -309,4 +295,5 @@ express()
     }
 })
 
+// Binds express server to the designated port and starts listening for incoming traffic.
 .listen(PORT, () => console.log(`Listening on ${ PORT }`))
