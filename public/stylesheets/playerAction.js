@@ -71,4 +71,5 @@ let HOST = location.origin.replace(/^http/, 'ws')
 
       ws.onmessage = (event) => {
         console.log("message received");
+		console.log(HOST);
       };
