@@ -63,7 +63,7 @@ const server = express()
 .get('/playerEntry', (req, res) => res.render('pages/playerEntry'))
 .get('/startTimer', (req, res) => res.render('pages/startTimer'))
 .get('/playerAction', (req, res) => res.render('pages/playerAction'))
-.get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
+// .get('/playerEntry/submit', (req, res) => res.render('pages/playerAction'))
 
 
 // Renders the content of the database to the clients browser.
