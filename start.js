@@ -296,4 +296,16 @@ app.post('/playerEntry/submit', async (req, res) => {
     }
 })
 // Binds express server to the designated port and starts listening for incoming traffic.
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+const expressServer = app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+// Websocket game traffic server
+const wsServer = new ws.Server({ noServer: true });
+wsServer.on('connection', socket => {
+  socket.on('message', message => console.log(message));
+});
+
+expressServer.on('upgrade', (request, socket, head) => {
+  wsServer.handleUpgrade(request, socket, head, socket => {
+    wsServer.emit('connection', socket, request);
+  });
+});
