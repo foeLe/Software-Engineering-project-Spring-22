@@ -299,7 +299,7 @@ app.post('/playerEntry/submit', async (req, res) => {
 const expressServer = app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // Websocket game traffic server
-const wsServer = new WebSocket.Server({ app });
+const wsServer = new WebSocket.Server({ server: app });
 wsServer.on('connection', (ws) => {
     console.log('Client connected');
     wsServer.on('close', () => console.log('Client disconnected'));
