@@ -24,6 +24,7 @@ const pool = new Pool({
 // Current team members
 var redTeam = Array();
 var greenTeam = Array();
+var actions = Array();
 
 // Player class
 class Player {
@@ -39,7 +40,7 @@ class Player {
     }
 }
 
-function hexToAscii(message) {
+function parseSocketData(message) {
     let str = "";
     for (let n = 0; n < message.length; n+=1) {
         str += String.fromCharCode(message[n]);
@@ -216,6 +217,13 @@ const server = express()
         res.send({"redTeam": redTeam, "greenTeam": greenTeam});
     }, 2000)
 })
+// Sends the client a list of actions created by the traffic generator.
+.get('playerAction/getActions', async (req, res) => {
+    res.send({"actions": actions});
+    setTimeout(function() {
+        actions = Array();
+    }, 2000);
+})
 // Receive player data submitted by client.
 .post('/playerEntry/submit', async (req, res) => {
     redTeam = Array();
@@ -315,10 +323,7 @@ wss.on('connection', (ws) => {
      console.log('Client connected');
      console.log("-------------------")
      ws.on('message', (message) => {
-        // for (let i = 0; i < message.length; i++) {
-        //     console.log(message[i]);
-        // } 
-        console.log(hexToAscii(message));
+        actions.push(parseSocketData(message));
      });
      ws.on('close', () => console.log('Client disconnected'));
    });

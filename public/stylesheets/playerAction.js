@@ -1,14 +1,37 @@
 //Time in milliseconds to start with (60,000 ms/minute)
 const TIMER_MS = 360000;
 
+const HIT_SCORE = 100;
+
+// Player class
+class Player {
+    constructor(idNumber, codeName) {
+        this.idNumber = idNumber;
+        this.codeName = codeName;
+    }
+    getID() {
+        return this.idNumber;
+    }
+    getName() {
+        return this.codeName;
+    }
+}
+
+var redTeam = Array();
+var greenTeam = Array();
+var redScore = 0;
+var greenScore = 0;
+
 // Retrieves current players from the server and fills in their info on the playerAction screen
 $(document).ready(function() {
 	$.get('/players', {}, function(data){
 		for (let i = 0; i < data.redTeam.length && i < 15; i++) {
+			redTeam.push(Player(data.redTeam[i].idNumber, data.redTeam[i].codeName));
 			document.getElementById("redPlayer" + (i + 1)).innerHTML = data.redTeam[i].codeName;
 			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = "0";
 		}
 		for (let i = 0; i < data.greenTeam.length && i < 15; i++) {
+			greenTeam.push(Player(data.greenTeam[i].idNumber, data.greenTeam[i].codeName));
 			document.getElementById("greenPlayer" + (i + 1)).innerHTML = data.greenTeam[i].codeName;
 			document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = "0";
 		}
@@ -66,10 +89,32 @@ function timerStart() {
 	}, 1000);
 }
 
-let HOST = location.origin.replace(/^http/, 'ws')
-      let ws = new WebSocket(HOST);
-
-      ws.onmessage = (event) => {
-        console.log("message received");
-		console.log(HOST);
-      };
+setInterval(function() {
+	$.get('/playerAction/getActions', {}, function(data){
+		let actions = data.actions;
+		for (let i = 0; i < actions.length; i++) {
+			let attacker = actions[i].substring(0, actions[i].indexOf(':'));
+			let hitPlayer = actions[i].substring(actions[i].indexOf(':') + 1, actions[i].length);
+			for(let j = 0; j < redTeam.length; j++) {
+				// Red team hit
+				if (attacker == redTeam[j].getID()) {
+					redScore += HIT_SCORE;
+					let li = document.createElement("li");
+					let list = document.getElementById("redActionList");
+					li.appendChild(document.createTextNode(attacker + " hit " + hitPlayer));
+					list.appendChild(li);
+				}
+			}
+			for (let j = 0; j < greenTeam.length; j++) {
+				// Green team hit
+				if (attacker == greenTeam[j].getID()) {
+					greenScore += HIT_SCORE;
+					let li = document.createElement("li");
+					let list = document.getElementById("greenActionList");
+					li.appendChild(document.createTextNode(attacker + " hit " + hitPlayer));
+					list.appendChild(li);
+				}
+			}
+		}
+	});
+}, 5000);
