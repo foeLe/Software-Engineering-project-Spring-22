@@ -26,12 +26,12 @@ var greenScore = 0;
 $(document).ready(function() {
 	$.get('/players', {}, function(data){
 		for (let i = 0; i < data.redTeam.length && i < 15; i++) {
-			redTeam.push(Player(data.redTeam[i].idNumber, data.redTeam[i].codeName));
+			redTeam.push(new Player(data.redTeam[i].idNumber, data.redTeam[i].codeName));
 			document.getElementById("redPlayer" + (i + 1)).innerHTML = data.redTeam[i].codeName;
 			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = "0";
 		}
 		for (let i = 0; i < data.greenTeam.length && i < 15; i++) {
-			greenTeam.push(Player(data.greenTeam[i].idNumber, data.greenTeam[i].codeName));
+			greenTeam.push(new Player(data.greenTeam[i].idNumber, data.greenTeam[i].codeName));
 			document.getElementById("greenPlayer" + (i + 1)).innerHTML = data.greenTeam[i].codeName;
 			document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = "0";
 		}
