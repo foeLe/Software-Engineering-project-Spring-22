@@ -3,7 +3,7 @@ const TIMER_MS = 360000;
 
 // Retrieves current players from the server and fills in their info on the playerAction screen
 $(document).ready(function() {
-	$.get('https://team-11-app.herokuapp.com/players', {}, function(data){
+	$.get('/players', {}, function(data){
 		for (let i = 0; i < data.redTeam.length && i < 15; i++) {
 			document.getElementById("redPlayer" + (i + 1)).innerHTML = data.redTeam[i].codeName;
 			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = "0";

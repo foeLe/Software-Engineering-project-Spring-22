@@ -17,8 +17,12 @@ function countdown() {
 		timeLeft -= 1000;
 		switch(timeLeft) {
 			case 0:
-		        	clearInterval(timerInterval);
+		        clearInterval(timerInterval);
 				document.getElementById("startTimer").innerHTML = "BEGIN!";
+				// Wait 1 extra second, then redirect to playerAction.
+				setTimeout(function() {
+					location.assign("/playerAction");
+				}, 1000);
 				break;
 			default:
 				var timerSec = Math.floor((timeLeft % (1000 * 60)) / 1000);

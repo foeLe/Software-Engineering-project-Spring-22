@@ -66,7 +66,7 @@ function onSubmit() {
                 // If all of the IDs have a name filled in, post the players and procceed to start the game.
                 if (!isMissingNames(redTeam, greenTeam)) {
                     postPlayers(redTeam, greenTeam);
-                    location.assign("https://team-11-app.herokuapp.com/startTimer");
+                    location.assign("/startTimer");
                 }
             }
             // If any of the data the server sends back is different from what was sent.
@@ -229,7 +229,7 @@ function checkIDs(redTeam, greenTeam) {
     let res = {};
     $.ajax({
         type: "GET",
-        url: "https://team-11-app.herokuapp.com/playerEntry/checkIDs",
+        url: "/playerEntry/checkIDs",
         dataType: "json",
         async: false,
         data: {"redTeam": redTeam, "greenTeam": greenTeam},
@@ -249,7 +249,7 @@ function postPlayers(redTeam, greenTeam) {
     if (!isMissingNames(redTeam, greenTeam)) {
         $.ajax({
             type: "POST",
-            url: "https://team-11-app.herokuapp.com/playerEntry/submit",
+            url: "/playerEntry/submit",
             dataType: "json",
             timeout: 4000,
             data: {"redTeam": redTeam, "greenTeam": greenTeam}
