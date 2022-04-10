@@ -5,7 +5,7 @@ const res = require('express/lib/response');
 const path = require('path')
 const { ReadStream } = require('fs');
 const { Pool } = require('pg'); 
-//const { WebSocket } = require('ws');
+const { WebSocket } = require('ws');
 
 // Maximum number of players per team
 const MAX_PLAYERS = 15;
