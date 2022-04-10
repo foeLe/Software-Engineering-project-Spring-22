@@ -8,6 +8,7 @@ class Player {
     constructor(idNumber, codeName) {
         this.idNumber = idNumber;
         this.codeName = codeName;
+		this.score = 0;
     }
     getID() {
         return this.idNumber;
@@ -15,6 +16,12 @@ class Player {
     getName() {
         return this.codeName;
     }
+	getScore() {
+		return this.score;
+	}
+	addScore(ammount) {
+		this.score += ammount;
+	}
 }
 
 var redTeam = Array();
@@ -98,23 +105,43 @@ setInterval(function() {
 			for(let j = 0; j < redTeam.length; j++) {
 				// Red team hit
 				if (attacker == redTeam[j].getID()) {
-					redScore += HIT_SCORE;
+					redTeam[j].addScore(HIT_SCORE);
 					let li = document.createElement("li");
 					let list = document.getElementById("redActionList");
-					li.appendChild(document.createTextNode(attacker + " hit " + hitPlayer));
+					for (let k = 0; k < greenTeam.length; k++) {
+						if (hitPlayer == greenTeam[k].getID()) {
+							li.appendChild(document.createTextNode(redTeam[j].getName() + " hit " + greenTeam[k].getName()));
+						}
+					}
 					list.appendChild(li);
 				}
 			}
 			for (let j = 0; j < greenTeam.length; j++) {
 				// Green team hit
 				if (attacker == greenTeam[j].getID()) {
-					greenScore += HIT_SCORE;
+					greenTeam[j].addScore(HIT_SCORE);
 					let li = document.createElement("li");
 					let list = document.getElementById("greenActionList");
-					li.appendChild(document.createTextNode(attacker + " hit " + hitPlayer));
+					for (let k = 0; k < redTeam.length; k++) {
+						if (hitPlayer == redTeam[k].getID()) {
+							li.appendChild(document.createTextNode(greenTeam[j].getName() + " hit " + redTeam[k].getName()));
+						}
+					}
 					list.appendChild(li);
 				}
 			}
+		}
+
+		redScore = 0;
+		for (let i = 0; i < redTeam.length; i++) {
+			redScore += redTeam[i].getScore();
+			document.getElementById("redPlayer" + (i + 1) + "Score").innerHTML = redTeam[i].getScore();
+		}
+		
+		greenScore = 0;
+		for (let i = 0; i < greenTeam.length; i++) {
+			greenScore += greenTeam[i].getScore();
+			document.getElementById("greenPlayer" + (i + 1) + "Score").innerHTML = greenTeam[i].getScore();
 		}
 	});
 }, 5000);
