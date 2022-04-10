@@ -295,9 +295,9 @@ const server = express()
             })
         }
     }
-});
+})
 // Binds express server to the designated port and starts listening for incoming traffic.
-const expressServer = app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 //Websocket game traffic server
 const wsServer = new WebSocket.Server({ server });
