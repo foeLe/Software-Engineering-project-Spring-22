@@ -39,6 +39,15 @@ class Player {
     }
 }
 
+function hexToAscii(str1) {
+    let hex = str1.toString();
+    let str = "";
+    for (let n = 0; n < hex.length; n+=3) {
+        str += String.fromCharCode(parseInt(hex.substr(n,2), 16));
+    }
+    return str;
+}
+
 // Express http server
 express()
 const server = express()
@@ -306,11 +315,9 @@ wss.on('connection', (ws) => {
     console.log("-------------------")
      console.log('Client connected');
      console.log("-------------------")
-     ws.on('message', message => console.log(message));
+     ws.on('message', message => console.log(hexToAscii(message)));
      ws.on('close', () => console.log('Client disconnected'));
    });
-   
-
 
    setInterval(() => {
      wss.clients.forEach((client) => {
