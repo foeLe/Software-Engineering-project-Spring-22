@@ -147,3 +147,27 @@ setInterval(function() {
 		document.getElementById("greenScoreTotal").innerHTML = greenScore;
 	});
 }, 5000);
+
+setInterval(function() {
+	let rs = document.getElementById("redScoreTotal").innerHTML
+	let gs = document.getElementById("greenScoreTotal").innerHTML
+	redScore = parseInt(rs);
+	greenScore = parseInt(gs);
+	
+	if(redScore > greenScore)
+	{
+		rs.hidden = !rs.hidden;
+		gs.hidden = false;
+	}
+	
+	else if(greenScore > redScore)
+	{
+		gs.hidden = !gs.hidden;
+		rs.hidden = false;
+	}
+	
+	else {
+		rs.hidden = false;
+		gs.hidden = false;
+	}
+}, 750);
