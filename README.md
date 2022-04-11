@@ -30,8 +30,9 @@ Open terminal and type in the following commands:
     6) Enter player IDs 
     7) Either press the f5 key or click the onscreen button
     8) Open a new terminal and run the following command: python trafficGenerator.py
-    9) Follow the onscreen directions and use the IDs that were also used on the player entry screen.
-    10) Give the number of events  
+    9) Follow the onscreen directions for the traffic generator
+        - Enter the IDs that were also used on the player entry screen.
+        - Give the number of events  
 ```
 To view our database's contents in Heroku terminal:
 ```sh
