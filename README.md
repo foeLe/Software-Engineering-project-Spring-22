@@ -12,8 +12,6 @@ Open terminal and type in the following commands:
         - for GitHub Desktop, the project is saved  under: /../Documents/GitHub/(project name)
         - install python3.  
         - install websockets with the following command: python pip install websockets  
-Once the install is computed you can run the script with the following command:
-    `python trafficGenerator.py` 
     1) 'heroku login'
         - 'syhong@uark.edu' (email)   'laser-tag-11' (password)
     2) 'heroku git:remote -a team-11-app'
