@@ -1,5 +1,5 @@
 # Team 11 Laser Tag Project
-Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser
+Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser  
 
 # Methodology
 Apply agile methods via incremental delivery + system reuse techniques.
@@ -10,6 +10,10 @@ Open terminal and type in the following commands:
 ```sh
     0) (cd into the project directory - **make sure it is cloned from a git repo/linked to GitHub)
         - for GitHub Desktop, the project is saved  under: /../Documents/GitHub/(project name)
+        - install python3.  
+        - install websockets with the following command: python pip install websockets  
+Once the install is computed you can run the script with the following command:
+    `python trafficGenerator.py` 
     1) 'heroku login'
         - 'syhong@uark.edu' (email)   'laser-tag-11' (password)
     2) 'heroku git:remote -a team-11-app'
@@ -24,6 +28,12 @@ Open terminal and type in the following commands:
         - other options:
             1. we can also enter 'https://team-11-app.herokuapp.com/' in a browser 
             2. we can also use the command 'heroku local' then paste in 'http://localhost:5000/' in a browser 
+            
+    6) Enter player IDs 
+    7) Either press the f5 key or click the onscreen button
+    8) Open a new terminal and run the following command: python trafficGenerator.py
+    9) Follow the onscreen directions and use the IDs that were also used on the player entry screen.
+    10) Give the number of events  
 ```
 To view our database's contents in Heroku terminal:
 ```sh
@@ -44,12 +54,6 @@ Commit changes:
         1. 'git add .'
         2. 'git commit -m "(description)"
 ```
-# How to run trafficGenerator
-To run this short script you will to install python3.  
-Once python3 is installed one will need to install websockets with the following command:
-    `python pip install websockets`  
-Once the install is computed you can run the script with the following command:
-    `python trafficGenerator.py`  
 
 Then, push the changes: $'git push heroku main'
 Finally, use any of the options under 5) above to see the deployed app.
