@@ -44,5 +44,12 @@ Commit changes:
         1. 'git add .'
         2. 'git commit -m "(description)"
 ```
+# How to run trafficGenerator
+To run this short script you will to install python3.
+Once python3 is installed one will need to install websockets with the following command:
+    ` phython pip install websockets`
+Once the install is computed you can run the script with the following command:
+    `phython trafficGenerator.py`
+
 Then, push the changes: $'git push heroku main'
 Finally, use any of the options under 5) above to see the deployed app.
