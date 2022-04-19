@@ -1,6 +1,8 @@
 # Team 11 Laser Tag Project
 Members: Callum Bruton, Evan Foley, Shi Yin Hong, Austin Rodriguez and Ethan Genser  
 
+![Cover](meta/laserDiagram.png)
+
 # Methodology
 Apply agile methods via incremental delivery + system reuse techniques.
 Reference for the reusable system: https://devcenter.heroku.com/articles/getting-started-with-nodejs (suggested by Professor Strother)
